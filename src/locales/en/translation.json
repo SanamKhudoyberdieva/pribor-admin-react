@@ -73,5 +73,7 @@
     "brend-name": "Brend name",
     "category-name": "Category name",
     "create-category": "Create category",
-    "full-location": "Full location"
+    "full-location": "Full location",
+    "country-name": "Country name",
+    "add-country": "Add country"
 }

@@ -73,7 +73,11 @@
     "brend-name": "Название бренда",
     "category-name": "Название категории",
     "create-category": "Создать категорию",
-    "full-location": "Полное местоположение"
+    "full-location": "Полное местоположение",
+    "country-name": "Имя страны",
+    "add-country": "Добавить страну"
+
+
 
 
 

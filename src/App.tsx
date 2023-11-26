@@ -27,6 +27,8 @@ import Brends from './pages/brend';
 import Brend from './pages/brend/[id]';
 import Categories from './pages/category/category';
 import Category from './pages/category/[id]';
+import Countries from './pages/country';
+import Country from './pages/country/[id]';
 
 function App() {
   return (
@@ -73,6 +75,10 @@ function App() {
             <Route path="/category" element={<Categories />} />
             <Route path="/category/new" element={<Category mode="create" />} />
             <Route path="/category/:id/edit" element={<Category mode="edit" />} />
+
+            <Route path="/country" element={<Countries />} />
+            <Route path="/country/new" element={<Country mode="create" />} />
+            <Route path="/country/:id/edit" element={<Country mode="edit" />} />
           </Route>
         </Route>
 
