@@ -1,23 +1,8 @@
-import { getBranch } from '../../api';
 import { Link } from 'react-router-dom';
-import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 const Brends = () => {
     const { t } = useTranslation();
-
-    const fetchBranches = async () => {
-        try {
-            let res = await getBranch()
-            console.log("Branches", res)
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
-    useEffect(() => {
-        fetchBranches()
-    }, [])
 
     return (
         <>

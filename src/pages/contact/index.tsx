@@ -1,23 +1,8 @@
-import { getBranch } from '../../api';
 import { Link } from 'react-router-dom';
-import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 const Contacts = () => {
   const { t } = useTranslation();
-
-    const fetchBranches = async () => {
-        try {
-            let res = await getBranch()
-            console.log("Branches", res)
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
-    useEffect(() => {
-        fetchBranches()
-    }, [])
 
     return (
         <>
@@ -40,7 +25,9 @@ const Contacts = () => {
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">{t('branch-name')}</th>
+                                <th scope="col">{t('full-location')}</th>
                                 <th scope="col">{t('phone')}</th>
+                                <th scope="col">{t('visibility')}</th>
                                 <th scope="col">{t('actions')}</th>
                             </tr>
                         </thead>
@@ -48,7 +35,13 @@ const Contacts = () => {
                             <tr>
                                 <th scope="row">1</th>
                                 <td><Link to={'/contact/123/edit'}>Yunusobod</Link></td>
+                                <td>12, Alisher Navoiy, Toshkent</td>
                                 <td>+998 90 777 77 77</td>
+                                <td>
+                                    <div className="badge badge-center rounded-pill bg-label-danger">
+                                        <i className='bx bx-x-circle'></i>
+                                    </div>
+                                </td>
                                 <td>
                                     <Link to={'/contact/123/edit'} className="btn btn-success">{t('edit')}</Link>
                                 </td>

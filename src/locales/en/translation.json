@@ -72,5 +72,6 @@
     "create-brend": "Create brend",
     "brend-name": "Brend name",
     "category-name": "Category name",
-    "create-category": "Create category"
+    "create-category": "Create category",
+    "full-location": "Full location"
 }

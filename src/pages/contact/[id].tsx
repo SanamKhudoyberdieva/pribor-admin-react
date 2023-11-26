@@ -38,6 +38,11 @@ const Contact = ({ mode }: { mode: string }) => {
                 aria-describedby="defaultFormControlHelp" />
             </div>
             <div className="col-12">
+              <label className="form-label">{t('full-location')}</label>
+              <input type="text" className="form-control" id="productNameInput" placeholder={t('full-location')}
+                aria-describedby="defaultFormControlHelp" />
+            </div>
+            <div className="col-12">
               <label className="form-label">{t('phone')}</label>
               <textarea className="form-control" name="dsfs" id="productDescInput" 
                 placeholder={t('phone-number')}></textarea>
