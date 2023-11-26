@@ -24,7 +24,7 @@ const Home = () => {
     <>
       <h4 className="fw-bold mb-4">{t('dashboard')}</h4>
 
-      <div className="row g-3 mb-4">
+      {/* <div className="row g-3 mb-4">
         <div className="col-md-6">
           <div className="card">
             <div className="card-body d-flex p-3 justify-content-between align-items-center">
@@ -52,7 +52,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div className="card">
         <div className="card-body">

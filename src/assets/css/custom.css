@@ -6,3 +6,11 @@
     display: flex;
     justify-content: end;
 }
+
+.pr-dropdown-user {
+    padding: 0;
+    border-radius: 50%;
+}
+.pr-dropdown-user::after {
+    display: none;
+}

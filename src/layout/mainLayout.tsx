@@ -1,6 +1,7 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import AsideNav from '../components/AsideNav';
+import Header from '../components/Header';
 
 const MainLayout = () => {
   return (
@@ -10,6 +11,8 @@ const MainLayout = () => {
           <AsideNav />
           {/* <!-- Layout container --> */}
           <div className="layout-page">
+            {/* Header */}
+            <Header />
             {/* <!-- Content wrapper --> */}
             <div className="content-wrapper">
               <div className="container-xxl flex-grow-1 container-p-y">
