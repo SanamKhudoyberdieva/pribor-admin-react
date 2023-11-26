@@ -70,5 +70,7 @@
     "create-product": "Create product",
     "brends": "Brends",
     "create-brend": "Create brend",
-    "brend-name": "Brend name"
+    "brend-name": "Brend name",
+    "category-name": "Category name",
+    "create-category": "Create category"
 }

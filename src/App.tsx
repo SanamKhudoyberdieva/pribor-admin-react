@@ -25,6 +25,8 @@ import CustomerAddress from './pages/customer/customerAddress/[id]';
 import './utils/i18n';
 import Brends from './pages/brend';
 import Brend from './pages/brend/[id]';
+import Categories from './pages/category/category';
+import Category from './pages/category/[id]';
 
 function App() {
   return (
@@ -67,6 +69,10 @@ function App() {
             <Route path="/brend" element={<Brends />} />
             <Route path="/brend/new" element={<Brend mode="create" />} />
             <Route path="/brend/:id/edit" element={<Brend mode="edit" />} />
+
+            <Route path="/category" element={<Categories />} />
+            <Route path="/category/new" element={<Category mode="create" />} />
+            <Route path="/category/:id/edit" element={<Category mode="edit" />} />
           </Route>
         </Route>
 

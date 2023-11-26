@@ -70,7 +70,11 @@
     "create-product": "Mahsulot yaratish",
     "brends": "Brendlar",
     "create-brend": "Brend yaratish",
-    "brend-name": "Brend nomi"
+    "brend-name": "Brend nomi",
+    "category-name": "Kategoriya nomi",
+    "create-category": "Kategoriya yaratish"
+
+
 
 
 

@@ -70,7 +70,11 @@
     "create-product": "Создать продукт",
     "brends": "Бренды",
     "create-brend": "Создать бренд",
-    "brend-name": "Название бренда"
+    "brend-name": "Название бренда",
+    "category-name": "Название категории",
+    "create-category": "Создать категорию"
+
+
 
 
 
