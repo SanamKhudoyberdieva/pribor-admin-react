@@ -1,0 +1,147 @@
+{
+    "banners": "Bannerlar",
+    "dashboard": "Boshqaruv paneli",
+    "admin": "Admin",
+    "sign-out": "Chiqish",
+    "image": "Rasm",
+    "name": "Ism",
+    "price": "Narx",
+    "visibility": "Ko'rinish",
+    "actions": "Harakatlar",
+    "edit": "Tahrirlash",
+    "create": "Yaratmoq",
+    "delete": "O'chirmoq",
+    "visible": "Ko'rinadigan",
+    "shop": "Do'kon",
+    "products": "Mahsulotlar",
+    "customers": "Xaridorlar",
+    "orders": "Buyurtmalar",
+    "content": "Tarkib",
+    "contacts": "Kontaktlar",
+    "payments": "To'lovlar",
+    "authors": "Mualliflar",
+    "images": "Rasmlar",
+    "save-edits": "O'zgarishlarni saqlash",
+    "cancel": "Bekor qilish",
+    "list": "Roʻyxat",
+    "create-banners": "Banner yaratish",
+    "description": "Tavsif",
+    "phone": "Telefon",
+    "phone-number": "Telefon raqami",
+    "branch-name": "Filial nomi",
+    "create-contact": "Kontakt yaratish",
+    "addresses": "Manzillar",
+    "address": "Manzil",
+    "created-at": "Yaratilgan",
+    "last-modified-at": "Oxirgi tahrirlangan",
+    "add-address": "Manzil qo'shish",
+    "first-name": "Ism",
+    "last-name": "Familiya",
+    "create-customer": "Xaridor yaratish",
+    "number": "Son",
+    "customer": "Xaridor *",
+    "customer-full-name": "Xaridor to'liq ismi",
+    "category": "Turkum",
+    "brend": "Brend",
+    "news": "Yangiliklar",
+    "vacancy": "Vakansiya",
+    "country": "Mamlakat",
+    "pricing": "Narxlash",
+    "sale": "Sotish",
+    "create-order": "Buyurtma yaratish",
+    "status": "Holat",
+    "total-price": "Umumiy narx",
+    "shipping-cost": "Eltib berish narxi",
+    "order-date": "Buyurtma sanasi",
+    "cancelled": "Bekor qilish",
+    "processing": "Qayta ishlash",
+    "order-status": "Buyurtma holati",
+    "order-country": "Buyurtma shahri",
+    "order-address": "Buyurtma manzili",
+    "notes": "Eslatmalar",
+    "customer-address": "Mijoz manzili",
+    "order-items": "Buyurtma mahsulotlari",
+    "product": "Mahsulot",
+    "quantity": "Miqdori",
+    "unit-price": "Donasining narxi",
+    "payment-type": "To'lov turi",
+    "type": "Turi",
+    "create-payment": "To'lov yaratish",
+    "create-product": "Mahsulot yaratish",
+    "brends": "Brendlar",
+    "create-brend": "Brend yaratish",
+    "brend-name": "Brend nomi"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}

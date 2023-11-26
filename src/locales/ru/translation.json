@@ -1,0 +1,149 @@
+{
+    "banners": "Баннеры",
+    "dashboard": "Панель приборов",
+    "admin": "Админ",
+    "sign-out": "Выход",
+    "image": "Изображение",
+    "name": "Имя",
+    "price": "Цена",
+    "visibility": "Видимость",
+    "actions": "Действия",
+    "edit": "Редактировать",
+    "create": "Создавать",
+    "delete": "Удалить",
+    "visible": "Видимый",
+    "shop": "Магазин",
+    "products": "Продукты",
+    "customers": "Клиенты",
+    "orders": "Заказы",
+    "content": "Содержание",
+    "contacts": "Контакты",
+    "payments": "Платежи",
+    "authors": "Авторы",
+    "images": "Изображений",
+    "save-edits": "Сохранить изменения",
+    "cancel": "Отмена",
+    "list": "Список",
+    "create-banners": "Создать баннер",
+    "description": "Описание",
+    "phone": "Телефон",
+    "phone-number": "Номер телефона",
+    "branch-name": "Название филиала",
+    "create-contact": "Создать контакт",
+    "addresses": "Адреса",
+    "address": "Адрес",
+    "created-at": "Создан в",
+    "last-modified-at": "Последнее изменение",
+    "add-address": "Добавить адрес",
+    "first-name": "Имя",
+    "last-name": "Фамилия",
+    "create-customer": "Создать клиента",
+    "number": "Число",
+    "customer": "Клиент *",
+    "customer-full-name": "Полное имя клиента",
+    "category": "Категория",
+    "brend": "Бренд",
+    "news": "Новости",
+    "vacancy": "Вакансия",
+    "country": "Страна",
+    "pricing": "Цены",
+    "sale": "Распродажа",
+    "create-order": "Создать заказ",
+    "status": "Положение дел",
+    "total-price": "Итоговая цена",
+    "shipping-cost": "Стоимость доставки",
+    "order-date": "Дата заказа",
+    "cancelled": "Отменено",
+    "processing": "Обработка",
+    "order-status": "Статус заказа",
+    "order-country": "Заказать страну",
+    "order-address": "Адрес заказа",
+    "notes": "Примечания",
+    "customer-address": "Адрес клиента",
+    "order-items": "Заказать товары",
+    "product": "Продукт",
+    "quantity": "Количество",
+    "unit-price": "Цена за единицу товара",
+    "payment-type": "Способ оплаты",
+    "type": "Тип",
+    "create-payment": "Создать платеж",
+    "create-product": "Создать продукт",
+    "brends": "Бренды",
+    "create-brend": "Создать бренд",
+    "brend-name": "Название бренда"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
