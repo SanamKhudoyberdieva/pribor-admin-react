@@ -29,6 +29,8 @@ import Categories from './pages/category/category';
 import Category from './pages/category/[id]';
 import Countries from './pages/country';
 import Country from './pages/country/[id]';
+import Vacancies from './pages/vacancy';
+import Vacancy from './pages/vacancy/[id]';
 
 function App() {
   return (
@@ -79,6 +81,10 @@ function App() {
             <Route path="/country" element={<Countries />} />
             <Route path="/country/new" element={<Country mode="create" />} />
             <Route path="/country/:id/edit" element={<Country mode="edit" />} />
+
+            <Route path="/vacancy" element={<Vacancies />} />
+            <Route path="/vacancy/new" element={<Vacancy mode="create" />} />
+            <Route path="/vacancy/:id/edit" element={<Vacancy mode="edit" />} />
           </Route>
         </Route>
 
