@@ -76,5 +76,7 @@
     "full-location": "Full location",
     "country-name": "Country name",
     "add-country": "Add country",
-    "create-vacancy": "Create vacancy"
+    "create-vacancy": "Create vacancy",
+    "admins": "Admins",
+    "create-admin": "Create admin"
 }

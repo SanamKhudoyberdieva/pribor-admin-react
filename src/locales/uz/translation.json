@@ -76,7 +76,9 @@
     "full-location": "To'liq address",
     "country-name": "Davlat nomi",
     "add-country": "Davlat qo'shish",
-    "create-vacancy": "Vakansiya yaratish"
+    "create-vacancy": "Vakansiya yaratish",
+    "admins": "Adminlar",
+    "create-admin": "Admin yaratish"
 
 
 

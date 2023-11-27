@@ -31,6 +31,8 @@ import Countries from './pages/country';
 import Country from './pages/country/[id]';
 import Vacancies from './pages/vacancy';
 import Vacancy from './pages/vacancy/[id]';
+import Admins from './pages/admins';
+import Admin from './pages/admins/[id]';
 
 function App() {
   return (
@@ -85,6 +87,10 @@ function App() {
             <Route path="/vacancy" element={<Vacancies />} />
             <Route path="/vacancy/new" element={<Vacancy mode="create" />} />
             <Route path="/vacancy/:id/edit" element={<Vacancy mode="edit" />} />
+
+            <Route path="/admins" element={<Admins />} />
+            <Route path="/admin/new" element={<Admin mode="create" />} />
+            <Route path="/admin/:id/edit" element={<Admin mode="edit" />} />
           </Route>
         </Route>
 

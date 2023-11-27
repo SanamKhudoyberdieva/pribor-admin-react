@@ -19,9 +19,9 @@ const Products = () => {
         }
     }
 
-    useEffect(() => {
-        fetchProducts()
-    }, [])
+    // useEffect(() => {
+    //     fetchProducts()
+    // }, [])
 
     const products = useSelector((state: RootState) => state.productReducer)
     console.log("products state: ", products)

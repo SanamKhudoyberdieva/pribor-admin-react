@@ -76,7 +76,9 @@
     "full-location": "Полное местоположение",
     "country-name": "Имя страны",
     "add-country": "Добавить страну",
-    "create-vacancy": "Создать вакансию"
+    "create-vacancy": "Создать вакансию",
+    "admins": "Админы",
+    "create-admin": "Создать админ"
 
 
 
