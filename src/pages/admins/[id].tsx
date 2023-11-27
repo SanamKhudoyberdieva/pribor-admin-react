@@ -1,9 +1,42 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { createAdmin, getAdmin } from '../../api';
+import { adminCreation, adminState, setMe } from '../../store/slices/loginSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../store';
 
 const Admin = ({ mode }: { mode: string }) => {
   const { t } = useTranslation();
+  const { id } = useParams()
+  const dispatch = useDispatch()
+
+  const logindata = useSelector((state: RootState) => state.loginReducer)
+  console.log("logindata", logindata)
+
+  const hendleCreateAdmin = async (obj: adminCreation) => {
+    try {
+      await createAdmin(obj)
+      // !Show operation successful on alert
+    } catch (error) {
+      console.log("error createAdmin", error)
+      // !show operation failed on alert
+    }
+  }
+
+  const fetchAdmin = async () => {
+    try {
+      const res = await getAdmin()
+      dispatch(setMe(res.data))
+    } catch (error) {
+      console.log("error createAdmin", error)
+      // !show operation failed on alert
+    }
+  }
+
+  useEffect(() => {
+    fetchAdmin()
+  }, [id])
 
   return (
     <>

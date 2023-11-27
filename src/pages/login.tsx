@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { useFormik } from 'formik';
 import React from 'react';
-import { authAdmin } from '../api/admin/authAdmin';
 import { setAuthAdmin } from '../store/slices/loginSlice';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store';
+import { authAdmin } from '../api';
 
 const Login = () => {
   const navigate = useNavigate();

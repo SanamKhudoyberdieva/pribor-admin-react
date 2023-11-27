@@ -1,7 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ProductData } from "../../api";
-import { ErrorResponse } from "react-router-dom";
-
 
 export interface authState{
   accessToken: string,
@@ -15,6 +12,12 @@ export interface adminState {
   createdAt: string,
   updatedAt: string,
   lastVisit: string
+}
+
+export interface adminCreation {
+  isSuperuser: boolean,
+  password: string,
+  username: string
 }
 
 interface loginState extends adminState, authState {}
@@ -36,7 +39,6 @@ const loginSlice = createSlice({
   initialState,
   reducers: {
     setAuthAdmin(state, action: PayloadAction<authState>) {
-      console.log("action", action.payload)
       localStorage.setItem('accessToken', `${action.payload.accessToken}`)
       localStorage.setItem('refreshToken', `${action.payload.refreshToken}`)
       state.accessToken = action.payload.accessToken;
