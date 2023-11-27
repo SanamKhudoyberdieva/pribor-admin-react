@@ -1,11 +1,13 @@
 import { Dropdown } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logOut } from '../store/slices/loginSlice';
 import LanguageDropdown from './LanguageDropdown';
+import { RootState } from '../store';
 
 const Header = () => {
   const dispatch = useDispatch()
+  const { username } = useSelector((state: RootState) => state.loginReducer)
   const hendleLogOut = () => {
     dispatch(logOut())
   }
@@ -27,7 +29,7 @@ const Header = () => {
         <ul className="navbar-nav flex-row align-items-center ms-auto">
           {/* <!-- User --> */}
           <li className='nav-item navbar-dropdown dropdown'>
-              <LanguageDropdown />
+            <LanguageDropdown />
           </li>
           <li className="nav-item navbar-dropdown dropdown-user dropdown">
             <Dropdown>
@@ -59,7 +61,7 @@ const Header = () => {
                     </div>
                     <div className="flex-grow-1">
                       <span className="fw-semibold d-block">
-                        Eshmat
+                        {username}
                       </span>
                       <small className="text-muted">Admin</small>
                     </div>

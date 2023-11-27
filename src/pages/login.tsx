@@ -8,8 +8,7 @@ import { authAdmin } from '../api';
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch()
-  const state = useSelector((state: RootState) => state.loginReducer)
-  console.log("root state", state)
+
   const formik = useFormik({
     initialValues: {
       username: '',

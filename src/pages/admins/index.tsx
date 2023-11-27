@@ -1,5 +1,5 @@
 import { getAdmins } from '../../api';
-import { toast } from 'react-toastify';  
+import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -59,8 +59,8 @@ const Admins = () => {
             </thead>
             <tbody>
               {admins.map((x, idx) => {
-                const formattedCreatedAt = new Date(x.createdAt).toLocaleDateString('en-GB');
-                const formattedUpdatedAt = new Date(x.updatedAt).toLocaleDateString('en-GB');
+                const formattedCreatedAt = x.createdAt ? new Date(x.createdAt).toLocaleDateString('en-GB') : "";
+                const formattedUpdatedAt = x.updatedAt ? new Date(x.updatedAt).toLocaleDateString('en-GB') : "";
                 return (
                   <tr key={"admin-index-" + idx}>
                     <th scope="row">{idx + 1}</th>

@@ -1,20 +1,18 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { createAdmin, getAdmin } from '../../api';
 import { setMe } from '../../store/slices/loginSlice';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../store';
+import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
-import { adminCreation } from '../../store/types/adminTypes';
+import { useFormik } from 'formik';
 
 const Admin = ({ mode }: { mode: string }) => {
   const { id } = useParams();
   const { t } = useTranslation();
   const dispatch = useDispatch();
-
-  const logindata = useSelector((state: RootState) => state.loginReducer)
-  console.log("logindata", logindata)
+  const navigate = useNavigate()
+  // const [currUser, setCurrUser] = useState()
 
   const showSuccessMessage = () => {
     toast.success("Admin successfully created !", {
@@ -28,16 +26,6 @@ const Admin = ({ mode }: { mode: string }) => {
     });
   };
 
-  const hendleCreateAdmin = async (obj: adminCreation) => {
-    try {
-      await createAdmin(obj)
-      showSuccessMessage()
-    } catch (error) {
-      console.log("error createAdmin", error)
-      showErrorMessage()
-    }
-  }
-
   const fetchAdmin = async () => {
     try {
       const res = await getAdmin()
@@ -47,6 +35,39 @@ const Admin = ({ mode }: { mode: string }) => {
       showErrorMessage()
     }
   }
+
+  const formik = useFormik({
+    initialValues: {
+      // isSuperuser: mode === "edit" ? currUser.isSuperuser : false,
+      isSuperuser: false,
+      password: "",
+      username: ""
+    },
+    onSubmit: values => {
+      const create = async () => {
+        try {
+          const response = await createAdmin
+            ({
+              isSuperuser: values.isSuperuser,
+              password: values.password,
+              username: values.username,
+            });
+          navigate("/admins", { replace: true });
+          console.log(response);
+          showSuccessMessage()
+        } catch (error) {
+          console.error('There was an error!', error);
+          showErrorMessage()
+        }
+      };
+
+      // const update = async () => { }
+      // mode === "edit" ? update() : create()
+
+      create();
+    }
+  });
+
 
   useEffect(() => {
     fetchAdmin()
@@ -72,34 +93,50 @@ const Admin = ({ mode }: { mode: string }) => {
         {mode === "edit" && <button className="btn btn-danger">{t('delete')}</button>}
       </div>
 
-      <div className="card mb-4">
-        <div className="card-body">
-          <div className="form-check form-switch mb-2">
-            <input className="form-check-input" type="checkbox" id="visibilitySwitch" />
-            <label className="form-check-label">{t('visible')}</label>
-          </div>
-          <div className="row g-3 mb-4">
-            <div className="col-12">
-              <label className="form-label">{t('name')}</label>
-              <input type="text" className="form-control" id="productNameInput" placeholder={t('branch-name')}
-                aria-describedby="defaultFormControlHelp" />
-            </div>
-            <div className="col-12">
-              <label className="form-label">{t('full-location')}</label>
-              <input type="text" className="form-control" id="productNameInput" placeholder={t('full-location')}
-                aria-describedby="defaultFormControlHelp" />
-            </div>
-            <div className="col-12">
-              <label className="form-label">{t('phone')}</label>
-              <textarea className="form-control" name="dsfs" id="productDescInput"
-                placeholder={t('phone-number')}></textarea>
+      <form onSubmit={formik.handleSubmit}>
+        <div className="card mb-4">
+          <div className="card-body">
+            <div className="row g-3 mb-4">
+              <div className="col-12">
+                <label className="form-label">Username</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  name='username'
+                  value={formik.values.username}
+                  onChange={formik.handleChange}
+                  placeholder={"Username"}
+                  aria-describedby="defaultFormControlHelp" />
+              </div>
+              <div className="col-12">
+                <label className="form-label">Password</label>
+                <input type="text"
+                  className="form-control"
+                  name='password'
+                  value={formik.values.password}
+                  onChange={formik.handleChange}
+                  placeholder={"Password"}
+                  aria-describedby="defaultFormControlHelp" />
+              </div>
+              <div className="col-12">
+                <div className="form-check form-switch">
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    checked={formik.values.isSuperuser}
+                    onChange={(e) => formik.setFieldValue('isSuperuser', e.target.checked)}
+                    id="visibilitySwitch"
+                  />
+                  <label className="form-check-label">Superuser</label>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <button className="btn btn-primary me-3">{t('save-edits')}</button>
-      <button className="btn btn-secondary">{t('cancel')}</button>
+        <button className="btn btn-primary me-3" type="submit">{t('save-edits')}</button>
+        <button className="btn btn-secondary">{t('cancel')}</button>
+      </form>
     </>
   )
 }

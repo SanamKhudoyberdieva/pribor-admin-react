@@ -1,9 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import AsideNav from '../components/AsideNav';
 import Header from '../components/Header';
+import { getAdmin } from '../api';
+import { useDispatch } from 'react-redux';
+import { setMe } from '../store/slices/loginSlice';
 
 const MainLayout = () => {
+  const dispatch = useDispatch()
+  const fetchAdmin = async () => {
+    try {
+      let res = await getAdmin()
+      dispatch(setMe(res.data))
+    } catch (error) {
+      console.log("error getAdmin", error)
+    }
+  }
+  useEffect(() => {
+    fetchAdmin()
+  }, [])
   return (
     <div>
       <div className="layout-wrapper layout-content-navbar">
