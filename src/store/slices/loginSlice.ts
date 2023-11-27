@@ -1,23 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
+import { adminState } from "../types/adminTypes";
 export interface authState{
   accessToken: string,
   refreshToken: string,
-}
-
-export interface adminState {
-  id: number,
-  username: string,
-  isSuperuser: boolean,
-  createdAt: string,
-  updatedAt: string,
-  lastVisit: string
-}
-
-export interface adminCreation {
-  isSuperuser: boolean,
-  password: string,
-  username: string
 }
 
 interface loginState extends adminState, authState {}

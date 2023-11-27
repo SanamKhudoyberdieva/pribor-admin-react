@@ -1,4 +1,4 @@
-import { adminCreation } from '../../store/slices/loginSlice';
+import { adminCreation } from '../../store/types/adminTypes';
 import api from '../api';
 
 export const createAdmin = async (obj: adminCreation) => {

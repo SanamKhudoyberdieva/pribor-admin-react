@@ -1,26 +1,40 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next';
 import { Link, useParams } from 'react-router-dom';
 import { createAdmin, getAdmin } from '../../api';
-import { adminCreation, adminState, setMe } from '../../store/slices/loginSlice';
+import { setMe } from '../../store/slices/loginSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
+import { toast } from 'react-toastify';
+import { adminCreation } from '../../store/types/adminTypes';
 
 const Admin = ({ mode }: { mode: string }) => {
+  const { id } = useParams();
   const { t } = useTranslation();
-  const { id } = useParams()
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const logindata = useSelector((state: RootState) => state.loginReducer)
   console.log("logindata", logindata)
 
+  const showSuccessMessage = () => {
+    toast.success("Admin successfully created !", {
+      position: toast.POSITION.TOP_RIGHT,
+    });
+  };
+
+  const showErrorMessage = () => {
+    toast.error("An error occurred !", {
+      position: toast.POSITION.TOP_RIGHT,
+    });
+  };
+
   const hendleCreateAdmin = async (obj: adminCreation) => {
     try {
       await createAdmin(obj)
-      // !Show operation successful on alert
+      showSuccessMessage()
     } catch (error) {
       console.log("error createAdmin", error)
-      // !show operation failed on alert
+      showErrorMessage()
     }
   }
 
@@ -30,7 +44,7 @@ const Admin = ({ mode }: { mode: string }) => {
       dispatch(setMe(res.data))
     } catch (error) {
       console.log("error createAdmin", error)
-      // !show operation failed on alert
+      showErrorMessage()
     }
   }
 

@@ -78,5 +78,7 @@
     "add-country": "Add country",
     "create-vacancy": "Create vacancy",
     "admins": "Admins",
-    "create-admin": "Create admin"
+    "create-admin": "Create admin",
+    "username": "Username",
+    "updated-at": "Updated at"
 }

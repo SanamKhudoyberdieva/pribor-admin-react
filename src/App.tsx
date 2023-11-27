@@ -4,6 +4,7 @@ import './assets/css/core.css';
 import './assets/css/custom.css';
 import './assets/css/theme-default.css';
 import "boxicons/css/boxicons.min.css";
+import 'react-toastify/dist/ReactToastify.css';
 import Home from './pages';
 import Login from './pages/login';
 import Orders from './pages/order';

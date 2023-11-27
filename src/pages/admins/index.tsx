@@ -1,18 +1,26 @@
-import React, { useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
 import { getAdmins } from '../../api';
+import { toast } from 'react-toastify';  
+import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { adminState } from '../../store/types/adminTypes';
 
 const Admins = () => {
   const { t } = useTranslation();
-  const [admins, setAdmins] = useState([])
+  const [admins, setAdmins] = useState<adminState[]>([])
+
+  const showErrorMessage = () => {
+    toast.error("An error occurred !", {
+      position: toast.POSITION.TOP_RIGHT,
+    });
+  };
 
   const fetchAdmins = async () => {
     try {
       const res = await getAdmins()
       setAdmins(res.data)
     } catch (error: any) {
-      // !if there was an error show the error message on alert
+      showErrorMessage()
       console.log("error getAdmins:", error)
     }
   }
@@ -42,28 +50,34 @@ const Admins = () => {
             <thead>
               <tr>
                 <th scope="col">#</th>
-                <th scope="col">{t('branch-name')}</th>
-                <th scope="col">{t('full-location')}</th>
-                <th scope="col">{t('phone')}</th>
+                <th scope="col">{t('username')}</th>
+                <th scope="col">{t('created-at')}</th>
+                <th scope="col">{t('updated-at')}</th>
                 <th scope="col">{t('visibility')}</th>
                 <th scope="col">{t('actions')}</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td><Link to={'/admin/4/edit'}>Eshmat</Link></td>
-                <td>12, Alisher Navoiy, Toshkent</td>
-                <td>+998 90 777 77 77</td>
-                <td>
-                  <div className="badge badge-center rounded-pill bg-label-danger">
-                    <i className='bx bx-x-circle'></i>
-                  </div>
-                </td>
-                <td>
-                  <Link to={'/admin/4/edit'} className="btn btn-success">{t('edit')}</Link>
-                </td>
-              </tr>
+              {admins.map((x, idx) => {
+                const formattedCreatedAt = new Date(x.createdAt).toLocaleDateString('en-GB');
+                const formattedUpdatedAt = new Date(x.updatedAt).toLocaleDateString('en-GB');
+                return (
+                  <tr key={"admin-index-" + idx}>
+                    <th scope="row">{idx + 1}</th>
+                    <td><Link to={`/admin/${x.id}/edit`}>{x.username}</Link></td>
+                    <td>{formattedCreatedAt}</td>
+                    <td>{formattedUpdatedAt}</td>
+                    <td>
+                      <div className="badge badge-center rounded-pill bg-label-danger">
+                        <i className='bx bx-x-circle'></i>
+                      </div>
+                    </td>
+                    <td>
+                      <Link to={`/admin/${x.id}/edit`} className="btn btn-success">{t('edit')}</Link>
+                    </td>
+                  </tr>
+                )
+              })}
             </tbody>
           </table>
         </div>
@@ -72,4 +86,4 @@ const Admins = () => {
   )
 }
 
-export default Admins
+export default Admins;

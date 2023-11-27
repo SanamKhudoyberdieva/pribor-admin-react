@@ -78,7 +78,11 @@
     "add-country": "Добавить страну",
     "create-vacancy": "Создать вакансию",
     "admins": "Админы",
-    "create-admin": "Создать админ"
+    "create-admin": "Создать админ",
+    "username": "Имя пользователя",
+    "updated-at": "Обновлено в"
+
+
 
 
 

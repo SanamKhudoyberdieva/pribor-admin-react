@@ -1,8 +1,8 @@
-import React from 'react'
-import { Dropdown } from 'react-bootstrap'
-import { useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { logOut } from '../store/slices/loginSlice'
+import { Dropdown } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { logOut } from '../store/slices/loginSlice';
+import LanguageDropdown from './LanguageDropdown';
 
 const Header = () => {
   const dispatch = useDispatch()
@@ -26,6 +26,9 @@ const Header = () => {
       >
         <ul className="navbar-nav flex-row align-items-center ms-auto">
           {/* <!-- User --> */}
+          <li className='nav-item navbar-dropdown dropdown'>
+              <LanguageDropdown />
+          </li>
           <li className="nav-item navbar-dropdown dropdown-user dropdown">
             <Dropdown>
               <Dropdown.Toggle
@@ -35,7 +38,7 @@ const Header = () => {
               >
                 <div className="avatar avatar-online">
                   <img
-                    src={"https://demos.themeselection.com/sneat-bootstrap-html-admin-template-free/assets/img/avatars/1.png"}
+                    src={require('../../src/assets/img/admin01.jpg')}
                     alt=""
                     className="w-px-40 h-auto rounded-circle"
                   />
@@ -48,9 +51,9 @@ const Header = () => {
                     <div className="flex-shrink-0 me-3">
                       <div className="avatar avatar-online">
                         <img
-                          src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template-free/assets/img/avatars/1.png"
+                          src={require('../../src/assets/img/admin01.jpg')}
                           alt=""
-                          className="w-px-40 h-auto rounded-circle"
+                          className="w-100 h-auto rounded-circle"
                         />
                       </div>
                     </div>
@@ -58,6 +61,7 @@ const Header = () => {
                       <span className="fw-semibold d-block">
                         Eshmat
                       </span>
+                      <small className="text-muted">Admin</small>
                     </div>
                   </div>
                 </div>

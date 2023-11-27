@@ -78,7 +78,11 @@
     "add-country": "Davlat qo'shish",
     "create-vacancy": "Vakansiya yaratish",
     "admins": "Adminlar",
-    "create-admin": "Admin yaratish"
+    "create-admin": "Admin yaratish",
+    "username": "Foydalanuvchi nomi",
+    "updated-at": "Yangilangan"
+
+
 
 
 

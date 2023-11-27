@@ -1,5 +1,5 @@
-.dropdown .btn {
-    padding: 10px 15px;
+.pr-lang-dropdown {
+    margin-right: 40px;
 }
 
 .dropdown {
@@ -13,4 +13,8 @@
 }
 .pr-dropdown-user::after {
     display: none;
+}
+.dropdown-user .dropdown-item {
+    display: flex;
+    align-items: center;
 }
