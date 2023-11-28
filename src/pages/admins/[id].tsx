@@ -6,6 +6,7 @@ import { setMe } from '../../store/slices/loginSlice';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { useFormik } from 'formik';
+import { deleteAdmin } from '../../api/admin/deleteAdmin';
 
 const Admin = ({ mode }: { mode: string }) => {
   const { id } = useParams();
@@ -13,6 +14,8 @@ const Admin = ({ mode }: { mode: string }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate()
   // const [currUser, setCurrUser] = useState()
+  const [currUser, setCurrUser] = useState<any>(null);
+  
 
   const showSuccessMessage = () => {
     toast.success("Admin successfully created !", {
@@ -30,16 +33,31 @@ const Admin = ({ mode }: { mode: string }) => {
     try {
       const res = await getAdmin()
       dispatch(setMe(res.data))
+      setCurrUser(res.data);
     } catch (error) {
       console.log("error createAdmin", error)
       showErrorMessage()
     }
   }
 
+  const DeleteAdmin = async (id: string | undefined) => {
+    try {
+      const res = await deleteAdmin(id)
+      navigate("/admins", { replace: true });
+      toast.success("Admin successfully deleted!", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      console.log("admin deleted", res)
+    } catch (error) {
+      console.error('Error deleting admin!', error);
+      showErrorMessage();
+    }
+  };
+
   const formik = useFormik({
     initialValues: {
-      // isSuperuser: mode === "edit" ? currUser.isSuperuser : false,
-      isSuperuser: false,
+      isSuperuser: mode === "edit" ? currUser.isSuperuser : false,
+      // isSuperuser: false,
       password: "",
       username: ""
     },
@@ -61,8 +79,8 @@ const Admin = ({ mode }: { mode: string }) => {
         }
       };
 
-      // const update = async () => { }
-      // mode === "edit" ? update() : create()
+      const update = async () => { }
+      mode === "edit" ? update() : create()
 
       create();
     }
@@ -90,7 +108,8 @@ const Admin = ({ mode }: { mode: string }) => {
 
       <div className="mb-4 d-flex align-items-center justify-content-between">
         {mode === "edit" && <h4 className="fw-bold mb-0">Eshmat</h4>}
-        {mode === "edit" && <button className="btn btn-danger">{t('delete')}</button>}
+        {mode === "edit" && <button className="btn btn-danger" onClick={() => DeleteAdmin(id)} >{t('delete')}</button>
+        }
       </div>
 
       <form onSubmit={formik.handleSubmit}>
@@ -98,24 +117,24 @@ const Admin = ({ mode }: { mode: string }) => {
           <div className="card-body">
             <div className="row g-3 mb-4">
               <div className="col-12">
-                <label className="form-label">Username</label>
+                <label className="form-label">{t('username')}</label>
                 <input
                   type="text"
                   className="form-control"
                   name='username'
                   value={formik.values.username}
                   onChange={formik.handleChange}
-                  placeholder={"Username"}
+                  placeholder={t('username')}
                   aria-describedby="defaultFormControlHelp" />
               </div>
               <div className="col-12">
-                <label className="form-label">Password</label>
+                <label className="form-label">{t('password')}</label>
                 <input type="text"
                   className="form-control"
                   name='password'
                   value={formik.values.password}
                   onChange={formik.handleChange}
-                  placeholder={"Password"}
+                  placeholder={t('password')}
                   aria-describedby="defaultFormControlHelp" />
               </div>
               <div className="col-12">
@@ -127,7 +146,7 @@ const Admin = ({ mode }: { mode: string }) => {
                     onChange={(e) => formik.setFieldValue('isSuperuser', e.target.checked)}
                     id="visibilitySwitch"
                   />
-                  <label className="form-check-label">Superuser</label>
+                  <label className="form-check-label">{t('super-user')}</label>
                 </div>
               </div>
             </div>

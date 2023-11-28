@@ -53,7 +53,7 @@ const Admins = () => {
                 <th scope="col">{t('username')}</th>
                 <th scope="col">{t('created-at')}</th>
                 <th scope="col">{t('updated-at')}</th>
-                <th scope="col">{t('visibility')}</th>
+                <th scope="col">{t('super-user')}</th>
                 <th scope="col">{t('actions')}</th>
               </tr>
             </thead>
@@ -68,9 +68,10 @@ const Admins = () => {
                     <td>{formattedCreatedAt}</td>
                     <td>{formattedUpdatedAt}</td>
                     <td>
-                      <div className="badge badge-center rounded-pill bg-label-danger">
-                        <i className='bx bx-x-circle'></i>
-                      </div>
+                      {
+                        x.isSuperuser == true ? <div className="badge badge-center rounded-pill bg-label-success"><i className='bx bx-check-circle'></i></div> : <div className="badge badge-center rounded-pill bg-label-danger"><i className='bx bx-x-circle'></i></div>
+                      }
+                      
                     </td>
                     <td>
                       <Link to={`/admin/${x.id}/edit`} className="btn btn-success">{t('edit')}</Link>

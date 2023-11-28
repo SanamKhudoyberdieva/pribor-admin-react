@@ -80,5 +80,7 @@
     "admins": "Admins",
     "create-admin": "Create admin",
     "username": "Username",
-    "updated-at": "Updated at"
+    "updated-at": "Updated at",
+    "super-user": "Super user",
+    "password": "Password"
 }

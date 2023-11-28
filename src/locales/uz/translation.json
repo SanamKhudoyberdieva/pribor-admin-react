@@ -80,7 +80,11 @@
     "admins": "Adminlar",
     "create-admin": "Admin yaratish",
     "username": "Foydalanuvchi nomi",
-    "updated-at": "Yangilangan"
+    "updated-at": "Yangilangan",
+    "super-user": "Super foydalanuvchi",
+    "password": "Parol"
+
+
 
 
 
