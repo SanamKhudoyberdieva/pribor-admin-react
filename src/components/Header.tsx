@@ -8,6 +8,7 @@ import { RootState } from '../store';
 const Header = () => {
   const dispatch = useDispatch()
   const { username } = useSelector((state: RootState) => state.loginReducer)
+  console.log("username", username)
   const hendleLogOut = () => {
     dispatch(logOut())
   }

@@ -4,4 +4,6 @@ Questions:
 
 
 Tasks:
+    ** Error hendling with dinamic error messages and if it is static it shuld be multilanguage
+    * showErrorMessage function should be reusable
     

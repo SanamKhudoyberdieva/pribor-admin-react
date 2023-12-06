@@ -3,11 +3,11 @@ import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { adminState } from '../../store/types/adminTypes';
+import { CurrentAdmin } from '../../store/types/adminTypes';
 
 const Admins = () => {
   const { t } = useTranslation();
-  const [admins, setAdmins] = useState<adminState[]>([])
+  const [admins, setAdmins] = useState<CurrentAdmin[]>([])
 
   const showErrorMessage = () => {
     toast.error("An error occurred !", {
@@ -71,7 +71,7 @@ const Admins = () => {
                       {
                         x.isSuperuser == true ? <div className="badge badge-center rounded-pill bg-label-success"><i className='bx bx-check-circle'></i></div> : <div className="badge badge-center rounded-pill bg-label-danger"><i className='bx bx-x-circle'></i></div>
                       }
-                      
+
                     </td>
                     <td>
                       <Link to={`/admin/${x.id}/edit`} className="btn btn-success">{t('edit')}</Link>

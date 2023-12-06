@@ -1,11 +1,13 @@
 import { useFormik } from 'formik';
-import { setAuthAdmin } from '../store/slices/loginSlice';
+import { logOut, setAuthAdmin } from '../store/slices/loginSlice';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store';
 import { authAdmin } from '../api';
+import { Navigate, Outlet, useLocation } from 'react-router-dom';
 
 const Login = () => {
+  const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch()
 
@@ -28,6 +30,7 @@ const Login = () => {
           console.log(response);
           // Handle response here
         } catch (error) {
+          dispatch(logOut())
           console.error('There was an error!', error);
         }
       };

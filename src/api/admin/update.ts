@@ -1,12 +1,6 @@
-import { authState } from '../../store/slices/loginSlice';
+import { AdminUpdateState } from '../../pages/admins/types';
 import api from '../api';
-import { ErrorResponse } from "react-router-dom";
 
-export const updateAdmin = async (): Promise<authState | ErrorResponse> => {
-  try {
-    let res = await api.get("/api/admin/auth");
-    return res.data
-  } catch (error: any) {
-    return error.message
-  }
+export const updateAdmin = async (id: number, body: AdminUpdateState) => {
+    return await api.put(`/api/admin/${id}?password=${body.password}&isSuperuser=${body.isSuperuser}&username=${body.username}`);
 }

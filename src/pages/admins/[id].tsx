@@ -1,21 +1,30 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { createAdmin, getAdmin } from '../../api';
-import { setMe } from '../../store/slices/loginSlice';
-import { useDispatch } from 'react-redux';
+import { getAdmins } from '../../api';
+import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { useFormik } from 'formik';
 import { deleteAdmin } from '../../api/admin/deleteAdmin';
+import { RootState } from '../../store';
+import { Admin } from '../../store/types/adminTypes';
+import { setAdmins } from '../../store/slices/loginSlice';
+import { AdminUpdateState } from './types';
+import { updateAdmin } from '../../api/admin/update';
 
-const Admin = ({ mode }: { mode: string }) => {
+const AdminPage = ({ mode }: { mode: string }) => {
   const { id } = useParams();
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate()
-  // const [currUser, setCurrUser] = useState()
-  const [currUser, setCurrUser] = useState<any>(null);
-  
+
+  const { admins } = useSelector((state: RootState) => state.loginReducer)
+  const [currUser, setCurrUser] = useState<Admin>();
+
+  useEffect(() => {
+    if (!id) return
+    setCurrUser(admins.find((admin) => admin.id === parseInt(id)))
+  }, [admins, id])
 
   const showSuccessMessage = () => {
     toast.success("Admin successfully created !", {
@@ -23,24 +32,25 @@ const Admin = ({ mode }: { mode: string }) => {
     });
   };
 
-  const showErrorMessage = () => {
-    toast.error("An error occurred !", {
+  const showErrorMessage = (error: any) => {
+    const errorMessage = error?.response?.data?.message || "An error occurred!";
+    toast.error(errorMessage, {
       position: toast.POSITION.TOP_RIGHT,
     });
   };
 
   const fetchAdmin = async () => {
     try {
-      const res = await getAdmin()
-      dispatch(setMe(res.data))
-      setCurrUser(res.data);
+      const res = await getAdmins()
+      dispatch(setAdmins(res.data))
     } catch (error) {
       console.log("error createAdmin", error)
-      showErrorMessage()
+      showErrorMessage(error)
     }
   }
 
   const DeleteAdmin = async (id: string | undefined) => {
+    if (!id) return
     try {
       const res = await deleteAdmin(id)
       navigate("/admins", { replace: true });
@@ -50,42 +60,68 @@ const Admin = ({ mode }: { mode: string }) => {
       console.log("admin deleted", res)
     } catch (error) {
       console.error('Error deleting admin!', error);
-      showErrorMessage();
+      showErrorMessage(error);
     }
   };
 
-  const formik = useFormik({
-    initialValues: {
-      isSuperuser: mode === "edit" ? currUser.isSuperuser : false,
-      // isSuperuser: false,
-      password: "",
-      username: ""
-    },
-    onSubmit: values => {
-      const create = async () => {
-        try {
-          const response = await createAdmin
-            ({
-              isSuperuser: values.isSuperuser,
-              password: values.password,
-              username: values.username,
-            });
-          navigate("/admins", { replace: true });
-          console.log(response);
-          showSuccessMessage()
-        } catch (error) {
-          console.error('There was an error!', error);
-          showErrorMessage()
-        }
-      };
+  const initialValues = {
+    isSuperuser: false,
+    password: "",
+    username: ""
+  }
 
-      const update = async () => { }
-      mode === "edit" ? update() : create()
+  useEffect(() => {
+    formik.setFormikState(state => ({
+      ...state,
+      values: {
+        ...state.values,
+        isSuperuser: (mode === "edit" && currUser) ? currUser.isSuperuser : false,
+        password: (mode === "edit" && currUser) ? currUser.password : "",
+        username: (mode === "edit" && currUser) ? currUser.username : ""
+      },
+    }));
+  }, [currUser, mode])
 
-      create();
+  const createAdmin = async (values: AdminUpdateState) => {
+    try {
+      await createAdmin
+        ({
+          isSuperuser: values.isSuperuser,
+          password: values.password,
+          username: values.username,
+        });
+      navigate("/admins", { replace: true });
+      showSuccessMessage()
+    } catch (error) {
+      console.error('There was an error!', error);
+      showErrorMessage(error)
     }
-  });
+  };
 
+  const handleUpdateAdmin = async (values: AdminUpdateState) => {
+    if (!currUser) return
+    try {
+      await updateAdmin
+        (currUser.id, {
+          isSuperuser: values.isSuperuser,
+          password: values.password,
+          username: values.username,
+        });
+      navigate("/admins", { replace: true });
+    } catch (error) {
+      console.error('There was an error!', error);
+      showErrorMessage(error)
+    }
+  }
+
+  const onSubmit = (values: AdminUpdateState) => {
+    mode === "edit" ? handleUpdateAdmin(values) : createAdmin(values)
+  }
+
+  const formik = useFormik({
+    initialValues,
+    onSubmit,
+  });
 
   useEffect(() => {
     fetchAdmin()
@@ -99,7 +135,7 @@ const Admin = ({ mode }: { mode: string }) => {
           {mode === "create" && <li className="breadcrumb-item active" aria-current="page">{t('admin')}</li>}
           {mode === "edit" &&
             <>
-              <li className="breadcrumb-item"><Link to={'/admin/123/edit'}>Eshmat</Link></li>
+              <li className="breadcrumb-item"><Link to={'/admin/123/edit'}>{currUser?.username}</Link></li>
               <li className="breadcrumb-item active" aria-current="page">{t('edit')}</li>
             </>
           }
@@ -107,7 +143,7 @@ const Admin = ({ mode }: { mode: string }) => {
       </nav>
 
       <div className="mb-4 d-flex align-items-center justify-content-between">
-        {mode === "edit" && <h4 className="fw-bold mb-0">Eshmat</h4>}
+        {mode === "edit" && <h4 className="fw-bold mb-0">{currUser?.username}</h4>}
         {mode === "edit" && <button className="btn btn-danger" onClick={() => DeleteAdmin(id)} >{t('delete')}</button>
         }
       </div>
@@ -160,4 +196,4 @@ const Admin = ({ mode }: { mode: string }) => {
   )
 }
 
-export default Admin
+export default AdminPage

@@ -1,4 +1,4 @@
-export interface adminState {
+export interface CurrentAdmin {
     id: number,
     username: string,
     isSuperuser: boolean,
@@ -7,8 +7,24 @@ export interface adminState {
     lastVisit: string
 }
   
-export interface adminCreation {
+export interface AdminCreation {
     isSuperuser: boolean,
     password: string,
     username: string
+}
+
+export interface Admin {
+    password: any
+    createdAt: string,
+    deletedAt: string,
+    id: number,
+    isActive: boolean,
+    isSuperuser: boolean,
+    lastVisit: string,
+    updatedAt: string,
+    username: string
+}
+
+export interface Admins {
+    admins: Admin[],
 }

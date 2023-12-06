@@ -1,7 +1,6 @@
 import { getProduct } from '../../api';
 import { Link } from 'react-router-dom';
 import React, { useEffect } from 'react';
-import { setProducts } from '../../store/slices/productSlice';
 import { RootState } from '../../store';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
@@ -9,23 +8,6 @@ import { useTranslation } from 'react-i18next';
 const Products = () => {
     const { t } = useTranslation();
     const dispatch = useDispatch()
-    const fetchProducts = async () => {
-        try {
-            let res = await getProduct("uz")
-            dispatch(setProducts(res.data))
-            console.log("Products", res)
-        } catch (error) {
-            console.log("Fetching products:", error)
-        }
-    }
-
-    // useEffect(() => {
-    //     fetchProducts()
-    // }, [])
-
-    const products = useSelector((state: RootState) => state.productReducer)
-    console.log("products state: ", products)
-
     return (
         <>
             <nav aria-label="breadcrumb">
