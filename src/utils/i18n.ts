@@ -21,7 +21,7 @@ i18n.use(initReactI18next).init({
       translation: translationUZ,
     },
     ru: {
-        translation: translationRU,
+      translation: translationRU,
     },
   },
   lng: defaultLanguage,

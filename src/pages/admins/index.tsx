@@ -8,7 +8,7 @@ import { Admin, CurrentAdmin } from '../../store/types/adminTypes';
 const Admins = () => {
   const { t } = useTranslation();
   const [admins, setAdmins] = useState<CurrentAdmin[]>([])
-  const [admin, setAdmin] = useState<Admin[]>([])
+  const [admin, setAdmin] = useState<Admin | null>(null)
 
 
   const showErrorMessage = () => {
@@ -54,11 +54,10 @@ const Admins = () => {
       </nav>
 
       <div className="mb-4 d-flex align-items-center justify-content-between">
-        <h4 className="fw-bold mb-0">{t('admins')}</h4>
-        <Link to={'/admin/new'} className="btn btn-primary">{t('create-admin')}</Link>
+        <h4 className="fw-bold mb-0">{t('admin')}</h4>
       </div>
 
-      <div className="card mb-5">
+      <div className="card mb-4">
         <div className="card-body">
           <table className="table table-striped table-bordered">
             <thead>
@@ -72,29 +71,32 @@ const Admins = () => {
               </tr>
             </thead>
             <tbody>
-              {admins.map((x, idx) => {
-                const formattedCreatedAt = x.createdAt ? new Date(x.createdAt).toLocaleDateString('en-GB') : "";
-                const formattedUpdatedAt = x.updatedAt ? new Date(x.updatedAt).toLocaleDateString('en-GB') : "";
-                return (
-                  <tr key={"admin-index-" + idx}>
-                    <th scope="row">{idx + 1}</th>
-                    <td><Link to={`/admin/${x.id}/edit`}>{x.username}</Link></td>
-                    <td>{formattedCreatedAt}</td>
-                    <td>{formattedUpdatedAt}</td>
-                    <td>
-                      {
-                        x.isSuperuser == true ? <div className="badge badge-center rounded-pill bg-label-success"><i className='bx bx-check-circle'></i></div> : <div className="badge badge-center rounded-pill bg-label-danger"><i className='bx bx-x-circle'></i></div>
-                      }
-                    </td>
-                    <td>
-                      <Link to={`/admin/${x.id}/edit`} className="btn btn-success">{t('edit')}</Link>
-                    </td>
-                  </tr>
-                )
-              })}
+            {admin && (
+              <tr key={"admin-index"}>
+                <th scope="row">1</th>
+                <td><Link to={`/admin/${admin.id}/edit`}>{admin.username}</Link></td>
+                <td>{admin.createdAt ? new Date(admin.createdAt).toLocaleDateString('en-GB') : ""}</td>
+                <td>{admin.updatedAt ? new Date(admin.updatedAt).toLocaleDateString('en-GB') : ""}</td>
+                <td>
+                  {admin.isSuperuser === true ? (
+                    <div className="badge badge-center rounded-pill bg-label-success"><i className='bx bx-check-circle'></i></div>
+                  ) : (
+                    <div className="badge badge-center rounded-pill bg-label-danger"><i className='bx bx-x-circle'></i></div>
+                  )}
+                </td>
+                <td>
+                  <Link to={`/admin/${admin.id}/edit`} className="btn btn-success">{t('edit')}</Link>
+                </td>
+              </tr>
+            )}
             </tbody>
           </table>
         </div>
+      </div>
+
+      <div className="mb-4 d-flex align-items-center justify-content-between">
+        <h4 className="fw-bold mb-0">{t('admins')}</h4>
+        <Link to={'/admin/new'} className="btn btn-primary">{t('create-admin')}</Link>
       </div>
 
       <div className="card">
