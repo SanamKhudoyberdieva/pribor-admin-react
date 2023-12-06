@@ -7,6 +7,10 @@ import translationEN from '../locales/en/translation.json';
 import translationUZ from '../locales/uz/translation.json';
 import translationRU from '../locales/ru/translation.json';
 
+// Retrieve language from localStorage or use the default
+const storedLanguage = localStorage.getItem('language');
+const defaultLanguage = storedLanguage || 'ru';
+
 // Configure i18next
 i18n.use(initReactI18next).init({
   resources: {
@@ -20,11 +24,16 @@ i18n.use(initReactI18next).init({
         translation: translationRU,
     },
   },
-  lng: 'ru', // default language
+  lng: defaultLanguage,
   fallbackLng: 'en',
   interpolation: {
     escapeValue: false,
   },
+});
+
+// Update language in localStorage when it changes
+i18n.on('languageChanged', (lng) => {
+  localStorage.setItem('language', lng);
 });
 
 export default i18n;
