@@ -1,29 +1,23 @@
 import { getAdmin, getAdmins } from '../../api';
-import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Admin, CurrentAdmin } from '../../store/types/adminTypes';
+import useToast from '../../components/useToast';
 
 const Admins = () => {
   const { t } = useTranslation();
   const [admins, setAdmins] = useState<CurrentAdmin[]>([])
   const [admin, setAdmin] = useState<Admin | null>(null)
-
-
-  const showErrorMessage = () => {
-    toast.error("An error occurred !", {
-      position: toast.POSITION.TOP_RIGHT,
-    });
-  };
+  const { showToast } = useToast();
 
   const fetchAdmins = async () => {
     try {
       const res = await getAdmins()
       setAdmins(res.data)
     } catch (error: any) {
-      showErrorMessage()
-      console.log("error getAdmins:", error)
+      showToast(t('error-fetching-admins'), { type: 'error' });
+      console.log("Error getAdmins", error)
     }
   }
 
@@ -32,8 +26,8 @@ const Admins = () => {
       const res = await getAdmin()
       setAdmin(res.data)
     } catch (error: any) {
-      showErrorMessage()
-      console.log("error getAdmin:", error)
+      showToast(t('error-fetching-admin'), { type: 'error' });
+      console.log("error getAdmin", error)
     }
   }
 
@@ -41,8 +35,6 @@ const Admins = () => {
     fetchAdmins()
     fetchAdmin()
   }, [])
-  console.log("admins", admins)
-  console.log("adminME", admin)
 
   return (
     <>

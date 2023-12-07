@@ -82,88 +82,13 @@
     "username": "Foydalanuvchi nomi",
     "updated-at": "Yangilangan",
     "super-user": "Super foydalanuvchi",
-    "password": "Parol"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    "password": "Parol",
+    "error-fetching-admins": "Administratorlarni olishda xatolik yuz berdi",
+    "error-fetching-admin": "Administratorni olishda xatolik yuz berdi",
+    "admin-successfully-deleted": "Administrator muvaffaqiyatli o'chirildi",
+    "error-deleting-admin": "Administratorni oʻchirishda xatolik yuz berdi",
+    "admin-successfully-created": "Administrator muvaffaqiyatli yaratildi",
+    "error-creating-admin": "Administratorni yaratishda xatolik yuz berdi",
+    "admin-successfully-updated": "Administrator muvaffaqiyatli yangilandi"
 
 }

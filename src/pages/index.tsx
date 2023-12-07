@@ -1,7 +1,6 @@
 import { getProduct } from '../api';
 import { Link } from 'react-router-dom';
-import React, { useEffect } from 'react';
-import LanguageDropdown from '../components/LanguageDropdown';
+import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 const Home = () => {
