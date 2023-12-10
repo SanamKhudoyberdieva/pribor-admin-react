@@ -82,5 +82,12 @@
     "username": "Username",
     "updated-at": "Updated at",
     "super-user": "Super user",
-    "password": "Password"
+    "password": "Password",
+    "error-fetching-admins": "Error fetching admins",
+    "error-fetching-admin": "Error fetching admin",
+    "admin-successfully-deleted": "Admin successfully deleted",
+    "error-deleting-admin": "Error deleting admin",
+    "admin-successfully-created": "Admin successfully created",
+    "error-creating-admin": "Error creating admin",
+    "admin-successfully-updated": "Admin successfully updated"
 }

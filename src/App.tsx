@@ -5,6 +5,7 @@ import './assets/css/custom.css';
 import './assets/css/theme-default.css';
 import "boxicons/css/boxicons.min.css";
 import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 import Home from './pages';
 import Login from './pages/login';
 import Orders from './pages/order';
@@ -38,6 +39,7 @@ import AdminPage from './pages/admins/[id]';
 function App() {
   return (
     <BrowserRouter>
+      <ToastContainer />
       <Routes>
         {/* public routes */}
         <Route path="/login" element={<Login />} />

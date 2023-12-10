@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { getAdmins } from '../../api';
 import { useDispatch, useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
 import { useFormik } from 'formik';
 import { deleteAdmin } from '../../api/admin/deleteAdmin';
 import { RootState } from '../../store';
@@ -11,13 +10,14 @@ import { Admin } from '../../store/types/adminTypes';
 import { setAdmins } from '../../store/slices/loginSlice';
 import { AdminUpdateState } from './types';
 import { updateAdmin } from '../../api/admin/update';
+import useToast from '../../components/useToast';
 
 const AdminPage = ({ mode }: { mode: string }) => {
   const { id } = useParams();
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate()
-
+  const { showToast } = useToast();
   const { admins } = useSelector((state: RootState) => state.loginReducer)
   const [currUser, setCurrUser] = useState<Admin>();
 
@@ -26,26 +26,13 @@ const AdminPage = ({ mode }: { mode: string }) => {
     setCurrUser(admins.find((admin) => admin.id === parseInt(id)))
   }, [admins, id])
 
-  const showSuccessMessage = () => {
-    toast.success("Admin successfully created !", {
-      position: toast.POSITION.TOP_RIGHT,
-    });
-  };
-
-  const showErrorMessage = (error: any) => {
-    const errorMessage = error?.response?.data?.message || "An error occurred!";
-    toast.error(errorMessage, {
-      position: toast.POSITION.TOP_RIGHT,
-    });
-  };
 
   const fetchAdmin = async () => {
     try {
       const res = await getAdmins()
       dispatch(setAdmins(res.data))
     } catch (error) {
-      console.log("error createAdmin", error)
-      showErrorMessage(error)
+      showToast(t('error-fetching-admins'), { type: 'error' });
     }
   }
 
@@ -54,13 +41,10 @@ const AdminPage = ({ mode }: { mode: string }) => {
     try {
       const res = await deleteAdmin(id)
       navigate("/admins", { replace: true });
-      toast.success("Admin successfully deleted!", {
-        position: toast.POSITION.TOP_RIGHT,
-      });
-      console.log("admin deleted", res)
+      showToast(t('admin-successfully-deleted'), { type: 'success' });
     } catch (error) {
+      showToast(t('error-deleting-admin'), { type: 'error' });
       console.error('Error deleting admin!', error);
-      showErrorMessage(error);
     }
   };
 
@@ -91,10 +75,10 @@ const AdminPage = ({ mode }: { mode: string }) => {
           username: values.username,
         });
       navigate("/admins", { replace: true });
-      showSuccessMessage()
+      showToast(t('admin-successfully-created'), { type: 'success' });
     } catch (error) {
-      console.error('There was an error!', error);
-      showErrorMessage(error)
+      showToast(t('error-creating-admin'), { type: 'error' });
+      console.error('Error creating admin', error);
     }
   };
 
@@ -108,9 +92,10 @@ const AdminPage = ({ mode }: { mode: string }) => {
           username: values.username,
         });
       navigate("/admins", { replace: true });
+      showToast(t('admin-successfully-updated'), { type: 'success' });
     } catch (error) {
       console.error('There was an error!', error);
-      showErrorMessage(error)
+      showToast(t('error-updating-admin'), { type: 'error' });
     }
   }
 
