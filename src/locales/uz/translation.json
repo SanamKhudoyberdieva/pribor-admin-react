@@ -91,6 +91,11 @@
     "error-creating-admin": "Administratorni yaratishda xatolik yuz berdi",
     "admin-successfully-updated": "Administrator muvaffaqiyatli yangilandi",
     "enter": "Kirish",
-    "required": "Majburiy"
-
+    "required": "Majburiy",
+    "user-status": "Foydalanuvchi holati",
+    "admin-successfully-activated": "Admin muvaffaqiyatli faollashtirildi",
+    "error-activating-admin": "Administratorni faollashtirishda xatolik yuz berdi",
+    "username-can-not-be-empty": "Foydalanuvchi nomi boʻsh boʻlishi mumkin emas",
+    "password-can-not-be-empty": "Parol bo'sh bo'lishi mumkin emas",
+    "activate": "Faollashtirish"
 }

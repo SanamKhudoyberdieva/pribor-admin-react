@@ -1,15 +1,15 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Admin } from '../../store/types/adminTypes';
-import useToast from '../../components/useToast';
 import { getAdmin, getAdmins } from '../../api';
+import useToast from '../../components/useToast';
+import { Admin } from '../../store/types/adminTypes';
 
 const Admins = () => {
   const { t } = useTranslation();
-  const [admin, setAdmin] = useState<Admin | null>(null);
-  const [admins, setAdmins] = useState<Admin[]>([]);
   const { showToast } = useToast();
+  const [admins, setAdmins] = useState<Admin[]>([]);
+  const [admin, setAdmin] = useState<Admin | null>(null);
 
   const fetchAdmins = async () => {
     try {
@@ -60,7 +60,7 @@ const Admins = () => {
                 <th scope="col">{t('created-at')}</th>
                 <th scope="col">{t('updated-at')}</th>
                 <th scope="col">{t('super-user')}</th>
-                <th scope="col">Status User</th>
+                <th scope="col">{t('user-status')}</th>
                 <th scope="col">{t('actions')}</th>
               </tr>
             </thead>
@@ -110,7 +110,7 @@ const Admins = () => {
                 <th scope="col">{t('created-at')}</th>
                 <th scope="col">{t('updated-at')}</th>
                 <th scope="col">{t('super-user')}</th>
-                <th scope="col">Status User</th>
+                <th scope="col">{t('user-status')}</th>
                 <th scope="col">{t('actions')}</th>
               </tr>
             </thead>
@@ -128,8 +128,12 @@ const Admins = () => {
                       {
                         x.isSuperuser === true ? <div className="badge badge-center rounded-pill bg-label-success"><i className='bx bx-check-circle'></i></div> : <div className="badge badge-center rounded-pill bg-label-danger"><i className='bx bx-x-circle'></i></div>
                       }
-
                     </td>
+                    <td>{x.isActive === true ? (
+                      <div className="badge badge-center rounded-pill bg-label-success"><i className='bx bx-check-circle'></i></div>
+                    ) : (
+                      <div className="badge badge-center rounded-pill bg-label-danger"><i className='bx bx-x-circle'></i></div>
+                    )}</td>
                     <td>
                       <Link to={`/admin/${x.id}/edit`} className="btn btn-success">{t('edit')}</Link>
                     </td>

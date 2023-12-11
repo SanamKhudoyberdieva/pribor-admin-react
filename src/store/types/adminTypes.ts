@@ -1,9 +1,12 @@
+export interface userLogin { 
+    username: string,
+    password:string
+}
 export interface AdminCreation {
     isSuperuser: boolean,
     password: string,
     username: string
 }
-
 export interface Admin {
     password: string,
     createdAt: string,
@@ -13,6 +16,12 @@ export interface Admin {
     isSuperuser: boolean,
     lastVisit: string,
     updatedAt: string,
+    username: string
+}
+
+export interface AdminUpdateState {
+    isSuperuser: boolean,
+    password: string,
     username: string
 }
 

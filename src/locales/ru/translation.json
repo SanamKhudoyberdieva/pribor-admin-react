@@ -91,6 +91,11 @@
     "error-creating-admin": "Ошибка создания администратора",
     "admin-successfully-updated": "Администратор успешно обновлен",
     "enter": "Входить",
-    "required": "Необходимый"
-
+    "required": "Необходимый",
+    "user-status": "Статус пользователь",
+    "admin-successfully-activated": "Администратор успешно активирован",
+    "error-activating-admin": "Ошибка активации администратора",
+    "username-can-not-be-empty": "Имя пользователя не может быть пустым",
+    "password-can-not-be-empty": "Пароль не может быть пустым",
+    "activate": "Активировать"
 }

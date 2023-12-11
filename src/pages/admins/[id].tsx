@@ -1,24 +1,22 @@
-import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Link, useNavigate, useParams } from 'react-router-dom';
-import { activateAdmin, createAdmin, deleteAdmin, getAdmins, updateAdmin } from '../../api';
-import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import { RootState } from '../../store';
-import { Admin } from '../../store/types/adminTypes';
-import { setAdmins } from '../../store/slices/loginSlice';
-import { AdminUpdateState } from './types';
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import useToast from '../../components/useToast';
-// import { activateAdmin, deleteAdmin, updateAdmin } from '../../api/admin';
+import { useDispatch, useSelector } from 'react-redux';
+import { setAdmins } from '../../store/slices/loginSlice';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Admin, AdminUpdateState } from '../../store/types/adminTypes';
+import { activateAdmin, createAdmin, deleteAdmin, getAdmins, updateAdmin } from '../../api';
 
 const AdminPage = ({ mode }: { mode: string }) => {
   const { id } = useParams();
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { showToast } = useToast();
-  const { admins } = useSelector((state: RootState) => state.loginReducer)
   const [currUser, setCurrUser] = useState<Admin>();
+  const { admins } = useSelector((state: RootState) => state.loginReducer);
 
   useEffect(() => {
     if (!id) return
@@ -31,6 +29,7 @@ const AdminPage = ({ mode }: { mode: string }) => {
       dispatch(setAdmins(res.data))
     } catch (error) {
       showToast(t('error-fetching-admins'), { type: 'error' });
+      console.error('Error fetching admin', error);
     }
   }
 
@@ -42,7 +41,7 @@ const AdminPage = ({ mode }: { mode: string }) => {
       showToast(t('admin-successfully-deleted'), { type: 'success' });
     } catch (error) {
       showToast(t('error-deleting-admin'), { type: 'error' });
-      console.error('Error deleting admin!', error);
+      console.error('Error deleting admin', error);
     }
   };
 
@@ -51,10 +50,10 @@ const AdminPage = ({ mode }: { mode: string }) => {
     try {
       await activateAdmin(id)
       navigate("/admins", { replace: true });
-      showToast("ADMIN SUCCESSFULLY ACTIVATED", { type: 'success' });
+      showToast(t('admin-successfully-activated'), { type: 'success' });
     } catch (error) {
-      showToast(("ERROR ACTIVATING"), { type: 'error' });
-      console.error('Error activating admin!', error);
+      showToast(t('error-activating-admin'), { type: 'error' });
+      console.error('Error activating admin', error);
     }
   }
 
@@ -77,8 +76,8 @@ const AdminPage = ({ mode }: { mode: string }) => {
   }, [currUser, mode])
 
   const handleCreateAdmin = async (values: AdminUpdateState) => {
-    if (!values.username) return showToast("USERNAME CAN NOT BE EMPTY", { type: 'error' });
-    if (!values.password) return showToast("PASSWORD CAN NOT BE EMPTY", { type: 'error' });
+    if (!values.username) return showToast(t('username-can-not-be-empty'), { type: 'error' });
+    if (!values.password) return showToast(t('password-can-not-be-empty'), { type: 'error' });
     try {
       await createAdmin
         ({
@@ -106,8 +105,8 @@ const AdminPage = ({ mode }: { mode: string }) => {
       navigate("/admins", { replace: true });
       showToast(t('admin-successfully-updated'), { type: 'success' });
     } catch (error: any) {
-      console.error('There was an error!', error.response.data.message);
       showToast(error.response.data.message || t('error-updating-admin'), { type: 'error' });
+      console.error('Error updating admin', error.response.data.message);
     }
   }
 
@@ -141,8 +140,7 @@ const AdminPage = ({ mode }: { mode: string }) => {
 
       <div className="mb-4 d-flex align-items-center justify-content-between">
         {mode === "edit" && <h4 className="fw-bold mb-0">{currUser?.username}</h4>}
-        {mode === "edit" && (currUser?.isActive ? <button className="btn btn-danger" onClick={() => handleDeleteAdmin(id)} >{t('delete')}</button> : <button className="btn btn-success" onClick={() => handleActivateAdmin(id)} >ACTIVATE</button>)
-        }
+        {mode === "edit" && (currUser?.isActive ? <button className="btn btn-danger" onClick={() => handleDeleteAdmin(id)} >{t('delete')}</button> : <button className="btn btn-success" onClick={() => handleActivateAdmin(id)}>{t('activate')}</button>)}
       </div>
 
       <form onSubmit={formik.handleSubmit}>
@@ -193,4 +191,4 @@ const AdminPage = ({ mode }: { mode: string }) => {
   )
 }
 
-export default AdminPage
+export default AdminPage;

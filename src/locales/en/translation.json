@@ -91,5 +91,11 @@
     "error-creating-admin": "Error creating admin",
     "admin-successfully-updated": "Admin successfully updated",
     "enter": "Enter",
-    "required": "Required"
+    "required": "Required",
+    "user-status": "User status",
+    "admin-successfully-activated": "Admin successfully activated",
+    "error-activating-admin": "Error activating admin",
+    "username-can-not-be-empty": "Username can not be empty",
+    "password-can-not-be-empty": "Password can not be empty",
+    "activate": "Activate"
 }

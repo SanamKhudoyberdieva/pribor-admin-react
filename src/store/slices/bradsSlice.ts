@@ -1,8 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Brand } from "../types/bradTypes";
-
-
-
 interface BrandsState {
   brands: Brand[];
 }
@@ -10,7 +7,6 @@ interface BrandsState {
 const initialState: BrandsState = {
   brands: []
 };
-
 
 const brandsSlice = createSlice({
   name: 'brands',
