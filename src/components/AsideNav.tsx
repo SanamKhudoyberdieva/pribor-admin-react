@@ -1,4 +1,3 @@
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -93,12 +92,6 @@ const AsideNav = () => {
           <Link to={'/payment'} className="menu-link">
             <i className='menu-icon tf-icons bx bx-money'></i>
             <div data-i18n="Boxicons">{t('payments')}</div>
-          </Link>
-        </li>
-        <li className={`menu-item ${pathname.includes("/authors") && "active"}`}>
-          <Link to={'/'} className="menu-link">
-            <i className='menu-icon tf-icons bx bx-group'></i>
-            <div data-i18n="Boxicons">{t('authors')}</div>
           </Link>
         </li>
         <li className={`menu-item ${pathname.includes("/admins") && "active"}`}>

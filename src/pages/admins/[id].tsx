@@ -197,15 +197,15 @@ const AdminPage = ({ mode }: { mode: string }) => {
             <div className="card">
               <div className="card-body">
                 <div className="mb-3">
-                  <label className="form-label">{t('created-at')}</label>
+                  <label className="form-label">{t('created-at')}:</label>
                   <div>{formik.values.createdAt.toLocaleDateString('en-GB')}</div>
                 </div>
                 <div className="mb-3">
-                  <label className="form-label">{t('last-modified-at')}</label>
+                  <label className="form-label">{t('last-modified-at')}:</label>
                   <div>{formik.values.updatedAt.toLocaleDateString('en-GB')}</div>
                 </div>
                 <div>
-                  <label className="form-label">{t('deleted-at')}</label>
+                  <label className="form-label">{t('deleted-at')}:</label>
                   <div>{formik.values.deletedAt.toLocaleDateString('en-GB')}</div>
                 </div>
               </div>
