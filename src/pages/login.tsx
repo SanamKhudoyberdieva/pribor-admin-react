@@ -1,17 +1,15 @@
 import { useFormik } from 'formik';
-import { logOut, setAuthAdmin } from '../store/slices/loginSlice';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../store';
 import { authAdmin } from '../api';
-import { Navigate, Outlet, useLocation } from 'react-router-dom';
-import { useState } from 'react';
 import { object, string } from 'yup';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { logOut, setAuthAdmin } from '../store/slices/loginSlice';
 
 const Login = () => {
-  const location = useLocation();
   const navigate = useNavigate();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const initialValues = {
     username: '',
@@ -19,7 +17,6 @@ const Login = () => {
   }
 
   const onSubmit = async (values: { username: string, password: string }) => {
-    console.log("onSubmit", values)
     try {
       const response = await authAdmin
         ({
@@ -28,17 +25,15 @@ const Login = () => {
         });
       dispatch(setAuthAdmin(response.data))
       navigate("/", { replace: true });
-      console.log(response);
-      // Handle response here
     } catch (error) {
       dispatch(logOut())
-      console.error('There was an error!', error);
+      console.error('Log in error', error);
     }
   };
 
   const validationSchema = object({
-    username: string().required("Reuiqred"),
-    password: string().required("Required"),
+    username: string().required(t("required")),
+    password: string().required(t("required")),
   })
 
   const formik = useFormik({
@@ -47,17 +42,15 @@ const Login = () => {
     validationSchema,
   });
 
-  // console.log("formik touched", formik.touched)
-
   return (
     <main>
       <h5 className="card-header">Pribor.uz</h5>
       <div className="card-body">
         <div className="d-flex align-items-center justify-content-center h-px-500">
           <form className="w-px-400 border rounded p-3 p-md-5" onSubmit={formik.handleSubmit}>
-            <h3 className="mb-3">Kirish</h3>
+            <h3 className="mb-3">{t('enter')}</h3>
             <div className="mb-3">
-              <label className="form-label">Username</label>
+              <label className="form-label">{t('username')}</label>
               <input
                 type="text"
                 name="username"
@@ -69,7 +62,7 @@ const Login = () => {
               {formik.errors.username && formik.touched.username && <div className='text-danger'>{formik.errors.username}</div>}
             </div>
             <div className="mb-3">
-              <label className="form-label">Password</label>
+              <label className="form-label">{t('password')}</label>
               <input
                 type="password"
                 name="password"
@@ -84,7 +77,7 @@ const Login = () => {
               className="btn btn-primary w-100 py-2 mt-4"
               type="submit"
             >
-              Kirish
+              {t('enter')}
             </button>
           </form>
         </div>

@@ -1,20 +1,21 @@
-import { getAdmin, getAdmins } from '../../api';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Admin, CurrentAdmin } from '../../store/types/adminTypes';
+import { getAdmin, getAdmins } from '../../api';
 import useToast from '../../components/useToast';
+import { Admin, CurrentAdmin } from '../../store/types/adminTypes';
 
 const Admins = () => {
   const { t } = useTranslation();
-  const [admins, setAdmins] = useState<CurrentAdmin[]>([])
-  const [admin, setAdmin] = useState<Admin | null>(null)
   const { showToast } = useToast();
+  const [admin, setAdmin] = useState<Admin | null>(null);
+  const [admins, setAdmins] = useState<CurrentAdmin[]>([]);
 
   const fetchAdmins = async () => {
     try {
       const res = await getAdmins()
-      setAdmins(res.data)
+      const sortedAdmins = res.data.sort((a: { username: string; }, b: { username: any; }) => a.username.localeCompare(b.username));
+      setAdmins(sortedAdmins);
     } catch (error: any) {
       showToast(t('error-fetching-admins'), { type: 'error' });
       console.log("Error getAdmins", error)
@@ -27,7 +28,7 @@ const Admins = () => {
       setAdmin(res.data)
     } catch (error: any) {
       showToast(t('error-fetching-admin'), { type: 'error' });
-      console.log("error getAdmin", error)
+      console.log("Error getAdmin", error)
     }
   }
 
@@ -118,7 +119,6 @@ const Admins = () => {
                       {
                         x.isSuperuser == true ? <div className="badge badge-center rounded-pill bg-label-success"><i className='bx bx-check-circle'></i></div> : <div className="badge badge-center rounded-pill bg-label-danger"><i className='bx bx-x-circle'></i></div>
                       }
-
                     </td>
                     <td>
                       <Link to={`/admin/${x.id}/edit`} className="btn btn-success">{t('edit')}</Link>
