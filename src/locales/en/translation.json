@@ -97,5 +97,6 @@
     "error-activating-admin": "Error activating admin",
     "username-can-not-be-empty": "Username can not be empty",
     "password-can-not-be-empty": "Password can not be empty",
-    "activate": "Activate"
+    "activate": "Activate",
+    "deleted-at": "Deleted at"
 }

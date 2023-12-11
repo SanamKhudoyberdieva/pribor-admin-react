@@ -60,7 +60,10 @@ const AdminPage = ({ mode }: { mode: string }) => {
   const initialValues = {
     isSuperuser: false,
     password: "",
-    username: ""
+    username: "",
+    createdAt: new Date(),
+    deletedAt: new Date(),
+    updatedAt: new Date()
   }
 
   useEffect(() => {
@@ -70,7 +73,10 @@ const AdminPage = ({ mode }: { mode: string }) => {
         ...state.values,
         isSuperuser: (mode === "edit" && currUser) ? currUser.isSuperuser : false,
         password: (mode === "edit" && currUser) ? currUser.password : "",
-        username: (mode === "edit" && currUser) ? currUser.username : ""
+        username: (mode === "edit" && currUser) ? currUser.username : "",
+        createdAt: (mode === "edit" && currUser) ? new Date(currUser.createdAt) : new Date(),
+        updatedAt: (mode === "edit" && currUser) ? new Date(currUser.updatedAt) : new Date(),
+        deletedAt: (mode === "edit" && currUser) ? new Date(currUser.deletedAt) : new Date(),
       },
     }));
   }, [currUser, mode])
@@ -144,40 +150,63 @@ const AdminPage = ({ mode }: { mode: string }) => {
       </div>
 
       <form onSubmit={formik.handleSubmit}>
-        <div className="card mb-4">
-          <div className="card-body">
-            <div className="row g-3 mb-4">
-              <div className="col-12">
-                <label className="form-label">{t('username')}</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  name='username'
-                  value={formik.values.username}
-                  onChange={formik.handleChange}
-                  placeholder={t('username')}
-                  aria-describedby="defaultFormControlHelp" />
+        <div className='row g-3 mb-4'>
+          <div className='col-md-8'>
+            <div className="card">
+              <div className="card-body">
+                <div className="row g-3">
+                  <div className="col-12">
+                    <label className="form-label">{t('username')}</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      name='username'
+                      value={formik.values.username}
+                      onChange={formik.handleChange}
+                      placeholder={t('username')}
+                      aria-describedby="defaultFormControlHelp" />
+                  </div>
+                  <div className="col-12">
+                    <label className="form-label">{t('password')}</label>
+                    <input type="text"
+                      className="form-control"
+                      name='password'
+                      value={formik.values.password}
+                      onChange={formik.handleChange}
+                      placeholder={t('password')}
+                      aria-describedby="defaultFormControlHelp" />
+                  </div>
+                  <div className="col-12">
+                    <div className="form-check form-switch">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        checked={formik.values.isSuperuser}
+                        onChange={(e) => formik.setFieldValue('isSuperuser', e.target.checked)}
+                        id="visibilitySwitch"
+                      />
+                      <label className="form-check-label">{t('super-user')}</label>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className="col-12">
-                <label className="form-label">{t('password')}</label>
-                <input type="text"
-                  className="form-control"
-                  name='password'
-                  value={formik.values.password}
-                  onChange={formik.handleChange}
-                  placeholder={t('password')}
-                  aria-describedby="defaultFormControlHelp" />
-              </div>
-              <div className="col-12">
-                <div className="form-check form-switch">
-                  <input
-                    className="form-check-input"
-                    type="checkbox"
-                    checked={formik.values.isSuperuser}
-                    onChange={(e) => formik.setFieldValue('isSuperuser', e.target.checked)}
-                    id="visibilitySwitch"
-                  />
-                  <label className="form-check-label">{t('super-user')}</label>
+            </div>
+          </div>
+
+          <div className="col-md-4">
+            <div className="card">
+              <div className="card-body">
+                <div className="mb-3">
+                  <label className="form-label">{t('created-at')}</label>
+                  <div>{formik.values.createdAt.toLocaleDateString('en-GB')}</div>
+                </div>
+                <div className="mb-3">
+                  <label className="form-label">{t('last-modified-at')}</label>
+                  <div>{formik.values.updatedAt.toLocaleDateString('en-GB')}</div>
+                </div>
+                <div>
+                  <label className="form-label">{t('deleted-at')}</label>
+                  <div>{formik.values.deletedAt.toLocaleDateString('en-GB')}</div>
                 </div>
               </div>
             </div>

@@ -97,5 +97,6 @@
     "error-activating-admin": "Administratorni faollashtirishda xatolik yuz berdi",
     "username-can-not-be-empty": "Foydalanuvchi nomi boʻsh boʻlishi mumkin emas",
     "password-can-not-be-empty": "Parol bo'sh bo'lishi mumkin emas",
-    "activate": "Faollashtirish"
+    "activate": "Faollashtirish",
+    "deleted-at": "Oʻchirilgan"
 }
