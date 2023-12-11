@@ -17,3 +17,6 @@ export * from "./admin/getAdmin"
 export * from "./admin/getAdmins"
 
 export * from "./brand/getBrands"
+export * from "./brand/getBrand"
+
+export * from "./customer/getCustomers"

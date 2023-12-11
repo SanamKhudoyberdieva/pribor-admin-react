@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
 const Customer = ({ mode }: { mode: string }) => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
 
     return (
         <>
@@ -54,7 +54,7 @@ const Customer = ({ mode }: { mode: string }) => {
                         </div>
                     </div>
                 </div>
-                
+
                 <div className="col-md-4">
                     <div className="card">
                         <div className="card-body">

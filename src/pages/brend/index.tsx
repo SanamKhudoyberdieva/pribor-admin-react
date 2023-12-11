@@ -2,18 +2,17 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { getBrands } from '../../api';
 import { useDispatch, useSelector } from 'react-redux';
-import { setBrands } from '../../store/slices/bradsSlice';
+import { setBrands } from '../../store/slices/brandsSlice';
 import useToast from '../../components/useToast';
 import { useEffect } from 'react';
 import { RootState } from '../../store';
-import { Brand } from '../../store/types/bradTypes';
+import { Brand } from '../../store/types/brandTypes';
 import { getName } from '../../utils/helperFunctions';
 
 const Brends = () => {
     const { t } = useTranslation();
     const { showToast } = useToast();
     const lang = localStorage.getItem("language") || "uz"
-    console.log("lang", lang);
     const dispatch = useDispatch()
     const { brands } = useSelector((state: RootState) => state.brandsReducer)
     console.log("brands", brands)
@@ -63,7 +62,7 @@ const Brends = () => {
                                 brands.map((x: Brand) => (
                                     <tr className={`brands-list-index-${x.id}`}>
                                         <th scope="row">1</th>
-                                        <td><Link to={'/brend/123/edit'}>{getName(x, lang)}</Link></td>
+                                        <td><Link to={`/brend/${x.id}/edit`}>{getName(x, lang)}</Link></td>
                                         <td>{x.image}</td>
                                         <td>
                                             {x.isActive === true ? (
