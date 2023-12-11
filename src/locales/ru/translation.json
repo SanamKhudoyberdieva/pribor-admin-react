@@ -89,6 +89,8 @@
     "error-deleting-admin": "Ошибка удаления администратора",
     "admin-successfully-created": "Администратор успешно создан",
     "error-creating-admin": "Ошибка создания администратора",
-    "admin-successfully-updated": "Администратор успешно обновлен"
+    "admin-successfully-updated": "Администратор успешно обновлен",
+    "enter": "Входить",
+    "required": "Необходимый"
 
 }

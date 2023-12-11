@@ -89,5 +89,7 @@
     "error-deleting-admin": "Error deleting admin",
     "admin-successfully-created": "Admin successfully created",
     "error-creating-admin": "Error creating admin",
-    "admin-successfully-updated": "Admin successfully updated"
+    "admin-successfully-updated": "Admin successfully updated",
+    "enter": "Enter",
+    "required": "Required"
 }
