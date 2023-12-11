@@ -2,13 +2,13 @@ import { getAdmin, getAdmins } from '../../api';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Admin, CurrentAdmin } from '../../store/types/adminTypes';
+import { Admin } from '../../store/types/adminTypes';
 import useToast from '../../components/useToast';
 
 const Admins = () => {
   const { t } = useTranslation();
-  const [admins, setAdmins] = useState<CurrentAdmin[]>([])
-  const [admin, setAdmin] = useState<Admin | null>(null)
+  const [admins, setAdmins] = useState<Admin[]>([])
+  const [admin, setAdmin] = useState<Admin>()
   const { showToast } = useToast();
 
   const fetchAdmins = async () => {
@@ -59,28 +59,36 @@ const Admins = () => {
                 <th scope="col">{t('created-at')}</th>
                 <th scope="col">{t('updated-at')}</th>
                 <th scope="col">{t('super-user')}</th>
+                <th scope="col">Status User</th>
                 <th scope="col">{t('actions')}</th>
               </tr>
             </thead>
             <tbody>
-            {admin && (
-              <tr key={"admin-index"}>
-                <th scope="row">1</th>
-                <td><Link to={`/admin/${admin.id}/edit`}>{admin.username}</Link></td>
-                <td>{admin.createdAt ? new Date(admin.createdAt).toLocaleDateString('en-GB') : ""}</td>
-                <td>{admin.updatedAt ? new Date(admin.updatedAt).toLocaleDateString('en-GB') : ""}</td>
-                <td>
-                  {admin.isSuperuser === true ? (
-                    <div className="badge badge-center rounded-pill bg-label-success"><i className='bx bx-check-circle'></i></div>
-                  ) : (
-                    <div className="badge badge-center rounded-pill bg-label-danger"><i className='bx bx-x-circle'></i></div>
-                  )}
-                </td>
-                <td>
-                  <Link to={`/admin/${admin.id}/edit`} className="btn btn-success">{t('edit')}</Link>
-                </td>
-              </tr>
-            )}
+              {admin && (
+                <tr key={"admin-index"}>
+                  <th scope="row">1</th>
+                  <td><Link to={`/admin/${admin.id}/edit`}>{admin.username}</Link></td>
+                  <td>{admin.createdAt ? new Date(admin.createdAt).toLocaleDateString('en-GB') : ""}</td>
+                  <td>{admin.updatedAt ? new Date(admin.updatedAt).toLocaleDateString('en-GB') : ""}</td>
+                  <td>
+                    {admin.isSuperuser === true ? (
+                      <div className="badge badge-center rounded-pill bg-label-success"><i className='bx bx-check-circle'></i></div>
+                    ) : (
+                      <div className="badge badge-center rounded-pill bg-label-danger"><i className='bx bx-x-circle'></i></div>
+                    )}
+                  </td>
+                  <td>
+                    {admin.isActive === true ? (
+                      <div className="badge badge-center rounded-pill bg-label-success"><i className='bx bx-check-circle'></i></div>
+                    ) : (
+                      <div className="badge badge-center rounded-pill bg-label-danger"><i className='bx bx-x-circle'></i></div>
+                    )}
+                  </td>
+                  <td>
+                    <Link to={`/admin/${admin.id}/edit`} className="btn btn-success">{t('edit')}</Link>
+                  </td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>
@@ -101,11 +109,12 @@ const Admins = () => {
                 <th scope="col">{t('created-at')}</th>
                 <th scope="col">{t('updated-at')}</th>
                 <th scope="col">{t('super-user')}</th>
+                <th scope="col">Status User</th>
                 <th scope="col">{t('actions')}</th>
               </tr>
             </thead>
             <tbody>
-              {admins.map((x, idx) => {
+              {admins.filter(x => x.id !== admin?.id).map((x, idx) => {
                 const formattedCreatedAt = x.createdAt ? new Date(x.createdAt).toLocaleDateString('en-GB') : "";
                 const formattedUpdatedAt = x.updatedAt ? new Date(x.updatedAt).toLocaleDateString('en-GB') : "";
                 return (
@@ -116,9 +125,13 @@ const Admins = () => {
                     <td>{formattedUpdatedAt}</td>
                     <td>
                       {
-                        x.isSuperuser == true ? <div className="badge badge-center rounded-pill bg-label-success"><i className='bx bx-check-circle'></i></div> : <div className="badge badge-center rounded-pill bg-label-danger"><i className='bx bx-x-circle'></i></div>
+                        x.isSuperuser === true ? <div className="badge badge-center rounded-pill bg-label-success"><i className='bx bx-check-circle'></i></div> : <div className="badge badge-center rounded-pill bg-label-danger"><i className='bx bx-x-circle'></i></div>
                       }
-
+                    </td>
+                    <td>
+                      {
+                        x.isActive === true ? <div className="badge badge-center rounded-pill bg-label-success"><i className='bx bx-check-circle'></i></div> : <div className="badge badge-center rounded-pill bg-label-danger"><i className='bx bx-x-circle'></i></div>
+                      }
                     </td>
                     <td>
                       <Link to={`/admin/${x.id}/edit`} className="btn btn-success">{t('edit')}</Link>

@@ -1,16 +1,15 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { getAdmins } from '../../api';
+import { activateAdmin, createAdmin, deleteAdmin, getAdmins, updateAdmin } from '../../api';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
-import { deleteAdmin } from '../../api/admin/deleteAdmin';
 import { RootState } from '../../store';
 import { Admin } from '../../store/types/adminTypes';
 import { setAdmins } from '../../store/slices/loginSlice';
 import { AdminUpdateState } from './types';
-import { updateAdmin } from '../../api/admin/update';
 import useToast from '../../components/useToast';
+// import { activateAdmin, deleteAdmin, updateAdmin } from '../../api/admin';
 
 const AdminPage = ({ mode }: { mode: string }) => {
   const { id } = useParams();
@@ -26,7 +25,6 @@ const AdminPage = ({ mode }: { mode: string }) => {
     setCurrUser(admins.find((admin) => admin.id === parseInt(id)))
   }, [admins, id])
 
-
   const fetchAdmin = async () => {
     try {
       const res = await getAdmins()
@@ -36,10 +34,10 @@ const AdminPage = ({ mode }: { mode: string }) => {
     }
   }
 
-  const DeleteAdmin = async (id: string | undefined) => {
+  const handleDeleteAdmin = async (id: string | undefined) => {
     if (!id) return
     try {
-      const res = await deleteAdmin(id)
+      await deleteAdmin(id)
       navigate("/admins", { replace: true });
       showToast(t('admin-successfully-deleted'), { type: 'success' });
     } catch (error) {
@@ -47,6 +45,18 @@ const AdminPage = ({ mode }: { mode: string }) => {
       console.error('Error deleting admin!', error);
     }
   };
+
+  const handleActivateAdmin = async (id: string | undefined) => {
+    if (!id) return
+    try {
+      await activateAdmin(id)
+      navigate("/admins", { replace: true });
+      showToast("ADMIN SUCCESSFULLY ACTIVATED", { type: 'success' });
+    } catch (error) {
+      showToast(("ERROR ACTIVATING"), { type: 'error' });
+      console.error('Error activating admin!', error);
+    }
+  }
 
   const initialValues = {
     isSuperuser: false,
@@ -66,7 +76,9 @@ const AdminPage = ({ mode }: { mode: string }) => {
     }));
   }, [currUser, mode])
 
-  const createAdmin = async (values: AdminUpdateState) => {
+  const handleCreateAdmin = async (values: AdminUpdateState) => {
+    if (!values.username) return showToast("USERNAME CAN NOT BE EMPTY", { type: 'error' });
+    if (!values.password) return showToast("PASSWORD CAN NOT BE EMPTY", { type: 'error' });
     try {
       await createAdmin
         ({
@@ -93,14 +105,14 @@ const AdminPage = ({ mode }: { mode: string }) => {
         });
       navigate("/admins", { replace: true });
       showToast(t('admin-successfully-updated'), { type: 'success' });
-    } catch (error) {
-      console.error('There was an error!', error);
-      showToast(t('error-updating-admin'), { type: 'error' });
+    } catch (error: any) {
+      console.error('There was an error!', error.response.data.message);
+      showToast(error.response.data.message || t('error-updating-admin'), { type: 'error' });
     }
   }
 
   const onSubmit = (values: AdminUpdateState) => {
-    mode === "edit" ? handleUpdateAdmin(values) : createAdmin(values)
+    mode === "edit" ? handleUpdateAdmin(values) : handleCreateAdmin(values)
   }
 
   const formik = useFormik({
@@ -129,7 +141,7 @@ const AdminPage = ({ mode }: { mode: string }) => {
 
       <div className="mb-4 d-flex align-items-center justify-content-between">
         {mode === "edit" && <h4 className="fw-bold mb-0">{currUser?.username}</h4>}
-        {mode === "edit" && <button className="btn btn-danger" onClick={() => DeleteAdmin(id)} >{t('delete')}</button>
+        {mode === "edit" && (currUser?.isActive ? <button className="btn btn-danger" onClick={() => handleDeleteAdmin(id)} >{t('delete')}</button> : <button className="btn btn-success" onClick={() => handleActivateAdmin(id)} >ACTIVATE</button>)
         }
       </div>
 

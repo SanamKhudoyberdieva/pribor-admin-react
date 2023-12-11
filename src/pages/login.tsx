@@ -1,17 +1,15 @@
 import { useFormik } from 'formik';
 import { logOut, setAuthAdmin } from '../store/slices/loginSlice';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../store';
-import { authAdmin } from '../api';
-import { Navigate, Outlet, useLocation } from 'react-router-dom';
-import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { object, string } from 'yup';
+import { authAdmin } from '../api';
+import useToast from '../components/useToast';
 
 const Login = () => {
-  const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch()
+  const { showToast } = useToast();
 
   const initialValues = {
     username: '',
@@ -19,7 +17,6 @@ const Login = () => {
   }
 
   const onSubmit = async (values: { username: string, password: string }) => {
-    console.log("onSubmit", values)
     try {
       const response = await authAdmin
         ({
@@ -29,9 +26,9 @@ const Login = () => {
       dispatch(setAuthAdmin(response.data))
       navigate("/", { replace: true });
       console.log(response);
-      // Handle response here
-    } catch (error) {
+    } catch (error: any) {
       dispatch(logOut())
+      showToast(error.response.data.message || "LOGIN ERROR", { type: 'error' });
       console.error('There was an error!', error);
     }
   };

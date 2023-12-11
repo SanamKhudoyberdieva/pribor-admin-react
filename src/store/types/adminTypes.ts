@@ -1,12 +1,3 @@
-export interface CurrentAdmin {
-    id: number,
-    username: string,
-    isSuperuser: boolean,
-    createdAt: string,
-    updatedAt: string,
-    lastVisit: string
-}
-  
 export interface AdminCreation {
     isSuperuser: boolean,
     password: string,
@@ -14,7 +5,7 @@ export interface AdminCreation {
 }
 
 export interface Admin {
-    password: any
+    password: string,
     createdAt: string,
     deletedAt: string,
     id: number,

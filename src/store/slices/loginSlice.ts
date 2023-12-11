@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Admin, Admins, CurrentAdmin } from "../types/adminTypes";
+import { Admin, Admins } from "../types/adminTypes";
 export interface AuthState{
   accessToken: string,
   refreshToken: string,
 }
 
-interface LoginState extends CurrentAdmin, AuthState, Admins {}
+interface LoginState extends AuthState, Admins, Admin {}
 
 const initialState: LoginState = {
   id: 0,
@@ -17,11 +17,14 @@ const initialState: LoginState = {
   accessToken: "",
   refreshToken: "",
   admins: [],
+  deletedAt: "",
+  isActive: false,
+  password: ""
 };
 
 
 const loginSlice = createSlice({
-  name: 'products',
+  name: 'login',
   initialState,
   reducers: {
     setAuthAdmin(state, action: PayloadAction<AuthState>) {
@@ -30,13 +33,14 @@ const loginSlice = createSlice({
       state.accessToken = action.payload.accessToken;
       state.refreshToken = action.payload.refreshToken;
     },
-    setMe(state, action: PayloadAction<CurrentAdmin>) {
+    setMe(state, action: PayloadAction<Admin>) {
       state.id = action.payload.id;
       state.username = action.payload.username;
       state.lastVisit = action.payload.lastVisit;
       state.updatedAt = action.payload.updatedAt;
       state.createdAt = action.payload.createdAt;
       state.isSuperuser = action.payload.isSuperuser;
+      state.isActive = action.payload.isActive;
     },
     logOut(state) {
       localStorage.removeItem('accessToken')

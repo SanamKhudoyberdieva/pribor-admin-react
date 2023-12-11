@@ -2,9 +2,10 @@ import React, { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import AsideNav from '../components/AsideNav';
 import Header from '../components/Header';
-import { getAdmin } from '../api';
+// import { getAdmin } from '../api';
 import { useDispatch } from 'react-redux';
 import { logOut, setMe } from '../store/slices/loginSlice';
+import { getAdmin } from '../api';
 
 const MainLayout = () => {
   const dispatch = useDispatch()

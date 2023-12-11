@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 const Brend = ({ mode }: { mode: string }) => {
   const { t } = useTranslation();
 
+  
   return (
     <>
       <nav aria-label="breadcrumb">
