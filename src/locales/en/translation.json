@@ -108,5 +108,18 @@
     "error-deleting-country": "Error deleting country",
     "name-uz": "Name (Uzbek)",
     "name-ru": "Name (Russian)",
-    "name-en": "Name (English)"
+    "name-en": "Name (English)",
+    "error-fetching-brands": "Error fetching brands",
+    "brand-successfully-created": "Brand successfully created",
+    "brand-successfully-updated": "Brand successfully updated",
+    "error-updating-brand": "Error updating brand",
+    "brand-successfully-deleted": "Brand successfully deleted",
+    "error-deleting-brand": "Error deleting brand",
+    "description-uz": "Description (Uzbek)",
+    "description-ru": "Description (Russian)",
+    "description-en": "Description (English)",
+    "seo-title": "SEO title",
+    "seo-title-full": "Search Engine Optimization name",
+    "seo-description": "SEO description",
+    "seo-description-full": "Search Engine Optimization description"
 }

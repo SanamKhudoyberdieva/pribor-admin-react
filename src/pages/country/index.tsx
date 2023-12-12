@@ -60,13 +60,13 @@ const Countries = () => {
                             const formattedCreatedAt = x.createdAt ? new Date(x.createdAt).toLocaleDateString('en-GB') : "";
                             return (
                                 <tr  key={"country-index-" + idx}>
-                                <th scope="row">{idx + 1}</th>
-                                <td><Link to={`/country/${x.id}/edit`}>{getName(x, lang)}</Link></td>
-                                <td>{formattedCreatedAt}</td>
-                                <td>
-                                    <Link to={`/country/${x.id}/edit`} className="btn btn-success">{t('edit')}</Link>
-                                </td>
-                            </tr>
+                                    <th scope="row">{idx + 1}</th>
+                                    <td><Link to={`/country/${x.id}/edit`}>{getName(x, lang)}</Link></td>
+                                    <td>{formattedCreatedAt}</td>
+                                    <td>
+                                        <Link to={`/country/${x.id}/edit`} className="btn btn-success">{t('edit')}</Link>
+                                    </td>
+                                </tr>
                             )
                         })}
                     </tbody>

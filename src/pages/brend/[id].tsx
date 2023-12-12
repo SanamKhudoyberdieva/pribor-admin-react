@@ -1,15 +1,18 @@
-import { useTranslation } from 'react-i18next';
-import { Link, useParams } from 'react-router-dom';
-import { getBrand } from '../../api';
-import { useEffect, useState } from 'react';
-import { Brand } from '../../store/types/brandTypes';
-import { getName } from '../../utils/helperFunctions';
 import { useFormik } from 'formik';
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import useToast from '../../components/useToast';
+import { getName } from '../../utils/helperFunctions';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { createBrand, deleteBrand, getBrand, updateBrand } from '../../api';
+import { Brand, BrandCreation, BrandUpdate } from '../../store/types/brandTypes';
 
 const Brend = ({ mode }: { mode: string }) => {
+  const { id } = useParams();
   const { t } = useTranslation();
-  const { id } = useParams()
-  const [currBrand, setCurrBrand] = useState<Brand>()
+  const navigate = useNavigate();
+  const { showToast } = useToast();
+  const [currBrand, setCurrBrand] = useState<Brand>();
   const initialValues: Brand = {
     id: 0,
     nameUz: "",
@@ -30,21 +33,71 @@ const Brend = ({ mode }: { mode: string }) => {
     deletedAt: ""
   }
 
-  const handleCreateBrand = async (values: Brand) => {
-    // try {
-    //   await 
-    // } catch (error) {
-    //   console.log("first")
-    // }
-  }
-
-  const handleUpdateBrand = async (values: Brand) => {
+  const handleGetBrand = async (brandId: string | undefined) => {
+    if (!brandId) return
     try {
-
+      let res = await getBrand(brandId)
+      setCurrBrand(res.data)
     } catch (error) {
-
+      console.log("Error fetching brand", error)
     }
   }
+
+  const handleCreateBrand = async (values: BrandCreation) => {
+    try {
+      await createBrand
+        ({
+          nameUz: values.nameUz,
+          nameRu: values.nameRu,
+          nameEn: values.nameEn,
+          descriptionEn: values.descriptionEn,
+          descriptionRu: values.descriptionRu,
+          descriptionUz: values.descriptionUz,
+          isActive: values.isActive,
+          seoDescription: values.seoDescription,
+          seoTitle: values.seoTitle,
+          image: values.image
+        });
+        navigate("/brend", { replace: true });
+        showToast(t('brand-successfully-created'), { type: 'success' });
+    } catch (error) {
+      console.log("Error creating brand", error)
+    }
+  }
+
+  const handleUpdateBrand = async (values: BrandUpdate) => {
+    if (!currBrand) return
+    try {
+      await updateBrand
+        (currBrand.id, {
+          nameUz: values.nameUz,
+          nameRu: values.nameRu,
+          nameEn: values.nameEn,
+          descriptionEn: values.descriptionEn,
+          descriptionRu: values.descriptionRu,
+          descriptionUz: values.descriptionUz,
+          isActive: values.isActive,
+          seoDescription: values.seoDescription,
+          seoTitle: values.seoTitle,
+          image: values.image
+        });
+        navigate("/brend", { replace: true });
+        showToast(t('brand-successfully-updated'), { type: 'success' });
+    } catch (error) {
+      showToast(t('error-updating-brand'), { type: 'error' });
+    }
+  }
+
+  const handleDeleteBrand = async (id: string | undefined) => {
+    if (!id) return
+    try {
+      await deleteBrand(id)
+      navigate("/brend", { replace: true });
+      showToast(t('brand-successfully-deleted'), { type: 'success' });
+    } catch (error) {
+      showToast(t('error-deleting-brand'), { type: 'error' });
+    }
+  };
 
   const onSubmit = (values: Brand) => {
     mode === "edit" ? handleUpdateBrand(values) : handleCreateBrand(values)
@@ -80,17 +133,6 @@ const Brend = ({ mode }: { mode: string }) => {
     }));
   }, [currBrand, mode])
 
-  const handleGetBrand = async (brandId: string | undefined) => {
-    if (!brandId) return
-    try {
-      let res = await getBrand(brandId)
-      console.log("brand", res)
-      setCurrBrand(res.data)
-    } catch (error) {
-      console.log("error getBrand: ", error)
-    }
-  }
-
   useEffect(() => {
     handleGetBrand(id)
   }, [id])
@@ -112,33 +154,127 @@ const Brend = ({ mode }: { mode: string }) => {
 
       <div className="mb-4 d-flex align-items-center justify-content-between">
         {mode === "edit" && <h4 className="fw-bold mb-0">{getName(currBrand)}</h4>}
-        {mode === "edit" && <button className="btn btn-danger">{t('delete')}</button>}
+        {mode === "edit" && <button className="btn btn-danger" onClick={() => handleDeleteBrand(id)}>{t('delete')}</button>}
       </div>
 
-      <div className="card mb-4">
-        <div className="card-body">
-          <div className="form-check form-switch mb-2">
-            <input className="form-check-input" type="checkbox" id="visibilitySwitch" />
-            <label className="form-check-label">{t('visible')}</label>
-          </div>
-          <div className="row g-3 mb-4">
-            <div className="col-12">
-              <label className="form-label">{t('brend-name')}</label>
-              <input type="text" className="form-control" id="productNameInput" placeholder={t('brend-name')}
-                aria-describedby="defaultFormControlHelp" />
+      <form onSubmit={formik.handleSubmit}>
+        <div className="card mb-4">
+          <div className="card-body">
+            <div className="form-check form-switch mb-2">
+              <input 
+                className="form-check-input" 
+                type="checkbox" 
+                checked={formik.values.isActive}
+                onChange={(e) => formik.setFieldValue('isActive', e.target.checked)}
+              />
+              <label className="form-check-label">{t('visible')}</label>
+            </div>
+            <div className="row g-3 mb-4">
+              <div className="col-12">
+                <label className="form-label">{t('name-uz')}</label>
+                <input 
+                  type="text"
+                  name='nameUz'
+                  className="form-control" 
+                  value={formik.values.nameUz}
+                  onChange={formik.handleChange}
+                  placeholder={t('brend-name')}
+                />
+              </div>
+              <div className="col-12">
+                <label className="form-label">{t('name-ru')}</label>
+                <input 
+                  type="text"
+                  name='nameRu'
+                  className="form-control" 
+                  value={formik.values.nameRu}
+                  onChange={formik.handleChange}
+                  placeholder={t('brend-name')}
+                />
+              </div>
+              <div className="col-12">
+                <label className="form-label">{t('name-en')}</label>
+                <input 
+                  type="text"
+                  name='nameEn'
+                  className="form-control" 
+                  value={formik.values.nameEn}
+                  onChange={formik.handleChange}
+                  placeholder={t('brend-name')}
+                />
+              </div>
+              <div className="col-12">
+                <label className="form-label">{t('description-uz')}</label>
+                <input 
+                  type="text"
+                  name='descriptionUz'
+                  className="form-control" 
+                  value={formik.values.descriptionUz}
+                  onChange={formik.handleChange}
+                  placeholder={t('description')}
+                />
+              </div>
+              <div className="col-12">
+                <label className="form-label">{t('description-ru')}</label>
+                <input 
+                  type="text"
+                  name='descriptionRu'
+                  className="form-control" 
+                  value={formik.values.descriptionRu}
+                  onChange={formik.handleChange}
+                  placeholder={t('description')}
+                />
+              </div>
+              <div className="col-12">
+                <label className="form-label">{t('description-en')}</label>
+                <input 
+                  type="text"
+                  name='descriptionEn'
+                  className="form-control" 
+                  value={formik.values.descriptionEn}
+                  onChange={formik.handleChange}
+                  placeholder={t('description')}
+                />
+              </div>
+              <div className="col-12">
+                <label className="form-label">{t('seo-title')}</label>
+                <input 
+                  type="text"
+                  name='seoTitle'
+                  className="form-control" 
+                  value={formik.values.seoTitle}
+                  onChange={formik.handleChange}
+                  placeholder={t('seo-title-full')}
+                />
+              </div>
+              <div className="col-12">
+                <label className="form-label">{t('seo-description')}</label>
+                <input 
+                  type="text"
+                  name='seoDescription'
+                  className="form-control" 
+                  value={formik.values.seoDescription}
+                  onChange={formik.handleChange}
+                  placeholder={t('seo-description-full')}
+                />
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div className="card mb-4">
-        <div className="card-body">
-          <h5>{t('images')}</h5>
-          <input type="file" className="form-control" />
+        
+        <div className="card mb-4">
+          <div className="card-body">
+            <h5>{t('images')}</h5>
+            <input
+             type="file" 
+             className="form-control" 
+            />
+          </div>
         </div>
-      </div>
 
-      <button className="btn btn-primary me-3">{t('save-edits')}</button>
-      <button className="btn btn-secondary">{t('cancel')}</button>
+        <button className="btn btn-primary me-3" type='submit'>{t('save-edits')}</button>
+        <button className="btn btn-secondary" type='button'>{t('cancel')}</button>
+      </form>
     </>
   )
 }

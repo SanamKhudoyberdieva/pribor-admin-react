@@ -108,12 +108,20 @@
     "error-deleting-country": "Ошибка удаления страны",
     "name-uz": "Название (Узбек)",
     "name-ru": "Название (Pусское)",
-    "name-en": "Название (Aнглийское)"
-
-
-
-
-
+    "name-en": "Название (Aнглийское)",
+    "error-fetching-brands": "Ошибка при получении брендов",
+    "brand-successfully-updated": "Бренд успешно обновлен",
+    "brand-successfully-created": "Бренд успешно создан",
+    "error-updating-brand": "Ошибка обновления бренда",
+    "brand-successfully-deleted": "Бренд успешно удален",
+    "error-deleting-brand": "Ошибка удаления бренда",
+    "description-uz": "Описание (узбекский)",
+    "description-ru": "Описание (Русский)",
+    "description-en": "Описание (Aнглийский)",
+    "seo-title": "ПO Название",
+    "seo-title-full": "Название поисковой оптимизации",
+    "seo-description": "ПO описание",
+    "seo-description-full": "Описание поисковой оптимизации"
 
 
 }

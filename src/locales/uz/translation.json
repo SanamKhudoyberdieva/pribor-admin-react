@@ -108,12 +108,20 @@
     "error-deleting-country": "Mamlakatni oʻchirishda xatolik yuz berdi",
     "name-uz": "Nomi (O'zbek)",
     "name-ru": "Nomi (Rus)",
-    "name-en": "Nomi (Ingiliz)"
-
-
-
-
-
+    "name-en": "Nomi (Ingiliz)",
+    "error-fetching-brands": "Brendlarni olishda xatolik yuz berdi",
+    "brand-successfully-created": "Brend muvaffaqiyatli yaratildi",
+    "brand-successfully-updated": "Brend muvaffaqiyatli yangilandi",
+    "error-updating-brand": "Brendni yangilashda xatolik yuz berdi",
+    "brand-successfully-deleted": "Brend muvaffaqiyatli oʻchirildi",
+    "error-deleting-brand": "Brendni oʻchirishda xatolik yuz berdi",
+    "description-uz": "Tavsif (o'zbek)",
+    "description-ru": "Tavsif (Rus)",
+    "description-en": "Tavsif (Ingiliz)",
+    "seo-title": "QTO nomi",
+    "seo-title-full": "Qidiruv tizimini optimallashtirish nomi",
+    "seo-description": "QTO tavsifi",
+    "seo-description-full": "Qidiruv tizimini optimallashtirish tavsifi"
 
 
 }

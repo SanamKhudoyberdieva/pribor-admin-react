@@ -1,34 +1,33 @@
+import { useEffect } from 'react';
+import { getBrands } from '../../api';
+import { RootState } from '../../store';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { getBrands } from '../../api';
-import { useDispatch, useSelector } from 'react-redux';
-import { setBrands } from '../../store/slices/brandsSlice';
 import useToast from '../../components/useToast';
-import { useEffect } from 'react';
-import { RootState } from '../../store';
 import { Brand } from '../../store/types/brandTypes';
 import { getName } from '../../utils/helperFunctions';
+import { useDispatch, useSelector } from 'react-redux';
+import { setBrands } from '../../store/slices/brandsSlice';
 
 const Brends = () => {
     const { t } = useTranslation();
+    const dispatch = useDispatch();
     const { showToast } = useToast();
-    const lang = localStorage.getItem("language") || "uz"
-    const dispatch = useDispatch()
-    const { brands } = useSelector((state: RootState) => state.brandsReducer)
-    console.log("brands", brands)
-    const handleGetBrands = async () => {
+    const lang = localStorage.getItem("language") || "uz";
+    const { brands } = useSelector((state: RootState) => state.brandsReducer);
+    
+    const fetchBrands = async () => {
         try {
             const res = await getBrands();
             dispatch(setBrands(res.data))
-            console.log("res", res)
         } catch (error: any) {
-            showToast(error.response.data.message || "ERROR FETCHING BRANDS", { type: 'error' });
-            console.log("ERROR FETCHING BRANDS", error)
+            showToast(error.response.data.message || t('error-fetching-brands'), { type: 'error' });
+            console.log("Error fetching brands", error)
         }
     }
 
     useEffect(() => {
-        handleGetBrands()
+        fetchBrands()
     }, [])
 
     return (
@@ -58,25 +57,23 @@ const Brends = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {
-                                brands.map((x: Brand) => (
-                                    <tr className={`brands-list-index-${x.id}`}>
-                                        <th scope="row">1</th>
-                                        <td><Link to={`/brend/${x.id}/edit`}>{getName(x, lang)}</Link></td>
-                                        <td>{x.image}</td>
-                                        <td>
-                                            {x.isActive === true ? (
-                                                <div className="badge badge-center rounded-pill bg-label-success"><i className='bx bx-check-circle'></i></div>
-                                            ) : (
-                                                <div className="badge badge-center rounded-pill bg-label-danger"><i className='bx bx-x-circle'></i></div>
-                                            )}
-                                        </td>
-                                        <td>
-                                            <Link to={`/brand/${x.id}/edit`} className="btn btn-success">{t('edit')}</Link>
-                                        </td>
-                                    </tr>
-                                ))
-                            }
+                            {brands.map((x: Brand, idx) => (
+                                <tr key={"brand-index-" + idx}>
+                                    <th scope="row">{idx + 1}</th>
+                                    <td><Link to={`/brend/${x.id}/edit`}>{getName(x, lang)}</Link></td>
+                                    <td>{x.image}</td>
+                                    <td>
+                                        {x.isActive === true ? (
+                                            <div className="badge badge-center rounded-pill bg-label-success"><i className='bx bx-check-circle'></i></div>
+                                        ) : (
+                                            <div className="badge badge-center rounded-pill bg-label-danger"><i className='bx bx-x-circle'></i></div>
+                                        )}
+                                    </td>
+                                    <td>
+                                        <Link to={`/brend/${x.id}/edit`} className="btn btn-success">{t('edit')}</Link>
+                                    </td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 </div>

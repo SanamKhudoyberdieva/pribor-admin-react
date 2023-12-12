@@ -27,8 +27,17 @@ const CountryPage = ({ mode }: { mode: string }) => {
     deletedAt: ""
   }
 
+  const handleGetCountry = async (countryId: string | undefined) => {
+    if (!countryId) return
+    try {
+      let res = await getCountry(countryId)
+      setCurrCountry(res.data)
+    } catch (error) {
+      console.log("Error fetching country", error)
+    }
+  }
+
   const handleCreateCountry = async (values: CountryCreation) => {
-    if (!currCountry) return
     try {
       await createCountry
         ({
@@ -40,7 +49,7 @@ const CountryPage = ({ mode }: { mode: string }) => {
         showToast(t('country-successfully-created'), { type: 'success' });
     } catch (error) {
       showToast(t('error-creating-country'), { type: 'error' });
-      console.log("creting c error", error)
+      console.log("Error creating country", error)
     }
   }
 
@@ -71,6 +80,15 @@ const CountryPage = ({ mode }: { mode: string }) => {
     }
   };
 
+  const onSubmit = (values: Country) => {
+    mode === "edit" ? handleUpdateCountry(values) : handleCreateCountry(values)
+  }
+
+  const formik = useFormik({
+    initialValues,
+    onSubmit,
+  });
+
   useEffect(() => {
     formik.setFormikState((state) => ({
       ...state,
@@ -88,25 +106,6 @@ const CountryPage = ({ mode }: { mode: string }) => {
       },
     }));
   }, [currCountry, mode])
-
-  const handleGetCountry = async (countryId: string | undefined) => {
-    if (!countryId) return
-    try {
-      let res = await getCountry(countryId)
-      setCurrCountry(res.data)
-    } catch (error) {
-      console.log("Error fetching country", error)
-    }
-  }
-
-  const onSubmit = (values: Country) => {
-    mode === "edit" ? handleUpdateCountry(values) : handleCreateCountry(values)
-  }
-
-  const formik = useFormik({
-    initialValues,
-    onSubmit,
-  });
 
   useEffect(() => {
     handleGetCountry(id)
@@ -144,7 +143,7 @@ const CountryPage = ({ mode }: { mode: string }) => {
                   className="form-control" 
                   value={formik.values.nameUz}
                   onChange={formik.handleChange}
-                  placeholder={t('country-name')}
+                  placeholder={t('description')}
                   aria-describedby="defaultFormControlHelp"
                 />
               </div>
@@ -156,7 +155,7 @@ const CountryPage = ({ mode }: { mode: string }) => {
                   className="form-control" 
                   value={formik.values.nameRu}
                   onChange={formik.handleChange}
-                  placeholder={t('country-name')}
+                  placeholder={t('description')}
                   aria-describedby="defaultFormControlHelp"
                 />
               </div>
@@ -168,7 +167,7 @@ const CountryPage = ({ mode }: { mode: string }) => {
                   className="form-control" 
                   value={formik.values.nameEn}
                   onChange={formik.handleChange}
-                  placeholder={t('country-name')}
+                  placeholder={t('description')}
                   aria-describedby="defaultFormControlHelp"
                 />
               </div>
@@ -177,7 +176,7 @@ const CountryPage = ({ mode }: { mode: string }) => {
         </div>
 
         <button className="btn btn-primary me-3" type="submit">{t('save-edits')}</button>
-        <button className="btn btn-secondary">{t('cancel')}</button>
+        <button className="btn btn-secondary" type="button">{t('cancel')}</button>
       </form>
     </>
   )

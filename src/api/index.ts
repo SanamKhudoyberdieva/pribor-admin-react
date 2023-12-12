@@ -18,6 +18,9 @@ export * from "./admin/getAdmins"
 
 export * from "./brand/getBrands"
 export * from "./brand/getBrand"
+export * from "./brand/createBrand"
+export * from "./brand/updateBrand"
+export * from "./brand/deleteBrand"
 
 export * from "./country/getCountries"
 export * from "./country/getCountry"
