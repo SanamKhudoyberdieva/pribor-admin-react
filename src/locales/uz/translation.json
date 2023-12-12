@@ -98,5 +98,22 @@
     "username-can-not-be-empty": "Foydalanuvchi nomi boʻsh boʻlishi mumkin emas",
     "password-can-not-be-empty": "Parol bo'sh bo'lishi mumkin emas",
     "activate": "Faollashtirish",
-    "deleted-at": "Oʻchirilgan"
+    "deleted-at": "Oʻchirilgan",
+    "country-successfully-created": "Mamlakat muvaffaqiyatli yaratildi",
+    "error-creating-country": "Mamlakatni yaratishda xatolik yuz berdi",
+    "error-fetching-countries": "Mamlakatlarni olishda xatolik yuz berdi",
+    "country-successfully-updated": "Mamlakat muvaffaqiyatli yangilandi",
+    "error-updating-country": "Mamlakatni yangilashda xatolik yuz berdi",
+    "country-successfully-deleted": "Mamlakat muvaffaqiyatli oʻchirildi",
+    "error-deleting-country": "Mamlakatni oʻchirishda xatolik yuz berdi",
+    "name-uz": "Nomi (O'zbek)",
+    "name-ru": "Nomi (Rus)",
+    "name-en": "Nomi (Ingiliz)"
+
+
+
+
+
+
+
 }

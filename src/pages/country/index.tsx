@@ -1,10 +1,12 @@
 import { useEffect } from 'react';
 import { RootState } from '../../store';
 import { Link } from 'react-router-dom';
+import { getCountries } from '../../api';
 import { useTranslation } from 'react-i18next';
 import useToast from '../../components/useToast';
+import { getName } from '../../utils/helperFunctions';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCountry } from '../../api/country/getCountry';
+import { Country } from '../../store/types/countryTypes';
 import { setCountries } from '../../store/slices/countriesSlice';
 
 const Countries = () => {
@@ -13,16 +15,14 @@ const Countries = () => {
     const { showToast } = useToast();
     const lang = localStorage.getItem("language") || "uz";
     const { countries } = useSelector((state: RootState) => state.countriesReducer);
-    console.log("countriesss", countries);
 
     const handleGetCountries = async () => {
         try {
-            const res = await getCountry();
+            const res = await getCountries();
             dispatch(setCountries(res.data))
-            console.log("res", res)
         } catch (error: any) {
-            showToast(error.response.data.message || "ERROR FETCHING BRANDS", { type: 'error' });
-            console.log("ERROR FETCHING BRANDS", error)
+            showToast(error.response.data.message || t('error-fetching-countries'), { type: 'error' });
+            console.log("Error fetching countries", error)
         }
     }
 
@@ -51,23 +51,24 @@ const Countries = () => {
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">{t('name')}</th>
-                            <th scope="col">{t('visibility')}</th>
+                            <th scope="col">{t('created-at')}</th>
                             <th scope="col">{t('actions')}</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td><Link to={'/country/123/edit'}>COUNTRY_NAME</Link></td>
-                            <td>
-                                <div className="badge badge-center rounded-pill bg-label-danger">
-                                    <i className='bx bx-x-circle'></i>
-                                </div>
-                            </td>
-                            <td>
-                                <Link to={'/country/123/edit'} className="btn btn-success">{t('edit')}</Link>
-                            </td>
-                        </tr>
+                        {countries.map((x: Country, idx) => {
+                            const formattedCreatedAt = x.createdAt ? new Date(x.createdAt).toLocaleDateString('en-GB') : "";
+                            return (
+                                <tr  key={"country-index-" + idx}>
+                                <th scope="row">{idx + 1}</th>
+                                <td><Link to={`/country/${x.id}/edit`}>{getName(x, lang)}</Link></td>
+                                <td>{formattedCreatedAt}</td>
+                                <td>
+                                    <Link to={`/country/${x.id}/edit`} className="btn btn-success">{t('edit')}</Link>
+                                </td>
+                            </tr>
+                            )
+                        })}
                     </tbody>
                 </table>
             </div>

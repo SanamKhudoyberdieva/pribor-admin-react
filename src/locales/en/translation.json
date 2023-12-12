@@ -98,5 +98,15 @@
     "username-can-not-be-empty": "Username can not be empty",
     "password-can-not-be-empty": "Password can not be empty",
     "activate": "Activate",
-    "deleted-at": "Deleted at"
+    "deleted-at": "Deleted at",
+    "error-fetching-countries": "Error fetching countries",
+    "country-successfully-created": "Country successfully created",
+    "error-creating-country": "Error creating country",
+    "country-successfully-updated": "Country successfully updated",
+    "error-updating-country": "Error updating country",
+    "country-successfully-deleted": "Country successfully deleted",
+    "error-deleting-country": "Error deleting country",
+    "name-uz": "Name (Uzbek)",
+    "name-ru": "Name (Russian)",
+    "name-en": "Name (English)"
 }

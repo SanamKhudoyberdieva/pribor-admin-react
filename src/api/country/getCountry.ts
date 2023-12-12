@@ -1,10 +1,5 @@
 import api from '../api';
 
-export const getCountry = async () => {
-  try {
-    let res = await api.get("/country")
-    return res.data
-  } catch (error: any) {
-    return error.message
-  }
+export const getCountry = async (id: string) => {
+    return await api.get(`/api/country/${id}`);
 }

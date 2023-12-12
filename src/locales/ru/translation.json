@@ -98,5 +98,22 @@
     "username-can-not-be-empty": "Имя пользователя не может быть пустым",
     "password-can-not-be-empty": "Пароль не может быть пустым",
     "activate": "Активировать",
-    "deleted-at": "Удален в"
+    "deleted-at": "Удален в",
+    "country-successfully-created": "Страна успешно создана",
+    "error-creating-country": "Ошибка при создании страны",
+    "error-fetching-countries": "Ошибка при выборе стран",
+    "country-successfully-updated": "Страна успешно обновлена",
+    "error-updating-country": "Ошибка обновления страны",
+    "country-successfully-deleted": "Страна успешно удалена",
+    "error-deleting-country": "Ошибка удаления страны",
+    "name-uz": "Название (Узбек)",
+    "name-ru": "Название (Pусское)",
+    "name-en": "Название (Aнглийское)"
+
+
+
+
+
+
+
 }
