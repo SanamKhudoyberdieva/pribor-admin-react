@@ -121,7 +121,9 @@
     "seo-title": "ПO Название",
     "seo-title-full": "Название поисковой оптимизации",
     "seo-description": "ПO описание",
-    "seo-description-full": "Описание поисковой оптимизации"
+    "seo-description-full": "Описание поисковой оптимизации",
+    "error-fetching-categories": "Ошибка при получении категорий"
+
 
 
 }

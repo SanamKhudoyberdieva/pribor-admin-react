@@ -11,7 +11,7 @@ const Admins = () => {
   const [admins, setAdmins] = useState<Admin[]>([]);
   const [admin, setAdmin] = useState<Admin | null>(null);
 
-  const fetchAdmins = async () => {
+  const handelGetAdmins = async () => {
     try {
       const res = await getAdmins()
       const sortedAdmins = res.data.sort((a: { username: string; }, b: { username: any; }) => a.username.localeCompare(b.username));
@@ -22,7 +22,7 @@ const Admins = () => {
     }
   }
 
-  const fetchAdmin = async () => {
+  const handelGetAdmin = async () => {
     try {
       const res = await getAdmin()
       setAdmin(res.data)
@@ -33,8 +33,8 @@ const Admins = () => {
   }
 
   useEffect(() => {
-    fetchAdmins()
-    fetchAdmin()
+    handelGetAdmins()
+    handelGetAdmin()
   }, [])
 
   return (

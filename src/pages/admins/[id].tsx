@@ -23,7 +23,16 @@ const AdminPage = ({ mode }: { mode: string }) => {
     setCurrUser(admins.find((admin) => admin.id === parseInt(id)))
   }, [admins, id])
 
-  const fetchAdmin = async () => {
+  const initialValues = {
+    isSuperuser: false,
+    password: "",
+    username: "",
+    createdAt: new Date(),
+    deletedAt: new Date(),
+    updatedAt: new Date()
+  }
+
+  const handelGetAdmin = async () => {
     try {
       const res = await getAdmins()
       dispatch(setAdmins(res.data))
@@ -56,30 +65,6 @@ const AdminPage = ({ mode }: { mode: string }) => {
       console.error('Error activating admin', error);
     }
   }
-
-  const initialValues = {
-    isSuperuser: false,
-    password: "",
-    username: "",
-    createdAt: new Date(),
-    deletedAt: new Date(),
-    updatedAt: new Date()
-  }
-
-  useEffect(() => {
-    formik.setFormikState(state => ({
-      ...state,
-      values: {
-        ...state.values,
-        isSuperuser: (mode === "edit" && currUser) ? currUser.isSuperuser : false,
-        password: (mode === "edit" && currUser) ? currUser.password : "",
-        username: (mode === "edit" && currUser) ? currUser.username : "",
-        createdAt: (mode === "edit" && currUser) ? new Date(currUser.createdAt) : new Date(),
-        updatedAt: (mode === "edit" && currUser) ? new Date(currUser.updatedAt) : new Date(),
-        deletedAt: (mode === "edit" && currUser) ? new Date(currUser.deletedAt) : new Date(),
-      },
-    }));
-  }, [currUser, mode])
 
   const handleCreateAdmin = async (values: AdminUpdateState) => {
     if (!values.username) return showToast(t('username-can-not-be-empty'), { type: 'error' });
@@ -126,7 +111,22 @@ const AdminPage = ({ mode }: { mode: string }) => {
   });
 
   useEffect(() => {
-    fetchAdmin()
+    formik.setFormikState(state => ({
+      ...state,
+      values: {
+        ...state.values,
+        isSuperuser: (mode === "edit" && currUser) ? currUser.isSuperuser : false,
+        password: (mode === "edit" && currUser) ? currUser.password : "",
+        username: (mode === "edit" && currUser) ? currUser.username : "",
+        createdAt: (mode === "edit" && currUser) ? new Date(currUser.createdAt) : new Date(),
+        updatedAt: (mode === "edit" && currUser) ? new Date(currUser.updatedAt) : new Date(),
+        deletedAt: (mode === "edit" && currUser) ? new Date(currUser.deletedAt) : new Date(),
+      },
+    }));
+  }, [currUser, mode])
+
+  useEffect(() => {
+    handelGetAdmin()
   }, [id])
 
   return (

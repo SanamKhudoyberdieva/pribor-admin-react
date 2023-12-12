@@ -121,5 +121,6 @@
     "seo-title": "SEO title",
     "seo-title-full": "Search Engine Optimization name",
     "seo-description": "SEO description",
-    "seo-description-full": "Search Engine Optimization description"
+    "seo-description-full": "Search Engine Optimization description",
+    "error-fetching-categories": "Error fetching categories"
 }

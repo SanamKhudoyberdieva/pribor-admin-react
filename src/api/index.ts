@@ -27,4 +27,6 @@ export * from "./country/getCountry"
 export * from "./country/updateCountry"
 export * from "./country/deleteCountry"
 
+export * from "./category/getCategories"
+
 export * from "./customer/getCustomers"

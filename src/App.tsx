@@ -27,7 +27,7 @@ import CustomerAddress from './pages/customer/customerAddress/[id]';
 import './utils/i18n';
 import Brends from './pages/brend';
 import Brend from './pages/brend/[id]';
-import Categories from './pages/category/category';
+import Categories from './pages/category';
 import Category from './pages/category/[id]';
 import Countries from './pages/country';
 import Country from './pages/country/[id]';

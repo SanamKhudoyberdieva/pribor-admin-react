@@ -121,7 +121,9 @@
     "seo-title": "QTO nomi",
     "seo-title-full": "Qidiruv tizimini optimallashtirish nomi",
     "seo-description": "QTO tavsifi",
-    "seo-description-full": "Qidiruv tizimini optimallashtirish tavsifi"
+    "seo-description-full": "Qidiruv tizimini optimallashtirish tavsifi",
+    "error-fetching-categories": "Kategoriyalarni olishda xatolik yuz berdi"
+
 
 
 }
