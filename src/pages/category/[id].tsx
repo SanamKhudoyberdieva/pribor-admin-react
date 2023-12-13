@@ -10,6 +10,7 @@ import { Category, CategoryCreation, CategoryUpdate } from '../../store/types/ca
 const CategoryPage = ({ mode }: { mode: string }) => {
   const { id } = useParams();
   const { t } = useTranslation();
+  const lang = localStorage.getItem("language") || "uz";
   const navigate = useNavigate();
   const { showToast } = useToast();
   const [currCategory, setCurrCategory] = useState<Category>();
@@ -53,8 +54,8 @@ const CategoryPage = ({ mode }: { mode: string }) => {
           nameEn: values.nameEn,
           isActive: values.isActive,
         });
-        navigate("/category", { replace: true });
-        showToast(t('category-successfully-created'), { type: 'success' });
+      navigate("/category", { replace: true });
+      showToast(t('category-successfully-created'), { type: 'success' });
     } catch (error) {
       showToast(t('error-creating-category'), { type: 'error' });
     }
@@ -76,8 +77,8 @@ const CategoryPage = ({ mode }: { mode: string }) => {
           seoTitle: values.seoTitle,
           seoDescription: values.seoDescription,
         });
-        navigate("/category", { replace: true });
-        showToast(t('category-successfully-updated'), { type: 'success' });
+      navigate("/category", { replace: true });
+      showToast(t('category-successfully-updated'), { type: 'success' });
     } catch (error) {
       showToast(t('error-updating-category'), { type: 'error' });
     }
@@ -150,7 +151,9 @@ const CategoryPage = ({ mode }: { mode: string }) => {
   useEffect(() => {
     handleGetCategory(id)
   }, [id])
-  
+
+  console.log("currCategory", currCategory?.nameEn)
+
   return (
     <>
       <nav aria-label="breadcrumb">
@@ -159,15 +162,15 @@ const CategoryPage = ({ mode }: { mode: string }) => {
           {mode === "create" && <li className="breadcrumb-item active" aria-current="page">{t('create')}</li>}
           {mode === "edit" &&
             <>
-              <li className="breadcrumb-item"><span>{getName(currCategory)}</span></li>
+              <li className="breadcrumb-item"><span>{getName(currCategory, lang)}</span></li>
               <li className="breadcrumb-item active" aria-current="page">{t('edit')}</li>
             </>
           }
         </ol>
       </nav>
-      
+
       <div className="mb-4 d-flex align-items-center justify-content-between">
-        {mode === "edit" && <h4 className="fw-bold mb-0">{getName(currCategory)}</h4>}
+        {mode === "edit" && <h4 className="fw-bold mb-0">{getName(currCategory, lang)}</h4>}
         {mode === "edit" && <button className="btn btn-danger" onClick={() => handleDeleteCategory(id)}>{t('delete')}</button>}
       </div>
 
@@ -175,21 +178,21 @@ const CategoryPage = ({ mode }: { mode: string }) => {
         <div className="card mb-4">
           <div className="card-body">
             <div className="form-check form-switch mb-2">
-              <input 
-                className="form-check-input" 
-                type="checkbox" 
+              <input
+                className="form-check-input"
+                type="checkbox"
                 checked={formik.values.isActive}
-                onChange={(e) => formik.setFieldValue('isActive', e.target.checked)} 
+                onChange={(e) => formik.setFieldValue('isActive', e.target.checked)}
               />
               <label className="form-check-label">{t('visible')}</label>
             </div>
             <div className="row g-3 mb-4">
               <div className="col-12">
                 <label className="form-label">{t('name-uz')} *</label>
-                <input 
+                <input
                   type="text"
                   name='nameUz'
-                  className="form-control" 
+                  className="form-control"
                   value={formik.values.nameUz}
                   onChange={formik.handleChange}
                   placeholder={t('category-name')}
@@ -197,10 +200,10 @@ const CategoryPage = ({ mode }: { mode: string }) => {
               </div>
               <div className="col-12">
                 <label className="form-label">{t('name-ru')} *</label>
-                <input 
+                <input
                   type="text"
                   name='nameRu'
-                  className="form-control" 
+                  className="form-control"
                   value={formik.values.nameRu}
                   onChange={formik.handleChange}
                   placeholder={t('category-name')}
@@ -208,10 +211,10 @@ const CategoryPage = ({ mode }: { mode: string }) => {
               </div>
               <div className="col-12">
                 <label className="form-label">{t('name-en')} *</label>
-                <input 
+                <input
                   type="text"
                   name='nameEn'
-                  className="form-control" 
+                  className="form-control"
                   value={formik.values.nameEn}
                   onChange={formik.handleChange}
                   placeholder={t('category-name')}
@@ -221,7 +224,7 @@ const CategoryPage = ({ mode }: { mode: string }) => {
           </div>
         </div>
 
-        {mode === "edit" ? <button className="btn btn-primary me-3" type="submit">{t('save-edits')}</button> : <button className="btn btn-primary me-3" type="submit">{t('create')}</button>}        
+        {mode === "edit" ? <button className="btn btn-primary me-3" type="submit">{t('save-edits')}</button> : <button className="btn btn-primary me-3" type="submit">{t('create')}</button>}
         <button className="btn btn-secondary" type='button' onClick={onCancel}>{t('cancel')}</button>
       </form>
     </>

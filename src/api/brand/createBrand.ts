@@ -1,6 +1,5 @@
 import api from '../api';
-import { BrandCreation } from '../../store/types/brandTypes';
 
-export const createBrand = async (obj: BrandCreation) => {
+export const createBrand = async (obj: FormData) => {
     return await api.post("/api/brand/", obj);
 }

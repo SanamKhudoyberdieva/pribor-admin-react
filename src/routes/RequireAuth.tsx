@@ -6,7 +6,6 @@ import { RootState } from '../store';
 const RequireAuth = () => {
   const accessToken = localStorage.getItem("accessToken")
 
-  console.log("accessToken", accessToken)
   const location = useLocation();
   return accessToken ? (
     <Outlet />

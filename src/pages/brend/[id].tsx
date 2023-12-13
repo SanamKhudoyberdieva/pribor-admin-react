@@ -5,7 +5,7 @@ import useToast from '../../components/useToast';
 import { getName } from '../../utils/helperFunctions';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { createBrand, deleteBrand, getBrand, updateBrand } from '../../api';
-import { Brand, BrandCreation, BrandUpdate } from '../../store/types/brandTypes';
+import { Brand, BrandTypes } from '../../store/types/brandTypes';
 
 const Brend = ({ mode }: { mode: string }) => {
   const { id } = useParams();
@@ -33,6 +33,7 @@ const Brend = ({ mode }: { mode: string }) => {
     deletedAt: ""
   }
 
+
   const handleGetBrand = async (brandId: string | undefined) => {
     if (!brandId) return
     try {
@@ -43,46 +44,44 @@ const Brend = ({ mode }: { mode: string }) => {
     }
   }
 
-  const handleCreateBrand = async (values: BrandCreation) => {
+  const handleCreateBrand = async (values: BrandTypes) => {
+    const formData = new FormData()
+    formData.append("nameUz", values.nameUz)
+    formData.append("nameRu", values.nameRu)
+    formData.append("nameEn", values.nameEn)
+    formData.append("descriptionEn", values.descriptionEn)
+    formData.append("descriptionRu", values.descriptionRu)
+    formData.append("descriptionUz", values.descriptionUz)
+    formData.append("isActive", values.isActive)
+    formData.append("seoDescription", values.seoDescription)
+    formData.append("seoTitle", values.seoTitle)
+    formData.append("image_file", values.image)
     try {
-      await createBrand
-        ({
-          nameUz: values.nameUz,
-          nameRu: values.nameRu,
-          nameEn: values.nameEn,
-          descriptionEn: values.descriptionEn,
-          descriptionRu: values.descriptionRu,
-          descriptionUz: values.descriptionUz,
-          isActive: values.isActive,
-          seoDescription: values.seoDescription,
-          seoTitle: values.seoTitle,
-          image: values.image
-        });
-        navigate("/brend", { replace: true });
-        showToast(t('brand-successfully-created'), { type: 'success' });
+      await createBrand(formData);
+      navigate("/brend", { replace: true });
+      showToast(t('brand-successfully-created'), { type: 'success' });
     } catch (error) {
       console.log("Error creating brand", error)
     }
   }
 
-  const handleUpdateBrand = async (values: BrandUpdate) => {
+  const handleUpdateBrand = async (values: BrandTypes) => {
     if (!currBrand) return
+    const formData = new FormData()
+    formData.append("nameUz", values.nameUz)
+    formData.append("nameRu", values.nameRu)
+    formData.append("nameEn", values.nameEn)
+    formData.append("descriptionEn", values.descriptionEn)
+    formData.append("descriptionRu", values.descriptionRu)
+    formData.append("descriptionUz", values.descriptionUz)
+    formData.append("isActive", values.isActive)
+    formData.append("seoDescription", values.seoDescription)
+    formData.append("seoTitle", values.seoTitle)
+    formData.append("image_file", values.image)
     try {
-      await updateBrand
-        (currBrand.id, {
-          nameUz: values.nameUz,
-          nameRu: values.nameRu,
-          nameEn: values.nameEn,
-          descriptionEn: values.descriptionEn,
-          descriptionRu: values.descriptionRu,
-          descriptionUz: values.descriptionUz,
-          isActive: values.isActive,
-          seoDescription: values.seoDescription,
-          seoTitle: values.seoTitle,
-          image: values.image
-        });
-        navigate("/brend", { replace: true });
-        showToast(t('brand-successfully-updated'), { type: 'success' });
+      await updateBrand(currBrand.id, formData);
+      navigate("/brend", { replace: true });
+      showToast(t('brand-successfully-updated'), { type: 'success' });
     } catch (error) {
       showToast(t('error-updating-brand'), { type: 'error' });
     }
@@ -131,7 +130,7 @@ const Brend = ({ mode }: { mode: string }) => {
     initialValues,
     onSubmit,
   });
-
+  
   useEffect(() => {
     formik.setFormikState((state) => ({
       ...state,
@@ -185,9 +184,9 @@ const Brend = ({ mode }: { mode: string }) => {
         <div className="card mb-4">
           <div className="card-body">
             <div className="form-check form-switch mb-2">
-              <input 
-                className="form-check-input" 
-                type="checkbox" 
+              <input
+                className="form-check-input"
+                type="checkbox"
                 checked={formik.values.isActive}
                 onChange={(e) => formik.setFieldValue('isActive', e.target.checked)}
               />
@@ -196,10 +195,10 @@ const Brend = ({ mode }: { mode: string }) => {
             <div className="row g-3 mb-4">
               <div className="col-12">
                 <label className="form-label">{t('name-uz')}</label>
-                <input 
+                <input
                   type="text"
                   name='nameUz'
-                  className="form-control" 
+                  className="form-control"
                   value={formik.values.nameUz}
                   onChange={formik.handleChange}
                   placeholder={t('brend-name')}
@@ -207,10 +206,10 @@ const Brend = ({ mode }: { mode: string }) => {
               </div>
               <div className="col-12">
                 <label className="form-label">{t('name-ru')}</label>
-                <input 
+                <input
                   type="text"
                   name='nameRu'
-                  className="form-control" 
+                  className="form-control"
                   value={formik.values.nameRu}
                   onChange={formik.handleChange}
                   placeholder={t('brend-name')}
@@ -218,10 +217,10 @@ const Brend = ({ mode }: { mode: string }) => {
               </div>
               <div className="col-12">
                 <label className="form-label">{t('name-en')}</label>
-                <input 
+                <input
                   type="text"
                   name='nameEn'
-                  className="form-control" 
+                  className="form-control"
                   value={formik.values.nameEn}
                   onChange={formik.handleChange}
                   placeholder={t('brend-name')}
@@ -229,10 +228,10 @@ const Brend = ({ mode }: { mode: string }) => {
               </div>
               <div className="col-12">
                 <label className="form-label">{t('description-uz')}</label>
-                <input 
+                <input
                   type="text"
                   name='descriptionUz'
-                  className="form-control" 
+                  className="form-control"
                   value={formik.values.descriptionUz}
                   onChange={formik.handleChange}
                   placeholder={t('description')}
@@ -240,10 +239,10 @@ const Brend = ({ mode }: { mode: string }) => {
               </div>
               <div className="col-12">
                 <label className="form-label">{t('description-ru')}</label>
-                <input 
+                <input
                   type="text"
                   name='descriptionRu'
-                  className="form-control" 
+                  className="form-control"
                   value={formik.values.descriptionRu}
                   onChange={formik.handleChange}
                   placeholder={t('description')}
@@ -251,10 +250,10 @@ const Brend = ({ mode }: { mode: string }) => {
               </div>
               <div className="col-12">
                 <label className="form-label">{t('description-en')}</label>
-                <input 
+                <input
                   type="text"
                   name='descriptionEn'
-                  className="form-control" 
+                  className="form-control"
                   value={formik.values.descriptionEn}
                   onChange={formik.handleChange}
                   placeholder={t('description')}
@@ -262,10 +261,10 @@ const Brend = ({ mode }: { mode: string }) => {
               </div>
               <div className="col-12">
                 <label className="form-label">{t('seo-title')}</label>
-                <input 
+                <input
                   type="text"
                   name='seoTitle'
-                  className="form-control" 
+                  className="form-control"
                   value={formik.values.seoTitle}
                   onChange={formik.handleChange}
                   placeholder={t('seo-title-full')}
@@ -273,10 +272,10 @@ const Brend = ({ mode }: { mode: string }) => {
               </div>
               <div className="col-12">
                 <label className="form-label">{t('seo-description')}</label>
-                <input 
+                <input
                   type="text"
                   name='seoDescription'
-                  className="form-control" 
+                  className="form-control"
                   value={formik.values.seoDescription}
                   onChange={formik.handleChange}
                   placeholder={t('seo-description-full')}
@@ -285,18 +284,20 @@ const Brend = ({ mode }: { mode: string }) => {
             </div>
           </div>
         </div>
-        
+
         <div className="card mb-4">
           <div className="card-body">
             <h5>{t('images')}</h5>
             <input
-             type="file" 
-             className="form-control" 
+              type="file"
+              onChange={(e) => e.currentTarget.files && formik.setFieldValue("image", e.currentTarget.files[0])}
+              name='image'
+              className="form-control"
             />
           </div>
         </div>
 
-        {mode === "edit" ? <button className="btn btn-primary me-3" type="submit">{t('save-edits')}</button> : <button className="btn btn-primary me-3" type="submit">{t('create')}</button>}        
+        {mode === "edit" ? <button className="btn btn-primary me-3" type="submit">{t('save-edits')}</button> : <button className="btn btn-primary me-3" type="submit">{t('create')}</button>}
         <button className="btn btn-secondary" type='button' onClick={onCancel}>{t('cancel')}</button>
       </form>
     </>
