@@ -4,7 +4,7 @@
     "admin": "Admin",
     "sign-out": "Chiqish",
     "image": "Rasm",
-    "name": "Ism",
+    "name": "Nomi",
     "price": "Narx",
     "visibility": "Ko'rinish",
     "actions": "Harakatlar",
@@ -128,7 +128,9 @@
     "category-successfully-updated": "Kategoriya muvaffaqiyatli yangilandi",
     "error-updating-category": "Kategoriyani yangilashda xatolik yuz berdi",
     "category-successfully-deleted": "Kategoriya muvaffaqiyatli oʻchirildi",
-    "error-deleting-category": "Kategoriyani o‘chirishda xatolik yuz berdi"
+    "error-deleting-category": "Kategoriyani o‘chirishda xatolik yuz berdi",
+    "error-fetching-products": "Mahsulotlarni olishda xatolik yuz berdi"
+
 
 
 

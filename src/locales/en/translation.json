@@ -128,5 +128,6 @@
     "category-successfully-updated": "Category successfully updated",
     "error-updating-category": "Error updating category",
     "category-successfully-deleted": "Category successfully deleted",
-    "error-deleting-category": "Error deleting category"
+    "error-deleting-category": "Error deleting category",
+    "error-fetching-products": "Error fetching products"
 }

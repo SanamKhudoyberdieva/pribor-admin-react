@@ -6,7 +6,7 @@ const AsideNav = () => {
   const { t } = useTranslation();
 
   return (
-    <aside id="layout-menu" className="layout-menu menu-vertical menu bg-menu-theme">
+    <aside id="layout-menu" className="layout-menu menu-vertical menu bg-menu-theme pr-aside">
       <div className="app-brand demo justify-content-start">
         <Link to={'/'} className="app-brand-link">
           <span className="app-brand-text demo menu-text fw-bolder text-uppercase text-gray">
@@ -19,7 +19,7 @@ const AsideNav = () => {
 
       <div className="menu-inner-shadow"></div>
 
-      <ul className="menu-inner py-1">
+      <ul className="menu-inner py-1 pr-aside-menu-list">
         <li className={`menu-item ${pathname === "/" && "active"}`}>
           <Link to={'/'} className="menu-link">
             <i className='menu-icon tf-icons bx bx-home-alt-2'></i>
@@ -86,12 +86,6 @@ const AsideNav = () => {
           <Link to={'/contact'} className="menu-link">
             <i className='menu-icon tf-icons bx bx-phone-call'></i>
             <div data-i18n="Boxicons">{t('contacts')}</div>
-          </Link>
-        </li>
-        <li className={`menu-item ${pathname.includes("/payment") && "active"}`}>
-          <Link to={'/payment'} className="menu-link">
-            <i className='menu-icon tf-icons bx bx-money'></i>
-            <div data-i18n="Boxicons">{t('payments')}</div>
           </Link>
         </li>
         <li className={`menu-item ${pathname.includes("/admins") && "active"}`}>

@@ -1,0 +1,26 @@
+export interface Product {
+    id: number,
+    nameUz: string,
+    nameRu: string,
+    nameEn: string,
+    descriptionRu: string,
+    descriptionUz: string,
+    descriptionEn: string,
+    price: number,
+    seoTitle: string,
+    seoDescription: string,
+    parent: null,
+    parentId: null,
+    country: string,
+    countryId: number,
+    isActive: boolean,
+    image: string
+    brand: string,
+    brandId:  number,
+    created: string|null,
+    createdAt: string,
+    updated: string|null,
+    updatedAt: string,
+    deleted: string|null,
+    deletedAt: string|null
+}

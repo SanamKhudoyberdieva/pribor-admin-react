@@ -1,8 +1,35 @@
+import { useEffect } from 'react';
+import { getProducts } from '../../api';
+import { RootState } from '../../store';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import useToast from '../../components/useToast';
+import { getName } from '../../utils/helperFunctions';
+import { useDispatch, useSelector } from 'react-redux';
+import { Product } from '../../store/types/productTypes';
+import { setProducts } from '../../store/slices/productsSlice';
 
 const Products = () => {
     const { t } = useTranslation();
+    const dispatch = useDispatch();
+    const { showToast } = useToast();
+    const lang = localStorage.getItem("language") || "uz";
+    const { products } = useSelector((state: RootState) => state.productsReducer);
+
+    const handleGetProducts = async () => {
+        try {
+            const res = await getProducts();
+            dispatch(setProducts(res.data.products))
+        } catch (error: any) {
+            showToast(error.response.data.message || t('error-fetching-products'), { type: 'error' });
+            console.log("Error fetching products", error)
+        }
+    }
+
+    useEffect(() => {
+        handleGetProducts()
+    }, [])
+
     return (
         <>
             <nav aria-label="breadcrumb">
@@ -23,28 +50,32 @@ const Products = () => {
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">{t('image')}</th>
                                 <th scope="col">{t('name')}</th>
                                 <th scope="col">{t('price')}</th>
+                                <th scope="col">{t('image')}</th>
                                 <th scope="col">{t('visibility')}</th>
                                 <th scope="col">{t('actions')}</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td><Link to={'/product/123/edit'}>PRODUCT_NAME</Link></td>
-                                <td>{t('price')}</td>
-                                <td>
-                                    <div className="badge badge-center rounded-pill bg-label-danger">
-                                        <i className='bx bx-x-circle'></i>
-                                    </div>
-                                </td>
-                                <td>
-                                    <Link to={'/product/123/edit'} className="btn btn-success">{t('edit')}</Link>
-                                </td>
-                            </tr>
+                            {products.map((x: Product, idx) => (
+                                <tr key={"product-index-" + idx}>
+                                    <th scope="row">{idx + 1}</th>
+                                    <td><Link to={`/product/${x.id}/edit`}>{getName(x, lang)}</Link></td>
+                                    <td>{x.price}</td>
+                                    <td>{x.image}</td>
+                                    <td>
+                                        {x.isActive === true ? (
+                                            <div className="badge badge-center rounded-pill bg-label-success"><i className='bx bx-check-circle'></i></div>
+                                        ) : (
+                                            <div className="badge badge-center rounded-pill bg-label-danger"><i className='bx bx-x-circle'></i></div>
+                                        )}
+                                    </td>
+                                    <td>
+                                        <Link to={`/product/${x.id}/edit`} className="btn btn-success">{t('edit')}</Link>
+                                    </td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 </div>

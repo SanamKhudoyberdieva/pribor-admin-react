@@ -128,7 +128,9 @@
     "category-successfully-updated": "Категория успешно обновлена",
     "error-updating-category": "Ошибка обновления категории",
     "category-successfully-deleted": "Категория успешно удалена",
-    "error-deleting-category": "Ошибка удаления категории"
+    "error-deleting-category": "Ошибка удаления категории",
+    "error-fetching-products": "Ошибка при получении товаров"
+
 
 
 
