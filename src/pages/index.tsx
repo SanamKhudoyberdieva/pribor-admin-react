@@ -1,23 +1,8 @@
-import { getProduct } from '../api';
 import { Link } from 'react-router-dom';
-import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 const Home = () => {
   const { t } = useTranslation();
-
-  const fetchProducts = async () => {
-    try {
-        let res = await getProduct("uz")
-        console.log("Products", res)
-    } catch (error) {
-        console.log(error)
-    }
-  }
-
-  useEffect(() => {
-      fetchProducts()
-  }, [])
 
   return (
     <>

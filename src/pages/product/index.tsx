@@ -1,13 +1,8 @@
-import { getProduct } from '../../api';
 import { Link } from 'react-router-dom';
-import React, { useEffect } from 'react';
-import { RootState } from '../../store';
-import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
 const Products = () => {
     const { t } = useTranslation();
-    const dispatch = useDispatch()
     return (
         <>
             <nav aria-label="breadcrumb">

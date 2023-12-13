@@ -122,7 +122,13 @@
     "seo-title-full": "Название поисковой оптимизации",
     "seo-description": "ПO описание",
     "seo-description-full": "Описание поисковой оптимизации",
-    "error-fetching-categories": "Ошибка при получении категорий"
+    "error-fetching-categories": "Ошибка при получении категорий",
+    "category-successfully-created": "Категория успешно создана",
+    "error-creating-category": "Ошибка создания категории",
+    "category-successfully-updated": "Категория успешно обновлена",
+    "error-updating-category": "Ошибка обновления категории",
+    "category-successfully-deleted": "Категория успешно удалена",
+    "error-deleting-category": "Ошибка удаления категории"
 
 
 

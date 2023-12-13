@@ -1,24 +1,9 @@
-import { getPayment } from '../../api';
 import { Link } from 'react-router-dom';
-import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 const Payments = () => {
   const { t } = useTranslation();
 
-    const fetchPayments = async () => {
-        try {
-            let res = await getPayment()
-            console.log("Payments", res)
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
-    useEffect(() => {
-        fetchPayments()
-    }, [])
-    
   return (
     <>
         <nav aria-label="breadcrumb">

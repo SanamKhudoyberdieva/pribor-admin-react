@@ -1,13 +1,13 @@
-import { Link } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
-import useToast from '../../components/useToast';
-import { RootState } from '../../store';
-import { getCategories } from '../../api';
-import { setCategories } from '../../store/slices/categoriesSlice';
 import { useEffect } from 'react';
-import { Category } from '../../store/types/categoryTypes';
+import { RootState } from '../../store';
+import { Link } from 'react-router-dom';
+import { getCategories } from '../../api';
+import { useTranslation } from 'react-i18next';
+import useToast from '../../components/useToast';
 import { getName } from '../../utils/helperFunctions';
+import { useDispatch, useSelector } from 'react-redux';
+import { Category } from '../../store/types/categoryTypes';
+import { setCategories } from '../../store/slices/categoriesSlice';
 
 const Categories = () => {
     const { t } = useTranslation();

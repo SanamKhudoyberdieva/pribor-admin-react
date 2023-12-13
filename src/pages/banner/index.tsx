@@ -1,23 +1,8 @@
-import { getSlider } from '../../api';
 import { Link } from 'react-router-dom';
-import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 const Banners = () => {
   const { t } = useTranslation();
-
-    const fetchBanners = async () => {
-        try {
-            let res = await getSlider("uz")
-            console.log("Banners", res)
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
-    useEffect(() => {
-        fetchBanners()
-    }, [])
 
     return (
         <>

@@ -122,5 +122,11 @@
     "seo-title-full": "Search Engine Optimization name",
     "seo-description": "SEO description",
     "seo-description-full": "Search Engine Optimization description",
-    "error-fetching-categories": "Error fetching categories"
+    "error-fetching-categories": "Error fetching categories",
+    "category-successfully-created": "Category successfully created",
+    "error-creating-category": "Error creating category",
+    "category-successfully-updated": "Category successfully updated",
+    "error-updating-category": "Error updating category",
+    "category-successfully-deleted": "Category successfully deleted",
+    "error-deleting-category": "Error deleting category"
 }

@@ -103,6 +103,30 @@ const Brend = ({ mode }: { mode: string }) => {
     mode === "edit" ? handleUpdateBrand(values) : handleCreateBrand(values)
   }
 
+  const onCancel = () => {
+    if (mode === 'edit' && currBrand) {
+      formik.resetForm({
+        values: {
+          ...initialValues,
+          ...currBrand,
+          nameUz: currBrand.nameUz,
+          nameRu: currBrand.nameRu,
+          nameEn: currBrand.nameEn,
+          descriptionEn: currBrand.descriptionEn,
+          descriptionRu: currBrand.descriptionRu,
+          descriptionUz: currBrand.descriptionUz,
+          isActive: currBrand.isActive,
+          seoDescription: currBrand.seoDescription,
+          seoTitle: currBrand.seoTitle,
+          image: currBrand.image
+        },
+      });
+    } else {
+      formik.resetForm({ values: initialValues });
+    }
+    navigate('/brend', { replace: true });
+  };
+
   const formik = useFormik({
     initialValues,
     onSubmit,
@@ -145,7 +169,7 @@ const Brend = ({ mode }: { mode: string }) => {
           {mode === "create" && <li className="breadcrumb-item active" aria-current="page">{t('create')}</li>}
           {mode === "edit" &&
             <>
-              <li className="breadcrumb-item"><Link to={'/brend/123/edit'}>{getName(currBrand)}</Link></li>
+              <li className="breadcrumb-item"><span>{getName(currBrand)}</span></li>
               <li className="breadcrumb-item active" aria-current="page">{t('edit')}</li>
             </>
           }
@@ -272,8 +296,8 @@ const Brend = ({ mode }: { mode: string }) => {
           </div>
         </div>
 
-        <button className="btn btn-primary me-3" type='submit'>{t('save-edits')}</button>
-        <button className="btn btn-secondary" type='button'>{t('cancel')}</button>
+        {mode === "edit" ? <button className="btn btn-primary me-3" type="submit">{t('save-edits')}</button> : <button className="btn btn-primary me-3" type="submit">{t('create')}</button>}        
+        <button className="btn btn-secondary" type='button' onClick={onCancel}>{t('cancel')}</button>
       </form>
     </>
   )

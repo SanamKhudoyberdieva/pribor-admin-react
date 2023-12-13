@@ -84,6 +84,23 @@ const CountryPage = ({ mode }: { mode: string }) => {
     mode === "edit" ? handleUpdateCountry(values) : handleCreateCountry(values)
   }
 
+  const onCancel = () => {
+    if (mode === 'edit' && currCountry) {
+      formik.resetForm({
+        values: {
+          ...initialValues,
+          ...currCountry,
+          nameUz: currCountry.nameUz,
+          nameRu: currCountry.nameRu,
+          nameEn: currCountry.nameEn,
+        },
+      });
+    } else {
+      formik.resetForm({ values: initialValues });
+    }
+    navigate('/country', { replace: true });
+  };
+
   const formik = useFormik({
     initialValues,
     onSubmit,
@@ -175,8 +192,8 @@ const CountryPage = ({ mode }: { mode: string }) => {
           </div>
         </div>
 
-        <button className="btn btn-primary me-3" type="submit">{t('save-edits')}</button>
-        <button className="btn btn-secondary" type="button">{t('cancel')}</button>
+        {mode === "edit" ? <button className="btn btn-primary me-3" type="submit">{t('save-edits')}</button> : <button className="btn btn-primary me-3" type="submit">{t('create')}</button>}
+        <button className="btn btn-secondary" type="button" onClick={onCancel}>{t('cancel')}</button>
       </form>
     </>
   )

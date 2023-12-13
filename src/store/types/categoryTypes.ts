@@ -6,6 +6,7 @@ export interface Category {
     descriptionRu: string,
     descriptionUz: string,
     descriptionEn: string,
+    parentId: null,
     seoTitle: string,
     seoDescription: string,
     image: string,
@@ -16,4 +17,23 @@ export interface Category {
     updatedAt: string,
     deleted: string|null,
     deletedAt: string|null
+}
+export interface CategoryCreation {
+    nameUz: string,
+    nameRu: string,
+    nameEn: string,
+    isActive: true,
+}
+
+export interface CategoryUpdate {
+    nameUz: string,
+    nameRu: string,
+    nameEn: string,
+    isActive: true,
+    descriptionRu: string,
+    descriptionUz: string,
+    descriptionEn: string,
+    parentId: null,
+    seoTitle: string,
+    seoDescription: string,
 }

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { getCustomers } from '../../api';
+// import { getCustomers } from '../../api';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCustomers } from '../../store/slices/customersSlice';
 import { RootState } from '../../store';
@@ -10,23 +10,23 @@ import { getName } from '../../utils/helperFunctions';
 
 const Customers = () => {
     const { t } = useTranslation();
-    const dispatch = useDispatch()
-    const lang = localStorage.getItem("language") || "uz"
-    const { customers } = useSelector((state: RootState) => state.customersReducer)
-    const fetchCustomers = async () => {
-        try {
-            const res = await getCustomers()
-            dispatch(setCustomers(res.data))
-        } catch (error) {
-            console.log("error getCustomers :", error)
-        }
-    }
+    // const dispatch = useDispatch()
+    // const lang = localStorage.getItem("language") || "uz"
+    // const { customers } = useSelector((state: RootState) => state.customersReducer)
+    // const fetchCustomers = async () => {
+    //     try {
+    //         const res = await getCustomers()
+    //         dispatch(setCustomers(res.data))
+    //     } catch (error) {
+    //         console.log("error getCustomers :", error)
+    //     }
+    // }
 
-    console.log("customers", customers)
+    // console.log("customers", customers)
 
-    useEffect(() => {
-        fetchCustomers()
-    }, [])
+    // useEffect(() => {
+    //     fetchCustomers()
+    // }, [])
 
     return (
         <>
@@ -54,7 +54,7 @@ const Customers = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {
+                            {/* {
                                 customers.map((x: Customer) => (
                                     <tr key={`customers-list-index-${x.id}`}>
                                         <th scope="row">1</th>
@@ -65,7 +65,7 @@ const Customers = () => {
                                         </td>
                                     </tr>
                                 ))
-                            }
+                            } */}
                         </tbody>
                     </table>
                 </div>

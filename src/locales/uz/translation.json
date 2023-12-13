@@ -122,7 +122,14 @@
     "seo-title-full": "Qidiruv tizimini optimallashtirish nomi",
     "seo-description": "QTO tavsifi",
     "seo-description-full": "Qidiruv tizimini optimallashtirish tavsifi",
-    "error-fetching-categories": "Kategoriyalarni olishda xatolik yuz berdi"
+    "error-fetching-categories": "Kategoriyalarni olishda xatolik yuz berdi",
+    "category-successfully-created": "Kategoriya muvaffaqiyatli yaratildi",
+    "error-creating-category": "Kategoriya yaratishda xatolik yuz berdi",
+    "category-successfully-updated": "Kategoriya muvaffaqiyatli yangilandi",
+    "error-updating-category": "Kategoriyani yangilashda xatolik yuz berdi",
+    "category-successfully-deleted": "Kategoriya muvaffaqiyatli oʻchirildi",
+    "error-deleting-category": "Kategoriyani o‘chirishda xatolik yuz berdi"
+
 
 
 

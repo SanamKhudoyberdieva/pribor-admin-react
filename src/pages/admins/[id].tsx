@@ -105,6 +105,23 @@ const AdminPage = ({ mode }: { mode: string }) => {
     mode === "edit" ? handleUpdateAdmin(values) : handleCreateAdmin(values)
   }
 
+  const onCancel = () => {
+    if (mode === 'edit' && currUser) {
+      formik.resetForm({
+        values: {
+          ...initialValues,
+          ...currUser,
+          createdAt: new Date(currUser.createdAt),
+          updatedAt: new Date(currUser.updatedAt),
+          deletedAt: new Date(currUser.deletedAt),
+        },
+      });
+    } else {
+      formik.resetForm({ values: initialValues });
+    }
+    navigate('/admins', { replace: true });
+  };
+
   const formik = useFormik({
     initialValues,
     onSubmit,
@@ -134,10 +151,10 @@ const AdminPage = ({ mode }: { mode: string }) => {
       <nav aria-label="breadcrumb">
         <ol className="breadcrumb">
           <li className="breadcrumb-item"><Link to={'/admins'}>{t('admins')}</Link></li>
-          {mode === "create" && <li className="breadcrumb-item active" aria-current="page">{t('admin')}</li>}
+          {mode === "create" && <li className="breadcrumb-item active" aria-current="page">{t('create')}</li>}
           {mode === "edit" &&
             <>
-              <li className="breadcrumb-item"><Link to={'/admin/123/edit'}>{currUser?.username}</Link></li>
+              <li className="breadcrumb-item"><span>{currUser?.username}</span></li>
               <li className="breadcrumb-item active" aria-current="page">{t('edit')}</li>
             </>
           }
@@ -151,7 +168,7 @@ const AdminPage = ({ mode }: { mode: string }) => {
 
       <form onSubmit={formik.handleSubmit}>
         <div className='row g-3 mb-4'>
-          <div className='col-md-8'>
+          <div className={`col-md-${mode === 'edit' ? '8' : '12'}`}>
             <div className="card">
               <div className="card-body">
                 <div className="row g-3">
@@ -193,28 +210,30 @@ const AdminPage = ({ mode }: { mode: string }) => {
             </div>
           </div>
 
-          <div className="col-md-4">
-            <div className="card">
-              <div className="card-body">
-                <div className="mb-3">
-                  <label className="form-label">{t('created-at')}:</label>
-                  <div>{formik.values.createdAt.toLocaleDateString('en-GB')}</div>
-                </div>
-                <div className="mb-3">
-                  <label className="form-label">{t('last-modified-at')}:</label>
-                  <div>{formik.values.updatedAt.toLocaleDateString('en-GB')}</div>
-                </div>
-                <div>
-                  <label className="form-label">{t('deleted-at')}:</label>
-                  <div>{formik.values.deletedAt.toLocaleDateString('en-GB')}</div>
+          {mode == "edit" && 
+            <div className="col-md-4">
+              <div className="card">
+                <div className="card-body">
+                  <div className="mb-3">
+                    <label className="form-label">{t('created-at')}:</label>
+                    <div>{formik.values.createdAt.toLocaleDateString('en-GB')}</div>
+                  </div>
+                  <div className="mb-3">
+                    <label className="form-label">{t('last-modified-at')}:</label>
+                    <div>{formik.values.updatedAt.toLocaleDateString('en-GB')}</div>
+                  </div>
+                  <div>
+                    <label className="form-label">{t('deleted-at')}:</label>
+                    <div>{formik.values.deletedAt.toLocaleDateString('en-GB')}</div>
+                  </div>
                 </div>
               </div>
-            </div>
           </div>
+          }
         </div>
 
-        <button className="btn btn-primary me-3" type="submit">{t('save-edits')}</button>
-        <button className="btn btn-secondary">{t('cancel')}</button>
+        {mode === "edit" ? <button className="btn btn-primary me-3" type="submit">{t('save-edits')}</button> : <button className="btn btn-primary me-3" type="submit">{t('create')}</button>}        
+        <button className="btn btn-secondary" type='reset' onClick={onCancel}>{t('cancel')}</button>
       </form>
     </>
   )

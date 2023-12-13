@@ -1,6 +1,11 @@
 Questions: 
     Is it necessary to make a separate page for payment?
-    ** Customer -> edit -> address, add address edit and delete btn
+    Customer -> edit -> address, add address edit and delete btn
+    ** Brand page ( first brend can not be deleted )
+    ** Brand image input
+    ** Brand page ( Why do we need SEO title, SEO description )
+    ** Category page (Why do we need image, SEO title, SEO description, Description, )
+    ** Category page (parentID ?)
 
 
 Tasks:
