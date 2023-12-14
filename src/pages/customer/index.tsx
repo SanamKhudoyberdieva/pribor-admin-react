@@ -1,32 +1,29 @@
-import React, { useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
-// import { getCustomers } from '../../api';
-import { useDispatch, useSelector } from 'react-redux';
-import { setCustomers } from '../../store/slices/customersSlice';
+import { useEffect } from 'react';
 import { RootState } from '../../store';
+import { Link } from 'react-router-dom';
+import { getCustomers } from '../../api';
+import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
 import { Customer } from '../../store/types/customerTypes';
-import { getName } from '../../utils/helperFunctions';
+import { setCustomers } from '../../store/slices/customersSlice';
 
 const Customers = () => {
     const { t } = useTranslation();
-    // const dispatch = useDispatch()
-    // const lang = localStorage.getItem("language") || "uz"
-    // const { customers } = useSelector((state: RootState) => state.customersReducer)
-    // const fetchCustomers = async () => {
-    //     try {
-    //         const res = await getCustomers()
-    //         dispatch(setCustomers(res.data))
-    //     } catch (error) {
-    //         console.log("error getCustomers :", error)
-    //     }
-    // }
+    const dispatch = useDispatch();
+    const { customers } = useSelector((state: RootState) => state.customersReducer);
 
-    // console.log("customers", customers)
+    const hendleGetCustomers = async () => {
+        try {
+            const res = await getCustomers()
+            dispatch(setCustomers(res.data))
+        } catch (error) {
+            console.log("Error fetching customers", error)
+        }
+    }
 
-    // useEffect(() => {
-    //     fetchCustomers()
-    // }, [])
+    useEffect(() => {
+        hendleGetCustomers()
+    }, [])
 
     return (
         <>
@@ -54,18 +51,16 @@ const Customers = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {/* {
-                                customers.map((x: Customer) => (
-                                    <tr key={`customers-list-index-${x.id}`}>
-                                        <th scope="row">1</th>
-                                        <td><Link to={`/customer/${x.id}/edit`}>{x.name}</Link></td>
-                                        <td>{x.phone}</td>
-                                        <td>
-                                            <Link to={`/customer/${x.id}/edit`} className="btn btn-success">{t('edit')}</Link>
-                                        </td>
-                                    </tr>
-                                ))
-                            } */}
+                            {customers.map((x: Customer) => (
+                                <tr key={`customers-list-index-${x.id}`}>
+                                    <th scope="row">1</th>
+                                    <td><Link to={`/customer/${x.id}/edit`}>{x.name}</Link></td>
+                                    <td>{x.phone}</td>
+                                    <td>
+                                        <Link to={`/customer/${x.id}/edit`} className="btn btn-success">{t('edit')}</Link>
+                                    </td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 </div>

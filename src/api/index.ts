@@ -31,5 +31,6 @@ export * from "./new/createNew";
 export * from "./new/updateNew";
 export * from "./new/deleteNew";
 
+export * from "./customer/getCustomers";
 
 export * from "./product/getProducts";
