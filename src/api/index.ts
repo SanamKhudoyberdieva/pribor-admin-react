@@ -25,4 +25,11 @@ export * from "./category/createCategory";
 export * from "./category/updateCategory";
 export * from "./category/deleteCategory";
 
+export * from "./new/getNew";
+export * from "./new/getNews";
+export * from "./new/createNew";
+export * from "./new/updateNew";
+export * from "./new/deleteNew";
+
+
 export * from "./product/getProducts";

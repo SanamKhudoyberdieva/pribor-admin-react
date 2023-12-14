@@ -129,5 +129,14 @@
     "error-updating-category": "Error updating category",
     "category-successfully-deleted": "Category successfully deleted",
     "error-deleting-category": "Error deleting category",
-    "error-fetching-products": "Error fetching products"
+    "error-fetching-products": "Error fetching products",
+    "error-fetching-news": "Error fetching news",
+    "create-news": "Create news",
+    "news-name": "News name",
+    "new-successfully-created": "New successfully created",
+    "error-creating-news": "Error creating news",
+    "news-successfully-updated": "News successfully updated",
+    "error-updating-news": "Error updating news",
+    "news-successfully-deleted": "News successfully deleted",
+    "error-deleting-news": "Error deleting news"
 }

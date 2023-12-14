@@ -129,7 +129,25 @@
     "error-updating-category": "Kategoriyani yangilashda xatolik yuz berdi",
     "category-successfully-deleted": "Kategoriya muvaffaqiyatli oʻchirildi",
     "error-deleting-category": "Kategoriyani o‘chirishda xatolik yuz berdi",
-    "error-fetching-products": "Mahsulotlarni olishda xatolik yuz berdi"
+    "error-fetching-products": "Mahsulotlarni olishda xatolik yuz berdi",
+    "error-fetching-news": "Yangiliklarni olishda xatolik yuz berdi",
+    "create-news": "Yangilik yaratish",
+    "news-name": "Yangiliklar nomi",
+    "new-successfully-created": "Yangilik muvaffaqiyatli yaratildi",
+    "error-creating-news": "Yangilik yaratishda xatolik yuz berdi",
+    "news-successfully-updated": "Yangilik muvaffaqiyatli yangilandi",
+    "error-updating-news": "Yangilikni yangilashda xatolik yuz berdi",
+    "news-successfully-deleted": "Yangilik muvaffaqiyatli oʻchirildi",
+    "error-deleting-news": "Yangilikni o‘chirishda xatolik yuz berdi"
+
+
+
+
+
+
+
+
+
 
 
 

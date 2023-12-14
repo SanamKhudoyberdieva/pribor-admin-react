@@ -65,7 +65,7 @@ const AsideNav = () => {
           </Link>
         </li>
         <li className={`menu-item ${pathname.includes("/news") && "active"}`}>
-          <Link to={'/news'} className="menu-link">
+          <Link to={'/new'} className="menu-link">
             <i className="menu-icon tf-icons bx bx-news"></i>
             <div data-i18n="Boxicons">{t('news')}</div>
           </Link>

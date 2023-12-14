@@ -129,7 +129,25 @@
     "error-updating-category": "Ошибка обновления категории",
     "category-successfully-deleted": "Категория успешно удалена",
     "error-deleting-category": "Ошибка удаления категории",
-    "error-fetching-products": "Ошибка при получении товаров"
+    "error-fetching-products": "Ошибка при получении товаров",
+    "error-fetching-news": "Ошибка при получении новостей",
+    "create-news": "Создать новость",
+    "news-name": "Название новости",
+    "new-successfully-created": "Новое успешно создано",
+    "error-creating-news": "Ошибка создания новости",
+    "news-successfully-updated": "Новости успешно обновлены",
+    "error-updating-news": "Ошибка обновления новостей",
+    "news-successfully-deleted": "Новости успешно удалены",
+    "error-deleting-news": "Ошибка удаления новости"
+
+
+
+
+
+
+
+
+
 
 
 

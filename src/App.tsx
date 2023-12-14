@@ -13,10 +13,8 @@ import Banners from './pages/banner';
 import Order from './pages/order/[id]';
 import Products from './pages/product';
 import Contacts from './pages/contact';
-import Payments from './pages/payment';
 import Customers from './pages/customer';
 import Banner from './pages/banner/[id]';
-import Payment from './pages/payment/[id]';
 import Contact from './pages/contact/[id]';
 import Product from './pages/product/[id]';
 import Customer from './pages/customer/[id]';
@@ -35,6 +33,8 @@ import Vacancies from './pages/vacancy';
 import Vacancy from './pages/vacancy/[id]';
 import Admins from './pages/admins';
 import AdminPage from './pages/admins/[id]';
+import News from './pages/news';
+import NewPage from './pages/news/[id]';
 
 function App() {
   return (
@@ -71,10 +71,6 @@ function App() {
             <Route path="/contact/new" element={<Contact mode="create" />} />
             <Route path="/contact/:id/edit" element={<Contact mode="edit" />} />
 
-            <Route path="/payment" element={<Payments />} />
-            <Route path="/payment/new" element={<Payment mode="create" />} />
-            <Route path="/payment/:id/edit" element={<Payment mode="edit" />} />
-
             <Route path="/brend" element={<Brends />} />
             <Route path="/brend/new" element={<Brend mode="create" />} />
             <Route path="/brend/:id/edit" element={<Brend mode="edit" />} />
@@ -90,6 +86,10 @@ function App() {
             <Route path="/vacancy" element={<Vacancies />} />
             <Route path="/vacancy/new" element={<Vacancy mode="create" />} />
             <Route path="/vacancy/:id/edit" element={<Vacancy mode="edit" />} />
+
+            <Route path="/new" element={<News />} />
+            <Route path="/new/new" element={<NewPage mode="create" />} />
+            <Route path="/new/:id/edit" element={<NewPage mode="edit" />} />
 
             <Route path="/admins" element={<Admins />} />
             <Route path="/admin/new" element={<AdminPage mode="create" />} />

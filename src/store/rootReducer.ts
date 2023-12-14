@@ -1,4 +1,5 @@
 import { combineReducers } from "@reduxjs/toolkit";
+import newsSlice from "./slices/newsSlice";
 import loginSlice from "./slices/loginSlice";
 import bradsSlice from "./slices/brandsSlice";
 import productsSlice from "./slices/productsSlice";
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
   countriesReducer: countriesSlice,
   customersReducer: customersSlice,
   categoriesReducer: categoriesSlice,
-  productsReducer: productsSlice
+  productsReducer: productsSlice,
+  newsReducer: newsSlice,
 })
 
 export default rootReducer;
