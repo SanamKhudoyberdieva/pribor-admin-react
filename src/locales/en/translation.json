@@ -138,5 +138,18 @@
     "news-successfully-updated": "News successfully updated",
     "error-updating-news": "Error updating news",
     "news-successfully-deleted": "News successfully deleted",
-    "error-deleting-news": "Error deleting news"
+    "error-deleting-news": "Error deleting news",
+    "error-fetching-contacts": "Error fetching contacts",
+    "contact-successfully-created": "Contact successfully created",
+    "error-creating-contact": "Error creating contact",
+    "contact-successfully-updated": "Contact successfully updated",
+    "'error-updating-contact": "Error updating contact",
+    "contact-successfully-deleted": "Contact successfully deleted",
+    "error-deleting-contact": "Error deleting contact",
+    "main-contact": "Main contact",
+    "contact-name": "Contact name",
+    "contact-phone": "Contact phone",
+    "contact-email": "Contact email",
+    "contact-address": "Contact address",
+    "working-hours": "Working hours"
 }

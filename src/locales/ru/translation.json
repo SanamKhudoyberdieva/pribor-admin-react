@@ -138,7 +138,33 @@
     "news-successfully-updated": "Новости успешно обновлены",
     "error-updating-news": "Ошибка обновления новостей",
     "news-successfully-deleted": "Новости успешно удалены",
-    "error-deleting-news": "Ошибка удаления новости"
+    "error-deleting-news": "Ошибка удаления новости",
+    "error-fetching-contacts": "Ошибка при получении контактов",
+    "contact-successfully-created": "Контакт успешно создан",
+    "error-creating-contact": "Ошибка создания контакта",
+    "contact-successfully-updated": "Контакт успешно обновлен",
+    "'error-updating-contact": "Ошибка обновления контакта",
+    "contact-successfully-deleted": "Контакт успешно удален",
+    "error-deleting-contact": "Ошибка удаления контакта",
+    "main-contact": "Основной контакт",
+    "contact-name": "Контактное лицо",
+    "contact-phone": "Контактный телефон",
+    "contact-email": "Почта для связи",
+    "contact-address": "Контактный адрес",
+    "working-hours": "Рабочее время"
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

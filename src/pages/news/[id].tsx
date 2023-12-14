@@ -29,8 +29,6 @@ const NewPage = ({ mode }: { mode: string }) => {
     updatedAt: "",
   }
 
-  console.log("currNew",currNew)
-
   const handleGetNew = async (newId: string | undefined) => {
     if (!newId) return
     try {

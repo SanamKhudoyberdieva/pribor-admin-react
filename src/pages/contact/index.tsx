@@ -1,8 +1,34 @@
+import { useEffect } from 'react';
+import { getContacts } from '../../api';
+import { RootState } from '../../store';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import useToast from '../../components/useToast';
+import { getName } from '../../utils/helperFunctions';
+import { useDispatch, useSelector } from 'react-redux';
+import { Contact } from '../../store/types/contactTypes';
+import { setContacts } from '../../store/slices/contactsSlice';
 
 const Contacts = () => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
+    const dispatch = useDispatch();
+    const { showToast } = useToast();
+    const lang = localStorage.getItem("language") || "uz";
+    const { contacts } = useSelector((state: RootState) => state.contactsReducer);
+
+    const handleGetContacts = async () => {
+        try {
+            const res = await getContacts();
+            dispatch(setContacts(res.data))
+        } catch (error: any) {
+            showToast(t('error-fetching-contacts'), { type: 'error' });
+            console.log("Error fetching contacts", error)
+        }
+    }
+
+    useEffect(() => {
+        handleGetContacts()
+    }, [])
 
     return (
         <>
@@ -32,20 +58,24 @@ const Contacts = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td><Link to={'/contact/123/edit'}>Yunusobod</Link></td>
-                                <td>12, Alisher Navoiy, Toshkent</td>
-                                <td>+998 90 777 77 77</td>
-                                <td>
-                                    <div className="badge badge-center rounded-pill bg-label-danger">
-                                        <i className='bx bx-x-circle'></i>
-                                    </div>
-                                </td>
-                                <td>
-                                    <Link to={'/contact/123/edit'} className="btn btn-success">{t('edit')}</Link>
-                                </td>
-                            </tr>
+                            {contacts.map((x: Contact, idx) => (
+                                <tr key={"contact-index-" + idx}>
+                                    <th scope="row">{idx + 1}</th>
+                                    <td><Link to={`/contact/${x.id}/edit`}>{getName(x, lang)}</Link></td>
+                                    <td>{x.Address}</td>
+                                    <td>{x.phone}</td>
+                                    <td>
+                                        {x.isMain === true ? (
+                                            <div className="badge badge-center rounded-pill bg-label-success"><i className='bx bx-check-circle'></i></div>
+                                        ) : (
+                                            <div className="badge badge-center rounded-pill bg-label-danger"><i className='bx bx-x-circle'></i></div>
+                                        )}
+                                    </td>
+                                    <td>
+                                        <Link to={`/contact/${x.id}/edit`} className="btn btn-success">{t('edit')}</Link>
+                                    </td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 </div>

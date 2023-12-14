@@ -138,7 +138,33 @@
     "news-successfully-updated": "Yangilik muvaffaqiyatli yangilandi",
     "error-updating-news": "Yangilikni yangilashda xatolik yuz berdi",
     "news-successfully-deleted": "Yangilik muvaffaqiyatli oʻchirildi",
-    "error-deleting-news": "Yangilikni o‘chirishda xatolik yuz berdi"
+    "error-deleting-news": "Yangilikni o‘chirishda xatolik yuz berdi",
+    "error-fetching-contacts": "Kontaktlarni olishda xatolik yuz berdi",
+    "contact-successfully-created": "Kontaktlar muvaffaqiyatli yaratildi",
+    "error-creating-contact": "Kontakt yaratishda xatolik yuz berdi",
+    "contact-successfully-updated": "Kontakt muvaffaqiyatli yangilandi",
+    "'error-updating-contact": "Kontaktni yangilashda xatolik yuz berdi",
+    "contact-successfully-deleted": "Kontakt muvaffaqiyatli oʻchirildi",
+    "error-deleting-contact": "Kontaktni o‘chirishda xatolik yuz berdi",
+    "main-contact": "Asosiy kontakt",
+    "contact-name": "Kontakt nomi",
+    "contact-phone": "Kontakt raqami",
+    "contact-email": "Kontakt elektron pochtasi",
+    "contact-address": "Kontakt manzili",
+    "working-hours": "Ish vaqti"
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -31,6 +31,12 @@ export * from "./new/createNew";
 export * from "./new/updateNew";
 export * from "./new/deleteNew";
 
+export * from "./contact/getContact";
+export * from "./contact/getContacts";
+export * from "./contact/createContact";
+export * from "./contact/updateContact";
+export * from "./contact/deleteContact";
+
 export * from "./customer/getCustomers";
 
 export * from "./product/getProducts";

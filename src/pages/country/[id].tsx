@@ -161,7 +161,6 @@ const CountryPage = ({ mode }: { mode: string }) => {
                   value={formik.values.nameUz}
                   onChange={formik.handleChange}
                   placeholder={t('description')}
-                  aria-describedby="defaultFormControlHelp"
                 />
               </div>
               <div className="col-12">
