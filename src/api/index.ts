@@ -49,6 +49,10 @@ export * from "./vacancy/createVacancy";
 export * from "./vacancy/updateVacancy";
 export * from "./vacancy/deleteVacancy";
 
+export * from "./vacancy/getApplicants";
+export * from "./vacancy/getApplicant";
+export * from "./vacancy/deleteApplicant";
+
 export * from "./customer/getCustomers";
 
 export * from "./product/getProducts";

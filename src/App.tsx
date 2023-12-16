@@ -35,6 +35,8 @@ import Admins from './pages/admins';
 import AdminPage from './pages/admins/[id]';
 import News from './pages/news';
 import NewPage from './pages/news/[id]';
+import Applicants from './pages/applicants';
+import ApplicantPage from './pages/applicants/[id]';
 
 function App() {
   return (
@@ -90,6 +92,10 @@ function App() {
             <Route path="/new" element={<News />} />
             <Route path="/new/new" element={<NewPage mode="create" />} />
             <Route path="/new/:id/edit" element={<NewPage mode="edit" />} />
+
+            <Route path="/applicant" element={<Applicants />} />
+            <Route path="/applicant/new" element={<ApplicantPage mode="create" />} />
+            <Route path="/applicant/:id/edit" element={<ApplicantPage mode="edit" />} />
 
             <Route path="/admins" element={<Admins />} />
             <Route path="/admin/new" element={<AdminPage mode="create" />} />

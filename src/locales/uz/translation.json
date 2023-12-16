@@ -177,8 +177,22 @@
     "type-en": "Turi (Ingiliz)",
     "responsibility-en": "Mas'uliyat (Ingiliz)",
     "requirement-en": "Talab (Ingiliz)",
-    "workers": "Ishchilar",
-    "resume": "Rezyume"
+    "requests": "So'rovlar",
+    "applicants": "Ariza beruvchilar",
+    "vacancy-id": "Vakansiya identifikatori",
+    "resume": "Rezyume",
+    "applicant-successfully-created": "Ariza beruvchi muvaffaqiyatli yaratildi",
+    "error-creating-applicant": "Ariza beruvchini yaratishda xatolik yuz berdi",
+    "applicant-successfully-deleted": "Ariza beruvchi muvaffaqiyatli oʻchirildi",
+    "error-deleting-applicant": "Ariza beruvchini oʻchirishda xatolik yuz berdi"
+
+
+
+
+
+
+
+
 
 
 

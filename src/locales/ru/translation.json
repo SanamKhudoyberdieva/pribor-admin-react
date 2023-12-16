@@ -177,8 +177,22 @@
     "type-en": "Тип (Aнглийский)",
     "responsibility-en": "Ответственность (Aнглийский)",
     "requirement-en": "Требование (Aнглийский)",
-    "workers": "Рабочие",
-    "resume": "Резюме"
+    "requests": "Запросы",
+    "applicants": "Кандидаты",
+    "vacancy-id": "Идентификатор вакансии",
+    "resume": "Резюме",
+    "applicant-successfully-created": "Кандидат успешно создан",
+    "error-creating-applicant": "Ошибка при создании заявителя",
+    "applicant-successfully-deleted": "Кандидат успешно удален",
+    "error-deleting-applicant": "Ошибка удаления заявителя"
+
+
+
+
+
+
+
+
 
 
 }

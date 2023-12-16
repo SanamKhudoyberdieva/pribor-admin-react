@@ -94,11 +94,11 @@ const AsideNav = () => {
             <div data-i18n="Boxicons">{t('admins')}</div>
           </Link>
         </li>
-        <li className="menu-header small text-uppercase"><span className="menu-header-text">{t('workers')}</span></li>
-        <li className={`menu-item ${pathname.includes("/resume") && "active"}`}>
-          <Link to={'/resume'} className="menu-link">
+        <li className="menu-header small text-uppercase"><span className="menu-header-text">{t('requests')}</span></li>
+        <li className={`menu-item ${pathname.includes("/applicant") && "active"}`}>
+          <Link to={'/applicant'} className="menu-link">
             <i className="menu-icon tf-icons bx bx-briefcase-alt-2"></i>
-            <div data-i18n="Boxicons">{t('resume')}</div>
+            <div data-i18n="Boxicons">{t('applicants')}</div>
           </Link>
         </li>
       </ul>

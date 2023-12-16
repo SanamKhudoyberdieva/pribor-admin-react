@@ -177,6 +177,13 @@
     "type-en": "Type (English)",
     "responsibility-en": "Responsibility (English)",
     "requirement-en": "Requirement (English)",
-    "workers": "Workers",
-    "resume": "Resume"
+    "requests": "Requests",
+    "applicants": "Applicants",
+    "vacancy-id": "Vacancy ID",
+    "resume": "Resume",
+    "applicant-successfully-created": "Applicant successfully created",
+    "error-creating-applicant": "Error creating applicant",
+    "applicant-successfully-deleted": "Applicant successfully deleted",
+    "error-deleting-applicant": "Error deleting applicant"
+
 }
