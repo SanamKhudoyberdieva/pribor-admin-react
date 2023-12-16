@@ -52,6 +52,7 @@ const Products = () => {
                                 <th scope="col">#</th>
                                 <th scope="col">{t('name')}</th>
                                 <th scope="col">{t('price')}</th>
+                                <th scope="col">{t('brend')}</th>
                                 <th scope="col">{t('image')}</th>
                                 <th scope="col">{t('visibility')}</th>
                                 <th scope="col">{t('actions')}</th>
@@ -63,6 +64,7 @@ const Products = () => {
                                     <th scope="row">{idx + 1}</th>
                                     <td><Link to={`/product/${x.id}/edit`}>{getName(x, lang)}</Link></td>
                                     <td>{x.price}</td>
+                                    <td>{x.brand}</td>
                                     <td>{x.image}</td>
                                     <td>
                                         {x.isActive === true ? (

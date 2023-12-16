@@ -1,11 +1,11 @@
-import { useTranslation } from 'react-i18next';
-import { Link, useNavigate, useParams } from 'react-router-dom';
-import useToast from '../../components/useToast';
+import { useFormik } from 'formik';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import useToast from '../../components/useToast';
+import { getName } from '../../utils/helperFunctions';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Vacancy, VacancyTypes } from '../../store/types/vacancyTypes';
 import { createVacancy, deleteVacancy, getVacancy, updateVacancy } from '../../api';
-import { useFormik } from 'formik';
-import { getName } from '../../utils/helperFunctions';
 
 const VacancyPage = ({ mode }: { mode: string }) => {
   const { id } = useParams();
@@ -43,10 +43,10 @@ const VacancyPage = ({ mode }: { mode: string }) => {
   const handleGetVacancy = async (vacancyId: string | undefined) => {
     if (!vacancyId) return
     try {
-      let res = await getVacancy(vacancyId)
-      setCurrVacancy(res.data)
+      let res = await getVacancy(vacancyId);
+      setCurrVacancy(res.data);
     } catch (error) {
-      console.log("Error fetching vacancy", error)
+      console.log("Error fetching vacancy", error);
     }
   }
 
@@ -76,7 +76,7 @@ const VacancyPage = ({ mode }: { mode: string }) => {
       showToast(t('vacancy-successfully-created'), { type: 'success' });
     } catch (error) {
       showToast(t('error-creating-vacancy'), { type: 'error' });
-      console.log("Error creating vacancy", error)
+      console.log("Error creating vacancy", error);
     }
   }
 
@@ -113,11 +113,12 @@ const VacancyPage = ({ mode }: { mode: string }) => {
   const handleDeleteVacancy = async (id: string | undefined) => {
     if (!id) return
     try {
-      await deleteVacancy(id)
+      await deleteVacancy(id);
       navigate("/vacancy", { replace: true });
       showToast(t('vacancy-successfully-deleted'), { type: 'success' });
     } catch (error) {
       showToast(t('error-deleting-vacancy'), { type: 'error' });
+      console.log("Error deleting vacancy", error)
     }
   };
 
@@ -229,7 +230,6 @@ const VacancyPage = ({ mode }: { mode: string }) => {
                   className="form-control"
                   value={formik.values.nameUz}
                   onChange={formik.handleChange}
-                  placeholder={t('brend-name')}
                 />
               </div>
               <div className="col-6">
@@ -240,7 +240,6 @@ const VacancyPage = ({ mode }: { mode: string }) => {
                   className="form-control"
                   value={formik.values.typeUz}
                   onChange={formik.handleChange}
-                  placeholder={t('description')}
                 />
               </div>
               <div className="col-6">
@@ -251,7 +250,6 @@ const VacancyPage = ({ mode }: { mode: string }) => {
                   className="form-control"
                   value={formik.values.requirementRu}
                   onChange={formik.handleChange}
-                  placeholder={t('description')}
                 />
               </div>
               <div className="col-6">
@@ -262,7 +260,6 @@ const VacancyPage = ({ mode }: { mode: string }) => {
                   className="form-control"
                   value={formik.values.responsibilityUz}
                   onChange={formik.handleChange}
-                  placeholder={t('description')}
                 />
               </div>
               <div className="col-12">
@@ -273,7 +270,6 @@ const VacancyPage = ({ mode }: { mode: string }) => {
                   className="form-control"
                   value={formik.values.descriptionUz}
                   onChange={formik.handleChange}
-                  placeholder={t('description')}
                 />
               </div>
             </div>
@@ -290,7 +286,6 @@ const VacancyPage = ({ mode }: { mode: string }) => {
                   className="form-control"
                   value={formik.values.nameRu}
                   onChange={formik.handleChange}
-                  placeholder={t('brend-name')}
                 />
               </div>
               <div className="col-6">
@@ -301,7 +296,6 @@ const VacancyPage = ({ mode }: { mode: string }) => {
                   className="form-control"
                   value={formik.values.typeRu}
                   onChange={formik.handleChange}
-                  placeholder={t('description')}
                 />
               </div>
               <div className="col-6">
@@ -312,7 +306,6 @@ const VacancyPage = ({ mode }: { mode: string }) => {
                   className="form-control"
                   value={formik.values.requirementRu}
                   onChange={formik.handleChange}
-                  placeholder={t('description')}
                 />
               </div>
               <div className="col-6">
@@ -323,7 +316,6 @@ const VacancyPage = ({ mode }: { mode: string }) => {
                   className="form-control"
                   value={formik.values.responsibilityRu}
                   onChange={formik.handleChange}
-                  placeholder={t('description')}
                 />
               </div>
               <div className="col-12">
@@ -334,7 +326,6 @@ const VacancyPage = ({ mode }: { mode: string }) => {
                   className="form-control"
                   value={formik.values.descriptionRu}
                   onChange={formik.handleChange}
-                  placeholder={t('description')}
                 />
               </div>
             </div>
@@ -351,7 +342,6 @@ const VacancyPage = ({ mode }: { mode: string }) => {
                   className="form-control"
                   value={formik.values.nameEn}
                   onChange={formik.handleChange}
-                  placeholder={t('brend-name')}
                 />
               </div>
               <div className="col-6">
@@ -362,7 +352,6 @@ const VacancyPage = ({ mode }: { mode: string }) => {
                   className="form-control"
                   value={formik.values.typeEn}
                   onChange={formik.handleChange}
-                  placeholder={t('description')}
                 />
               </div>
               <div className="col-6">
@@ -373,7 +362,6 @@ const VacancyPage = ({ mode }: { mode: string }) => {
                   className="form-control"
                   value={formik.values.requirementEn}
                   onChange={formik.handleChange}
-                  placeholder={t('description')}
                 />
               </div>
               <div className="col-6">
@@ -384,7 +372,6 @@ const VacancyPage = ({ mode }: { mode: string }) => {
                   className="form-control"
                   value={formik.values.responsibilityEn}
                   onChange={formik.handleChange}
-                  placeholder={t('description')}
                 />
               </div>
               <div className="col-12">
@@ -395,7 +382,6 @@ const VacancyPage = ({ mode }: { mode: string }) => {
                   className="form-control"
                   value={formik.values.descriptionEn}
                   onChange={formik.handleChange}
-                  placeholder={t('description')}
                 />
               </div>
             </div>
@@ -412,7 +398,6 @@ const VacancyPage = ({ mode }: { mode: string }) => {
                   className="form-control"
                   value={formik.values.region}
                   onChange={formik.handleChange}
-                  placeholder={t('brend-name')}
                 />
               </div>
             </div>
@@ -427,7 +412,6 @@ const VacancyPage = ({ mode }: { mode: string }) => {
             </div>
           </div>
         </div>
-        
         <div className="card mb-4">
           <div className="card-body">
             <h5>{t('images')}</h5>

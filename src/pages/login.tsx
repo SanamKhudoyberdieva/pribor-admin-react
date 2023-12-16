@@ -1,17 +1,15 @@
 import { useFormik } from 'formik';
 import { authAdmin } from '../api';
-import { logOut, setAuthAdmin } from '../store/slices/loginSlice';
 import { object, string } from 'yup';
-import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import useToast from '../components/useToast';
+import { useNavigate } from 'react-router-dom';
+import { logOut, setAuthAdmin } from '../store/slices/loginSlice';
 
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const { showToast } = useToast();
 
   const initialValues = {
     username: '',
@@ -25,13 +23,11 @@ const Login = () => {
           username: values.username,
           password: values.password
         });
-      dispatch(setAuthAdmin(response.data))
+      dispatch(setAuthAdmin(response.data));
       navigate("/", { replace: true });
-      console.log(response);
-      // Handle response here
     } catch (error) {
-      dispatch(logOut())
-      console.error('There was an error!', error);
+      dispatch(logOut());
+      console.error('There was an error', error);
     }
   };
 

@@ -1,5 +1,11 @@
 export interface Product {
     id: number,
+    brandId: number,
+    countryId: number,
+    position: number,
+    isNew: boolean,
+    isTop: boolean,
+    isActive: boolean,
     nameUz: string,
     nameRu: string,
     nameEn: string,
@@ -12,11 +18,8 @@ export interface Product {
     parent: null,
     parentId: null,
     country: string,
-    countryId: number,
-    isActive: boolean,
     image: string
     brand: string,
-    brandId:  number,
     created: string|null,
     createdAt: string,
     updated: string|null,

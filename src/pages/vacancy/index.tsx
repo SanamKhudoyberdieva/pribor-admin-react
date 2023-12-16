@@ -17,14 +17,14 @@ const Vacancies = () => {
     const handleGetVacancies = async () => {
         try {
             const res = await getVacancies();
-            dispatch(setVacancies(res.data))
+            dispatch(setVacancies(res.data));
         } catch (error: any) {
-            console.log("Error fetching vacancies", error)
+            console.log("Error fetching vacancies", error);
         }
     }
 
     useEffect(() => {
-        handleGetVacancies()
+        handleGetVacancies();
     }, [])
 
   return (
