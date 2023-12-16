@@ -37,6 +37,12 @@ export * from "./contact/createContact";
 export * from "./contact/updateContact";
 export * from "./contact/deleteContact";
 
+export * from "./banner/getBanner";
+export * from "./banner/getBanners";
+export * from "./banner/createBanner";
+export * from "./banner/updateBanner";
+export * from "./banner/deleteBanner";
+
 export * from "./customer/getCustomers";
 
 export * from "./product/getProducts";

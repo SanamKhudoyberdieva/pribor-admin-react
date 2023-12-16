@@ -4,8 +4,11 @@ import { Link } from 'react-router-dom';
 import { logOut } from '../store/slices/loginSlice';
 import LanguageDropdown from './LanguageDropdown';
 import { RootState } from '../store';
+import { useTranslation } from 'react-i18next';
 
 const Header = () => {
+  const { t } = useTranslation();
+
   const dispatch = useDispatch()
   const { username } = useSelector((state: RootState) => state.loginReducer)
   const hendleLogOut = () => {
@@ -63,18 +66,14 @@ const Header = () => {
                       <span className="fw-semibold d-block">
                         {username}
                       </span>
-                      <small className="text-muted">Admin</small>
+                      <small className="text-muted">{t('admin')}</small>
                     </div>
                   </div>
                 </div>
-                {/* <Link to={"/profile"} className="dropdown-item">
-                  <i className="bx bx-user me-2"></i>
-                  <span className="align-middle">My Profile</span>
-                </Link> */}
                 <div className="dropdown-divider"></div>
                 <Link to={"/"} className="dropdown-item" onClick={hendleLogOut}>
                   <i className="bx bx-power-off me-2"></i>
-                  <span className="align-middle">Log Out</span>
+                  <span className="align-middle">{t('log-out')}</span>
                 </Link>
               </Dropdown.Menu>
             </Dropdown>

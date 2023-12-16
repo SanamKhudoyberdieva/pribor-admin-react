@@ -151,7 +151,23 @@
     "contact-phone": "Kontakt raqami",
     "contact-email": "Kontakt elektron pochtasi",
     "contact-address": "Kontakt manzili",
-    "working-hours": "Ish vaqti"
+    "working-hours": "Ish vaqti",
+    "log-out": "Chiqish",
+    "error-fetching-banners": "Bannerlarni olishda xatolik yuz berdi",
+    "banner-successfully-created": "Banner muvaffaqiyatli yaratildi",
+    "error-creating-banner": "Banner yaratishda xatolik yuz berdi",
+    "banner-successfully-updated": "Banner muvaffaqiyatli yangilandi",
+    "error-updating-banner": "Bannerni yangilashda xatolik yuz berdi",
+    "banner-successfully-deleted": "Banner muvaffaqiyatli oʻchirildi",
+    "error-deleting-banner": "Bannerni oʻchirishda xatolik yuz berdi"
+
+
+
+
+
+
+
+
 
 
 

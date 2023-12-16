@@ -14,6 +14,8 @@ const CategoryPage = ({ mode }: { mode: string }) => {
   const navigate = useNavigate();
   const { showToast } = useToast();
   const [currCategory, setCurrCategory] = useState<Category>();
+
+  console.log("currCategory", currCategory)
   const initialValues: Category = {
     id: 0,
     nameUz: "",

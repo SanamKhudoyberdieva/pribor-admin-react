@@ -151,25 +151,15 @@
     "contact-phone": "Контактный телефон",
     "contact-email": "Почта для связи",
     "contact-address": "Контактный адрес",
-    "working-hours": "Рабочее время"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    "working-hours": "Рабочее время",
+    "log-out": "Выйти",
+    "error-fetching-banners": "Ошибка при загрузке баннеров",
+    "banner-successfully-created": "Баннер успешно создан",
+    "error-creating-banner": "Ошибка создания баннера",
+    "banner-successfully-updated": "Баннер успешно обновлен",
+    "error-updating-banner": "Ошибка обновления баннера",
+    "banner-successfully-deleted": "Баннер успешно удален",
+    "error-deleting-banner": "Ошибка удаления баннера"
 
 
 

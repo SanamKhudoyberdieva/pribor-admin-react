@@ -15,6 +15,8 @@ const Categories = () => {
     const { showToast } = useToast();
     const lang = localStorage.getItem("language") || "uz";
     const { categories } = useSelector((state: RootState) => state.categoriesReducer);
+
+    console.log("categories", categories)
     
     const handelGetCategories = async () => {
         try {

@@ -151,5 +151,13 @@
     "contact-phone": "Contact phone",
     "contact-email": "Contact email",
     "contact-address": "Contact address",
-    "working-hours": "Working hours"
+    "working-hours": "Working hours",
+    "log-out": "Log out",
+    "error-fetching-banners": "Error fetching banners",
+    "banner-successfully-created": "Banner successfully created",
+    "error-creating-banner": "Error creating banner",
+    "banner-successfully-updated": "Banner successfully updated",
+    "error-updating-banner": "Error updating banner",
+    "banner-successfully-deleted": "Banner successfully deleted",
+    "error-deleting-banner": "Error deleting banner"
 }
