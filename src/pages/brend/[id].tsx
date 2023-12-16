@@ -33,7 +33,6 @@ const Brend = ({ mode }: { mode: string }) => {
     deletedAt: ""
   }
 
-
   const handleGetBrand = async (brandId: string | undefined) => {
     if (!brandId) return
     try {

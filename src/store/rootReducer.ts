@@ -7,6 +7,7 @@ import contactsSlice from "./slices/contactsSlice";
 import productsSlice from "./slices/productsSlice";
 import countriesSlice from "./slices/countriesSlice";
 import customersSlice from "./slices/customersSlice";
+import vacanciesSlice from "./slices/vacanciesSlice";
 import categoriesSlice from "./slices/categoriesSlice";
 
 const rootReducer = combineReducers({
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   newsReducer: newsSlice,
   contactsReducer: contactsSlice,
   bannersReducer: bannersSlice,
+  vacanciesReducer: vacanciesSlice,
 })
 
 export default rootReducer;

@@ -115,7 +115,7 @@
     "error-updating-brand": "Ошибка обновления бренда",
     "brand-successfully-deleted": "Бренд успешно удален",
     "error-deleting-brand": "Ошибка удаления бренда",
-    "description-uz": "Описание (узбекский)",
+    "description-uz": "Описание (Узбекский)",
     "description-ru": "Описание (Русский)",
     "description-en": "Описание (Aнглийский)",
     "seo-title": "ПO Название",
@@ -159,13 +159,26 @@
     "banner-successfully-updated": "Баннер успешно обновлен",
     "error-updating-banner": "Ошибка обновления баннера",
     "banner-successfully-deleted": "Баннер успешно удален",
-    "error-deleting-banner": "Ошибка удаления баннера"
-
-
-
-
-
-
+    "error-deleting-banner": "Ошибка удаления баннера",
+    "job-type": "Тип вакансии",
+    "region": "Область",
+    "vacancy-successfully-created": "Вакансия успешно создана",
+    "error-creating-vacancy": "Ошибка при создании вакансии",
+    "vacancy-successfully-updated": "Вакансия успешно обновлена",
+    "error-updating-vacancy": "Ошибка обновления вакансии",
+    "vacancy-successfully-deleted": "Вакансия успешно удалена",
+    "error-deleting-vacancy": "Ошибка при удалении вакансии",
+    "responsibility-uz": "Ответственность (Узбекский)",
+    "requirement-uz": "Требование (Узбекский)",
+    "type-uz": "Тип (Узбекский)",
+    "type-ru": "Тип (Русский)",
+    "responsibility-ru": "Ответственность (Русский)",
+    "requirement-ru": "Требование (Русский)",
+    "type-en": "Тип (Aнглийский)",
+    "responsibility-en": "Ответственность (Aнглийский)",
+    "requirement-en": "Требование (Aнглийский)",
+    "workers": "Рабочие",
+    "resume": "Резюме"
 
 
 }

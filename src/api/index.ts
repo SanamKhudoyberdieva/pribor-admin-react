@@ -43,6 +43,12 @@ export * from "./banner/createBanner";
 export * from "./banner/updateBanner";
 export * from "./banner/deleteBanner";
 
+export * from "./vacancy/getVacancy";
+export * from "./vacancy/getVacancies";
+export * from "./vacancy/createVacancy";
+export * from "./vacancy/updateVacancy";
+export * from "./vacancy/deleteVacancy";
+
 export * from "./customer/getCustomers";
 
 export * from "./product/getProducts";

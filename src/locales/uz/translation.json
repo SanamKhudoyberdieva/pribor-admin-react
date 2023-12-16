@@ -115,7 +115,7 @@
     "error-updating-brand": "Brendni yangilashda xatolik yuz berdi",
     "brand-successfully-deleted": "Brend muvaffaqiyatli oʻchirildi",
     "error-deleting-brand": "Brendni oʻchirishda xatolik yuz berdi",
-    "description-uz": "Tavsif (o'zbek)",
+    "description-uz": "Tavsif (O'zbek)",
     "description-ru": "Tavsif (Rus)",
     "description-en": "Tavsif (Ingiliz)",
     "seo-title": "QTO nomi",
@@ -159,39 +159,26 @@
     "banner-successfully-updated": "Banner muvaffaqiyatli yangilandi",
     "error-updating-banner": "Bannerni yangilashda xatolik yuz berdi",
     "banner-successfully-deleted": "Banner muvaffaqiyatli oʻchirildi",
-    "error-deleting-banner": "Bannerni oʻchirishda xatolik yuz berdi"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    "error-deleting-banner": "Bannerni oʻchirishda xatolik yuz berdi",
+    "job-type": "Ish turi",
+    "region": "Region",
+    "vacancy-successfully-created": "Vakansiya muvaffaqiyatli yaratildi",
+    "error-creating-vacancy": "Vakansiya yaratishda xatolik yuz berdi",
+    "vacancy-successfully-updated": "Vakansiya muvaffaqiyatli yangilandi",
+    "error-updating-vacancy": "Vakansiyani yangilashda xatolik yuz berdi",
+    "vacancy-successfully-deleted": "Vakansiya muvaffaqiyatli oʻchirildi",
+    "error-deleting-vacancy": "Vakansiyani oʻchirishda xatolik yuz berdi",
+    "responsibility-uz": "Mas'uliyat (O'zbek)",
+    "requirement-uz": "Talab (O'zbek)",
+    "type-uz": "Turi (O'zbek)",
+    "type-ru": "Turi (Rus)",
+    "responsibility-ru": "Mas'uliyat (Rus)",
+    "requirement-ru": "Talab (Rus)",
+    "type-en": "Turi (Ingiliz)",
+    "responsibility-en": "Mas'uliyat (Ingiliz)",
+    "requirement-en": "Talab (Ingiliz)",
+    "workers": "Ishchilar",
+    "resume": "Rezyume"
 
 
 
