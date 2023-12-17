@@ -53,6 +53,7 @@ export * from "./vacancy/getApplicants";
 export * from "./vacancy/getApplicant";
 export * from "./vacancy/deleteApplicant";
 
+export * from "./customer/getCustomer";
 export * from "./customer/getCustomers";
 
 export * from "./product/getProducts";
