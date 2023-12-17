@@ -188,6 +188,9 @@
     "longitude": "Longitude",
     "latitude": "Latitude",
     "position": "Position",
-    "parent-id": "Parent ID"
+    "parent-id": "Parent ID",
+    "page-not-found": "Page not found",
+    "error-message-not-found": "Oops! The requested URL was not found on this server.",
+    "back-to-home-page": "Back to home page"
 
 }

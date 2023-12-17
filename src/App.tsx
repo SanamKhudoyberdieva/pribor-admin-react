@@ -37,6 +37,7 @@ import News from './pages/news';
 import NewPage from './pages/news/[id]';
 import Applicants from './pages/applicants';
 import ApplicantPage from './pages/applicants/[id]';
+import NotFound from './pages/notFound';
 
 function App() {
   return (
@@ -103,10 +104,9 @@ function App() {
           </Route>
         </Route>
 
-        {/* catch all */}
-        {/* <Route path="/" element={<Layout />}>
-          <Route path="*" element={<PageNotFound />} />
-        </Route> */}
+        <Route path="/" element={<MainLayout />}>
+          <Route path="*" element={<NotFound />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );

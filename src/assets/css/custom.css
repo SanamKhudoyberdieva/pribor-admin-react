@@ -29,3 +29,14 @@
     height: 100%;
     overflow-y: scroll;
 }
+
+.pr-not-found-wrp {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pr-not-found-wrp .misc-wrapper {
+    text-align: center;
+}
