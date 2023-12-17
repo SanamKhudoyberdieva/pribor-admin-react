@@ -243,6 +243,28 @@ const ContactPage = ({ mode }: { mode: string }) => {
                 />
               </div>
               <div className="col-6">
+                <label className="form-label">{t('longitude')}</label>
+                <input 
+                  type="text" 
+                  name='longitude'
+                  className="form-control" 
+                  value={formik.values.longitude}
+                  onChange={formik.handleChange}
+                  placeholder={t('contact-address')}
+                />
+              </div>
+              <div className="col-6">
+                <label className="form-label">{t('latitude')}</label>
+                <input 
+                  type="text" 
+                  name='latitude'
+                  className="form-control" 
+                  value={formik.values.latitude}
+                  onChange={formik.handleChange}
+                  placeholder={t('contact-address')}
+                />
+              </div>
+              <div className="col-6">
                 <label className="form-label">{t('address')}</label>
                 <input 
                   type="text" 

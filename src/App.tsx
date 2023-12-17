@@ -89,9 +89,9 @@ function App() {
             <Route path="/vacancy/new" element={<Vacancy mode="create" />} />
             <Route path="/vacancy/:id/edit" element={<Vacancy mode="edit" />} />
 
-            <Route path="/new" element={<News />} />
-            <Route path="/new/new" element={<NewPage mode="create" />} />
-            <Route path="/new/:id/edit" element={<NewPage mode="edit" />} />
+            <Route path="/news" element={<News />} />
+            <Route path="/news/new" element={<NewPage mode="create" />} />
+            <Route path="/news/:id/edit" element={<NewPage mode="edit" />} />
 
             <Route path="/applicant" element={<Applicants />} />
             <Route path="/applicant/new" element={<ApplicantPage mode="create" />} />

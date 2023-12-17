@@ -184,7 +184,13 @@
     "applicant-successfully-created": "Ariza beruvchi muvaffaqiyatli yaratildi",
     "error-creating-applicant": "Ariza beruvchini yaratishda xatolik yuz berdi",
     "applicant-successfully-deleted": "Ariza beruvchi muvaffaqiyatli oʻchirildi",
-    "error-deleting-applicant": "Ariza beruvchini oʻchirishda xatolik yuz berdi"
+    "error-deleting-applicant": "Ariza beruvchini oʻchirishda xatolik yuz berdi",
+    "longitude": "Uzunlik",
+    "latitude": "Kenglik",
+    "position": "Lavozim",
+    "parent-id": "Ota-ona ID"
+
+
 
 
 

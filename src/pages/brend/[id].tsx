@@ -4,8 +4,8 @@ import { useTranslation } from 'react-i18next';
 import useToast from '../../components/useToast';
 import { getName } from '../../utils/helperFunctions';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { createBrand, deleteBrand, getBrand, updateBrand } from '../../api';
 import { Brand, BrandTypes } from '../../store/types/brandTypes';
+import { createBrand, deleteBrand, getBrand, updateBrand } from '../../api';
 
 const Brend = ({ mode }: { mode: string }) => {
   const { id } = useParams();
@@ -182,16 +182,7 @@ const Brend = ({ mode }: { mode: string }) => {
       <form onSubmit={formik.handleSubmit}>
         <div className="card mb-4">
           <div className="card-body">
-            <div className="form-check form-switch mb-2">
-              <input
-                className="form-check-input"
-                type="checkbox"
-                checked={formik.values.isActive}
-                onChange={(e) => formik.setFieldValue('isActive', e.target.checked)}
-              />
-              <label className="form-check-label">{t('visible')}</label>
-            </div>
-            <div className="row g-3 mb-4">
+            <div className="row g-3">
               <div className="col-12">
                 <label className="form-label">{t('name-uz')}</label>
                 <input
@@ -199,28 +190,6 @@ const Brend = ({ mode }: { mode: string }) => {
                   name='nameUz'
                   className="form-control"
                   value={formik.values.nameUz}
-                  onChange={formik.handleChange}
-                  placeholder={t('brend-name')}
-                />
-              </div>
-              <div className="col-12">
-                <label className="form-label">{t('name-ru')}</label>
-                <input
-                  type="text"
-                  name='nameRu'
-                  className="form-control"
-                  value={formik.values.nameRu}
-                  onChange={formik.handleChange}
-                  placeholder={t('brend-name')}
-                />
-              </div>
-              <div className="col-12">
-                <label className="form-label">{t('name-en')}</label>
-                <input
-                  type="text"
-                  name='nameEn'
-                  className="form-control"
-                  value={formik.values.nameEn}
                   onChange={formik.handleChange}
                   placeholder={t('brend-name')}
                 />
@@ -236,6 +205,23 @@ const Brend = ({ mode }: { mode: string }) => {
                   placeholder={t('description')}
                 />
               </div>
+            </div>
+          </div>
+        </div>
+        <div className="card mb-4">
+          <div className="card-body">
+            <div className="row g-3">
+              <div className="col-12">
+                <label className="form-label">{t('name-ru')}</label>
+                <input
+                  type="text"
+                  name='nameRu'
+                  className="form-control"
+                  value={formik.values.nameRu}
+                  onChange={formik.handleChange}
+                  placeholder={t('brend-name')}
+                />
+              </div>
               <div className="col-12">
                 <label className="form-label">{t('description-ru')}</label>
                 <input
@@ -245,6 +231,23 @@ const Brend = ({ mode }: { mode: string }) => {
                   value={formik.values.descriptionRu}
                   onChange={formik.handleChange}
                   placeholder={t('description')}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="card mb-4">
+          <div className="card-body">
+            <div className="row g-3">
+              <div className="col-12">
+                <label className="form-label">{t('name-en')}</label>
+                <input
+                  type="text"
+                  name='nameEn'
+                  className="form-control"
+                  value={formik.values.nameEn}
+                  onChange={formik.handleChange}
+                  placeholder={t('brend-name')}
                 />
               </div>
               <div className="col-12">
@@ -258,6 +261,12 @@ const Brend = ({ mode }: { mode: string }) => {
                   placeholder={t('description')}
                 />
               </div>
+            </div>
+          </div>
+        </div>
+        <div className="card mb-4">
+          <div className="card-body">
+            <div className="row g-3 mb-4">
               <div className="col-12">
                 <label className="form-label">{t('seo-title')}</label>
                 <input
@@ -280,6 +289,15 @@ const Brend = ({ mode }: { mode: string }) => {
                   placeholder={t('seo-description-full')}
                 />
               </div>
+            </div>
+            <div className="form-check form-switch">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                checked={formik.values.isActive}
+                onChange={(e) => formik.setFieldValue('isActive', e.target.checked)}
+              />
+              <label className="form-check-label">{t('visible')}</label>
             </div>
           </div>
         </div>

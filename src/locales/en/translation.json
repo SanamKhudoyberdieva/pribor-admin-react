@@ -184,6 +184,10 @@
     "applicant-successfully-created": "Applicant successfully created",
     "error-creating-applicant": "Error creating applicant",
     "applicant-successfully-deleted": "Applicant successfully deleted",
-    "error-deleting-applicant": "Error deleting applicant"
+    "error-deleting-applicant": "Error deleting applicant",
+    "longitude": "Longitude",
+    "latitude": "Latitude",
+    "position": "Position",
+    "parent-id": "Parent ID"
 
 }

@@ -1,5 +1,6 @@
 export interface New {
     id: number,
+    position: number,
     nameUz: string,
     nameRu: string,
     nameEn: string,
@@ -13,6 +14,7 @@ export interface New {
     updatedAt: string,
   }
   export interface NewTypes {
+    position: any,
     nameUz: string,
     nameRu: string,
     nameEn: string,

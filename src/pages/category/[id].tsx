@@ -10,9 +10,9 @@ import { Category, CategoryCreation, CategoryUpdate } from '../../store/types/ca
 const CategoryPage = ({ mode }: { mode: string }) => {
   const { id } = useParams();
   const { t } = useTranslation();
-  const lang = localStorage.getItem("language") || "uz";
   const navigate = useNavigate();
   const { showToast } = useToast();
+  const lang = localStorage.getItem("language") || "uz";
   const [currCategory, setCurrCategory] = useState<Category>();
 
   console.log("currCategory", currCategory)
@@ -24,7 +24,9 @@ const CategoryPage = ({ mode }: { mode: string }) => {
     descriptionRu: "",
     descriptionUz: "",
     descriptionEn: "",
+    parent: "",
     parentId: null,
+    position: "",
     seoTitle: "",
     seoDescription: "",
     image: "",
@@ -55,6 +57,10 @@ const CategoryPage = ({ mode }: { mode: string }) => {
           nameRu: values.nameRu,
           nameEn: values.nameEn,
           isActive: values.isActive,
+          parentId: values.parentId,
+          position: values.position,
+          seoTitle: values.seoTitle,
+          seoDescription: values.seoDescription,
         });
       navigate("/category", { replace: true });
       showToast(t('category-successfully-created'), { type: 'success' });
@@ -73,9 +79,7 @@ const CategoryPage = ({ mode }: { mode: string }) => {
           nameEn: values.nameEn,
           isActive: values.isActive,
           parentId: values.parentId,
-          descriptionEn: values.descriptionEn,
-          descriptionUz: values.descriptionUz,
-          descriptionRu: values.descriptionRu,
+          position: values.position,
           seoTitle: values.seoTitle,
           seoDescription: values.seoDescription,
         });
@@ -111,6 +115,10 @@ const CategoryPage = ({ mode }: { mode: string }) => {
           nameRu: currCategory.nameRu,
           nameEn: currCategory.nameEn,
           isActive: currCategory.isActive,
+          parentId: currCategory.parentId,
+          position: currCategory.position,
+          seoTitle: currCategory.seoTitle,
+          seoDescription: currCategory.seoDescription,
         },
       });
     } else {
@@ -135,7 +143,9 @@ const CategoryPage = ({ mode }: { mode: string }) => {
         descriptionRu: (mode === "edit" && currCategory) ? currCategory.descriptionRu : "",
         descriptionUz: (mode === "edit" && currCategory) ? currCategory.descriptionUz : "",
         descriptionEn: (mode === "edit" && currCategory) ? currCategory.descriptionEn : "",
-        parentId: null,
+        parent: (mode === "edit" && currCategory) ? currCategory.parent : "",
+        parentId: (mode === "edit" && currCategory) ? currCategory.parentId : null,
+        position: (mode === "edit" && currCategory) ? currCategory.position : null,
         seoTitle: (mode === "edit" && currCategory) ? currCategory.seoTitle : "",
         seoDescription: (mode === "edit" && currCategory) ? currCategory.seoDescription : "",
         image: (mode === "edit" && currCategory) ? currCategory.image : "",
@@ -153,8 +163,6 @@ const CategoryPage = ({ mode }: { mode: string }) => {
   useEffect(() => {
     handleGetCategory(id)
   }, [id])
-
-  console.log("currCategory", currCategory?.nameEn)
 
   return (
     <>
@@ -179,17 +187,8 @@ const CategoryPage = ({ mode }: { mode: string }) => {
       <form onSubmit={formik.handleSubmit}>
         <div className="card mb-4">
           <div className="card-body">
-            <div className="form-check form-switch mb-2">
-              <input
-                className="form-check-input"
-                type="checkbox"
-                checked={formik.values.isActive}
-                onChange={(e) => formik.setFieldValue('isActive', e.target.checked)}
-              />
-              <label className="form-check-label">{t('visible')}</label>
-            </div>
             <div className="row g-3 mb-4">
-              <div className="col-12">
+              <div className="col-4">
                 <label className="form-label">{t('name-uz')} *</label>
                 <input
                   type="text"
@@ -200,7 +199,7 @@ const CategoryPage = ({ mode }: { mode: string }) => {
                   placeholder={t('category-name')}
                 />
               </div>
-              <div className="col-12">
+              <div className="col-4">
                 <label className="form-label">{t('name-ru')} *</label>
                 <input
                   type="text"
@@ -211,7 +210,7 @@ const CategoryPage = ({ mode }: { mode: string }) => {
                   placeholder={t('category-name')}
                 />
               </div>
-              <div className="col-12">
+              <div className="col-4">
                 <label className="form-label">{t('name-en')} *</label>
                 <input
                   type="text"
@@ -222,6 +221,59 @@ const CategoryPage = ({ mode }: { mode: string }) => {
                   placeholder={t('category-name')}
                 />
               </div>
+              <div className="col-6">
+                <label className="form-label">{t('position')} *</label>
+                <input
+                  type="text"
+                  name='position'
+                  className="form-control"
+                  value={formik.values.position}
+                  onChange={formik.handleChange}
+                  placeholder={t('category-name')}
+                />
+              </div>
+              <div className="col-6">
+                <label className="form-label">{t('parent-id')} *</label>
+                <input
+                  type="text"
+                  name='parentId'
+                  className="form-control"
+                  value={formik.values.parentId}
+                  onChange={formik.handleChange}
+                  placeholder={t('category-name')}
+                />
+              </div>
+              <div className="col-6">
+                <label className="form-label">{t('seo-title')} *</label>
+                <input
+                  type="text"
+                  name='seoTitle'
+                  className="form-control"
+                  value={formik.values.seoTitle}
+                  onChange={formik.handleChange}
+                  placeholder={t('category-name')}
+                />
+              </div>
+              <div className="col-6">
+                <label className="form-label">{t('seo-description')} *</label>
+                <input
+                  type="text"
+                  name='seoDescription'
+                  className="form-control"
+                  value={formik.values.seoDescription}
+                  onChange={formik.handleChange}
+                  placeholder={t('category-name')}
+                />
+              </div>
+            </div>
+            <div className="form-check form-switch">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                checked={formik.values.isActive}
+                onChange={(e) => formik.setFieldValue('isActive', e.target.checked)}
+              />
+              <label className="form-check-label">{t('visible')}</label>
             </div>
           </div>
         </div>

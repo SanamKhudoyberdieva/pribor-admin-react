@@ -34,14 +34,14 @@ const News = () => {
         <>
             <nav aria-label="breadcrumb">
                 <ol className="breadcrumb">
-                    <li className="breadcrumb-item"><Link to={"/new"}>{t('news')}</Link></li>
+                    <li className="breadcrumb-item"><Link to={"/news"}>{t('news')}</Link></li>
                     <li className="breadcrumb-item active" aria-current="page">{t('list')}</li>
                 </ol>
             </nav>
 
             <div className="mb-4 d-flex align-items-center justify-content-between">
                 <h4 className="fw-bold mb-0">{t('news')}</h4>
-                <Link to={'/new/new'} className="btn btn-primary">{t('create-news')}</Link>
+                <Link to={'/news/new'} className="btn btn-primary">{t('create-news')}</Link>
             </div>
 
             <div className="card">
@@ -59,10 +59,10 @@ const News = () => {
                             {news.map((x: New, idx) => (
                                 <tr key={"new-index-" + idx}>
                                     <th scope="row">{idx + 1}</th>
-                                    <td><Link to={`/new/${x.id}/edit`}>{getName(x, lang)}</Link></td>
+                                    <td><Link to={`/news/${x.id}/edit`}>{getName(x, lang)}</Link></td>
                                     <td>{x.image}</td>
                                     <td>
-                                        <Link to={`/new/${x.id}/edit`} className="btn btn-success">{t('edit')}</Link>
+                                        <Link to={`/news/${x.id}/edit`} className="btn btn-success">{t('edit')}</Link>
                                     </td>
                                 </tr>
                             ))}

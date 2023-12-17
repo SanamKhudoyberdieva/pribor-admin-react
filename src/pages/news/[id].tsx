@@ -2,10 +2,10 @@ import { useFormik } from 'formik';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import useToast from '../../components/useToast';
-import { Link, useNavigate, useParams } from 'react-router-dom';
-import { New, NewTypes } from '../../store/types/newTypes';
-import { createNew, deleteNew, getNew, updateNew } from '../../api';
 import { getName } from '../../utils/helperFunctions';
+import { New, NewTypes } from '../../store/types/newTypes';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { createNew, deleteNew, getNew, updateNew } from '../../api';
 
 const NewPage = ({ mode }: { mode: string }) => {
   const { id } = useParams();
@@ -16,6 +16,7 @@ const NewPage = ({ mode }: { mode: string }) => {
   const lang = localStorage.getItem("language") || "uz";
   const initialValues: New = {
     id: 0,
+    position: 0,
     nameUz: "",
     nameRu: "",
     nameEn: "",
@@ -47,6 +48,7 @@ const NewPage = ({ mode }: { mode: string }) => {
     formData.append("descriptionEn", values.descriptionEn)
     formData.append("descriptionRu", values.descriptionRu)
     formData.append("descriptionUz", values.descriptionUz)
+    formData.append("position", values.position)
     formData.append("image_file", values.image)
     try {
       await createNew(formData);
@@ -67,6 +69,7 @@ const NewPage = ({ mode }: { mode: string }) => {
     formData.append("descriptionEn", values.descriptionEn)
     formData.append("descriptionRu", values.descriptionRu)
     formData.append("descriptionUz", values.descriptionUz)
+    formData.append("position", values.position)
     formData.append("image_file", values.image)
     try {
       await updateNew(currNew.id, formData);
@@ -98,6 +101,7 @@ const NewPage = ({ mode }: { mode: string }) => {
         values: {
           ...initialValues,
           ...currNew,
+          position: currNew.position,
           nameUz: currNew.nameUz,
           nameRu: currNew.nameRu,
           nameEn: currNew.nameEn,
@@ -123,6 +127,7 @@ const NewPage = ({ mode }: { mode: string }) => {
       ...state,
       values: {
         id: (mode === "edit" && currNew) ? currNew.id : 0,
+        position: (mode === "edit" && currNew) ? currNew.position : 0,
         nameUz: (mode === "edit" && currNew) ? currNew.nameUz : "",
         nameRu: (mode === "edit" && currNew) ? currNew.nameRu : "",
         nameEn: (mode === "edit" && currNew) ? currNew.nameEn : "",
@@ -146,7 +151,7 @@ const NewPage = ({ mode }: { mode: string }) => {
     <>
       <nav aria-label="breadcrumb">
         <ol className="breadcrumb">
-          <li className="breadcrumb-item"><Link to={'/new'}>{t('news')}</Link></li>
+          <li className="breadcrumb-item"><Link to={'/news'}>{t('news')}</Link></li>
           {mode === "create" && <li className="breadcrumb-item active" aria-current="page">{t('create')}</li>}
           {mode === "edit" &&
             <>
@@ -165,7 +170,7 @@ const NewPage = ({ mode }: { mode: string }) => {
       <form onSubmit={formik.handleSubmit}>
         <div className="card mb-4">
           <div className="card-body">
-            <div className="row g-3 mb-4">
+            <div className="row g-3">
               <div className="col-12">
                 <label className="form-label">{t('name-uz')}</label>
                 <input
@@ -173,28 +178,6 @@ const NewPage = ({ mode }: { mode: string }) => {
                   name='nameUz'
                   className="form-control"
                   value={formik.values.nameUz}
-                  onChange={formik.handleChange}
-                  placeholder={t('brend-name')}
-                />
-              </div>
-              <div className="col-12">
-                <label className="form-label">{t('name-ru')}</label>
-                <input
-                  type="text"
-                  name='nameRu'
-                  className="form-control"
-                  value={formik.values.nameRu}
-                  onChange={formik.handleChange}
-                  placeholder={t('brend-name')}
-                />
-              </div>
-              <div className="col-12">
-                <label className="form-label">{t('name-en')}</label>
-                <input
-                  type="text"
-                  name='nameEn'
-                  className="form-control"
-                  value={formik.values.nameEn}
                   onChange={formik.handleChange}
                   placeholder={t('brend-name')}
                 />
@@ -210,6 +193,24 @@ const NewPage = ({ mode }: { mode: string }) => {
                   placeholder={t('description')}
                 />
               </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="card mb-4">
+          <div className="card-body">
+            <div className="row g-3">
+              <div className="col-12">
+                <label className="form-label">{t('name-ru')}</label>
+                <input
+                  type="text"
+                  name='nameRu'
+                  className="form-control"
+                  value={formik.values.nameRu}
+                  onChange={formik.handleChange}
+                  placeholder={t('brend-name')}
+                />
+              </div>
               <div className="col-12">
                 <label className="form-label">{t('description-ru')}</label>
                 <input
@@ -221,6 +222,24 @@ const NewPage = ({ mode }: { mode: string }) => {
                   placeholder={t('description')}
                 />
               </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="card mb-4">
+          <div className="card-body">
+            <div className="row g-3">
+              <div className="col-12">
+                <label className="form-label">{t('name-en')}</label>
+                <input
+                  type="text"
+                  name='nameEn'
+                  className="form-control"
+                  value={formik.values.nameEn}
+                  onChange={formik.handleChange}
+                  placeholder={t('brend-name')}
+                />
+              </div>
               <div className="col-12">
                 <label className="form-label">{t('description-en')}</label>
                 <input
@@ -230,6 +249,24 @@ const NewPage = ({ mode }: { mode: string }) => {
                   value={formik.values.descriptionEn}
                   onChange={formik.handleChange}
                   placeholder={t('description')}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="card mb-4">
+          <div className="card-body">
+            <div className="row g-3">
+              <div className="col-12">
+                <label className="form-label">{t('position')}</label>
+                <input
+                  type="text"
+                  name='position'
+                  className="form-control"
+                  value={formik.values.position}
+                  onChange={formik.handleChange}
+                  placeholder={t('position')}
                 />
               </div>
             </div>

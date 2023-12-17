@@ -184,7 +184,13 @@
     "applicant-successfully-created": "Кандидат успешно создан",
     "error-creating-applicant": "Ошибка при создании заявителя",
     "applicant-successfully-deleted": "Кандидат успешно удален",
-    "error-deleting-applicant": "Ошибка удаления заявителя"
+    "error-deleting-applicant": "Ошибка удаления заявителя",
+    "longitude": "Долгота",
+    "latitude": "Широта",
+    "position": "Позиция",
+    "parent-id": "Идентификатор родителя"
+
+
 
 
 
