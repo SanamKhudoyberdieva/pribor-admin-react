@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { Applicant } from "../../store/types/applicantTypes";
 import { setApplicants } from "../../store/slices/applicantsSlice";
-import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
+import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import TabComponent from "../../components/TabComponent";
 import { setVacancies } from "../../store/slices/vacanciesSlice";
 import { getName } from "../../utils/helperFunctions";

@@ -61,7 +61,7 @@ const Banners = () => {
                                 <tr key={"banner-index-" + idx}>
                                     <th scope="row">{idx + 1}</th>
                                     <td><Link to={`/banner/${x.id}/edit`}>{getName(x, lang)}</Link></td>
-                                    <td>{x.image}</td>
+                                    <td><img src={x.image} style={{ maxWidth: '50px', maxHeight: '50px' }} /></td>
                                     <td>{getDescription(x, lang)}</td>
                                     <td>
                                         <Link to={`/banner/${x.id}/edit`} className="btn btn-success">{t('edit')}</Link>
