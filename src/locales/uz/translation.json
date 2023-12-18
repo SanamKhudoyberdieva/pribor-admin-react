@@ -191,7 +191,19 @@
     "parent-id": "Ota-ona ID",
     "page-not-found": "Sahifa topilmadi",
     "error-message-not-found": "Voy! Bu serverda soʻralgan URL topilmadi.",
-    "back-to-home-page": "Bosh sahifaga qaytish"
+    "back-to-home-page": "Bosh sahifaga qaytish",
+    "not-checked": "Tekshirilmagan",
+    "checked": "Tekshirilgan",
+    "saved": "Saqlangan",
+    "vacancy-title": "Vakansiya sarlavhasi",
+    "full-name": "To'liq ismi",
+    "view": "Tafsilotlarni ko'rish"
+
+
+
+
+
+
 
 
 

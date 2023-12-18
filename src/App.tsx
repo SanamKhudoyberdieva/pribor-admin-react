@@ -95,8 +95,10 @@ function App() {
             <Route path="/news/:id/edit" element={<NewPage mode="edit" />} />
 
             <Route path="/applicant" element={<Applicants />} />
-            <Route path="/applicant/new" element={<ApplicantPage mode="create" />} />
-            <Route path="/applicant/:id/edit" element={<ApplicantPage mode="edit" />} />
+            <Route path="/applicant/saved" element={<Applicants/>} />
+            <Route path="/applicant/checked" element={<Applicants/>} />
+            <Route path="/applicant/not-checked" element={<Applicants/>} />
+            <Route path="/applicant/:id/view" element={<ApplicantPage />} />
 
             <Route path="/admins" element={<Admins />} />
             <Route path="/admin/new" element={<AdminPage mode="create" />} />

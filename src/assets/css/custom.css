@@ -40,3 +40,12 @@
 .pr-not-found-wrp .misc-wrapper {
     text-align: center;
 }
+
+.pr-tab-nav-item .nav-link {
+    color: #03c3ec !important;
+    background: #d7f5fc;
+}
+ 
+.pr-tab-nav-item .active {
+    color: white !important;
+}

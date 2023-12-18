@@ -6,6 +6,7 @@ export interface Applicant {
     description: string,
     resume: string,
     createdAt: string,
+    phone: string
 }
 
 export interface ApplicantTypes {
@@ -13,4 +14,5 @@ export interface ApplicantTypes {
     vacancyId: number,
     description: string,
     resume: string,
+    phone: string
 }

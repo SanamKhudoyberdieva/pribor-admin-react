@@ -40,7 +40,7 @@ const VacancyPage = ({ mode }: { mode: string }) => {
     updatedAt: "",
   }
 
-  const handleGetVacancy = async (vacancyId: string | undefined) => {
+  const handleGetVacancy = async (vacancyId: any) => {
     if (!vacancyId) return
     try {
       let res = await getVacancy(vacancyId);
@@ -110,7 +110,7 @@ const VacancyPage = ({ mode }: { mode: string }) => {
     }
   }
 
-  const handleDeleteVacancy = async (id: string | undefined) => {
+  const handleDeleteVacancy = async (id: any) => {
     if (!id) return
     try {
       await deleteVacancy(id);

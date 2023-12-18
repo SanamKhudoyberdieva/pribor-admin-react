@@ -191,6 +191,12 @@
     "parent-id": "Parent ID",
     "page-not-found": "Page not found",
     "error-message-not-found": "Oops! The requested URL was not found on this server.",
-    "back-to-home-page": "Back to home page"
+    "back-to-home-page": "Back to home page",
+    "not-checked": "Not checked",
+    "checked": "Checked",
+    "saved": "Saved",
+    "vacancy-title": "Vacancy title",
+    "full-name": "Full name",
+    "view": "View details"
 
 }

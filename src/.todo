@@ -1,15 +1,6 @@
 Questions: 
-    Is it necessary to make a separate page for payment?
-    Customer -> edit -> address, add address edit and delete btn
-    ** Brand page ( first brend can not be deleted )
-    ** Brand image input
-    ** Brand page ( Why do we need SEO title, SEO description )
-    ** Category page (Why do we need image, SEO title, SEO description, Description, )
-    ** Category page (parentID ?)
-    ** Category page update
-    ** Contact ?
+    ** Applicant resume link
 
 Tasks:
-    Error hendling with dinamic error messages and if it is static it shuld be multilanguage
-    showErrorMessage function should be reusable
+    
     
