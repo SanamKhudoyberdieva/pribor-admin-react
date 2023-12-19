@@ -49,3 +49,19 @@
 .pr-tab-nav-item .active {
     color: white !important;
 }
+
+.pr-img-wrapper {
+    width: 20rem;
+}
+
+.pr-img-wrapper img {
+    width: 100%;
+    height: 5rem;
+    object-fit: cover;
+}
+
+.pr-desc-wrapper {
+    width: 20rem;
+    max-height: 50px;
+    overflow: hidden;
+}

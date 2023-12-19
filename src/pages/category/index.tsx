@@ -16,15 +16,13 @@ const Categories = () => {
     const lang = localStorage.getItem("language") || "uz";
     const { categories } = useSelector((state: RootState) => state.categoriesReducer);
 
-    console.log("categories", categories)
-    
     const handelGetCategories = async () => {
         try {
             const res = await getCategories();
-            dispatch(setCategories(res.data))
+            dispatch(setCategories(res.data));
         } catch (error: any) {
-            showToast(error.response.data.message || t('error-fetching-categories'), { type: 'error' });
-            console.log("Error fetching categories", error)
+            showToast(t('error-fetching-categories'), { type: 'error' });
+            console.log("Error fetching categories", error);
         }
     }
 
@@ -53,6 +51,7 @@ const Categories = () => {
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">{t('name')}</th>
+                                <th scope="col">{t('parent-name')}</th>
                                 <th scope="col">{t('visibility')}</th>
                                 <th scope="col">{t('actions')}</th>
                             </tr>
@@ -62,6 +61,7 @@ const Categories = () => {
                                 <tr key={"category-index-" + idx}>
                                     <th scope="row">{idx + 1}</th>
                                     <td><Link to={`/category/${x.id}/edit`}>{getName(x, lang)}</Link></td>
+                                    <td>{x.parentId}</td>
                                     <td>
                                         {x.isActive === true ? (
                                             <div className="badge badge-center rounded-pill bg-label-success"><i className='bx bx-check-circle'></i></div>

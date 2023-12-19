@@ -65,7 +65,13 @@ const Products = () => {
                                     <td><Link to={`/product/${x.id}/edit`}>{getName(x, lang)}</Link></td>
                                     <td>{x.price}</td>
                                     <td>{x.brand}</td>
-                                    <td>{x.image}</td>
+                                    <td className='pr-img-wrapper'>
+                                        <img
+                                            src={`http://80.90.188.12:8000/public/products/${x.image}`}  
+                                            alt={x.nameUz} 
+                                            className='img-fluid'
+                                        />
+                                    </td>
                                     <td>
                                         {x.isActive === true ? (
                                             <div className="badge badge-center rounded-pill bg-label-success"><i className='bx bx-check-circle'></i></div>

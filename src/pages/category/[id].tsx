@@ -15,7 +15,6 @@ const CategoryPage = ({ mode }: { mode: string }) => {
   const lang = localStorage.getItem("language") || "uz";
   const [currCategory, setCurrCategory] = useState<Category>();
 
-  console.log("currCategory", currCategory)
   const initialValues: Category = {
     id: 0,
     nameUz: "",
@@ -25,7 +24,7 @@ const CategoryPage = ({ mode }: { mode: string }) => {
     descriptionUz: "",
     descriptionEn: "",
     parent: "",
-    parentId: null,
+    parentId: "",
     position: "",
     seoTitle: "",
     seoDescription: "",
@@ -42,10 +41,10 @@ const CategoryPage = ({ mode }: { mode: string }) => {
   const handleGetCategory = async (categoryId: string | undefined) => {
     if (!categoryId) return
     try {
-      let res = await getCategory(categoryId)
-      setCurrCategory(res.data)
+      let res = await getCategory(categoryId);
+      setCurrCategory(res.data);
     } catch (error) {
-      console.log("Error fetching category", error)
+      console.log("Error fetching category", error);
     }
   }
 
@@ -144,8 +143,8 @@ const CategoryPage = ({ mode }: { mode: string }) => {
         descriptionUz: (mode === "edit" && currCategory) ? currCategory.descriptionUz : "",
         descriptionEn: (mode === "edit" && currCategory) ? currCategory.descriptionEn : "",
         parent: (mode === "edit" && currCategory) ? currCategory.parent : "",
-        parentId: (mode === "edit" && currCategory) ? currCategory.parentId : null,
-        position: (mode === "edit" && currCategory) ? currCategory.position : null,
+        parentId: (mode === "edit" && currCategory) ? currCategory.parentId || "" : "", 
+        position: (mode === "edit" && currCategory) ? currCategory.position || "" : "",
         seoTitle: (mode === "edit" && currCategory) ? currCategory.seoTitle : "",
         seoDescription: (mode === "edit" && currCategory) ? currCategory.seoDescription : "",
         image: (mode === "edit" && currCategory) ? currCategory.image : "",
@@ -233,12 +232,12 @@ const CategoryPage = ({ mode }: { mode: string }) => {
                 />
               </div>
               <div className="col-6">
-                <label className="form-label">{t('parent-id')} *</label>
+                <label className="form-label">{t('parent-name')} *</label>
                 <input
                   type="text"
                   name='parentId'
                   className="form-control"
-                  value={formik.values.parentId}
+                  value={formik.values.parentId || ''}
                   onChange={formik.handleChange}
                   placeholder={t('category-name')}
                 />

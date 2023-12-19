@@ -52,7 +52,7 @@ const NewPage = ({ mode }: { mode: string }) => {
     formData.append("image_file", values.image)
     try {
       await createNew(formData);
-      navigate("/new", { replace: true });
+      navigate("/news", { replace: true });
       showToast(t('new-successfully-created'), { type: 'success' });
     } catch (error) {
       showToast(t('error-creating-news'), { type: 'error' });
@@ -73,7 +73,7 @@ const NewPage = ({ mode }: { mode: string }) => {
     formData.append("image_file", values.image)
     try {
       await updateNew(currNew.id, formData);
-      navigate("/new", { replace: true });
+      navigate("/news", { replace: true });
       showToast(t('news-successfully-updated'), { type: 'success' });
     } catch (error) {
       showToast(t('error-updating-news'), { type: 'error' });
@@ -114,7 +114,7 @@ const NewPage = ({ mode }: { mode: string }) => {
     } else {
       formik.resetForm({ values: initialValues });
     }
-    navigate('/new', { replace: true });
+    navigate('/news', { replace: true });
   };
 
   const formik = useFormik({

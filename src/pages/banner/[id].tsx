@@ -32,10 +32,10 @@ const BannerPage = ({ mode }: { mode: string }) => {
   const handleGetBanner = async (bannerId: string | undefined) => {
     if (!bannerId) return
     try {
-      let res = await getBanner(bannerId)
-      setCurrBanner(res.data)
+      let res = await getBanner(bannerId);
+      setCurrBanner(res.data);
     } catch (error) {
-      console.log("Error fetching banner", error)
+      console.log("Error fetching banner", error);
     }
   }
 

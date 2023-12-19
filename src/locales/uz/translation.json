@@ -188,7 +188,7 @@
     "longitude": "Uzunlik",
     "latitude": "Kenglik",
     "position": "Lavozim",
-    "parent-id": "Ota-ona ID",
+    "parent-name": "Ota-ona nomi",
     "page-not-found": "Sahifa topilmadi",
     "error-message-not-found": "Voy! Bu serverda soʻralgan URL topilmadi.",
     "back-to-home-page": "Bosh sahifaga qaytish",

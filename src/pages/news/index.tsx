@@ -60,7 +60,13 @@ const News = () => {
                                 <tr key={"new-index-" + idx}>
                                     <th scope="row">{idx + 1}</th>
                                     <td><Link to={`/news/${x.id}/edit`}>{getName(x, lang)}</Link></td>
-                                    <td>{x.image}</td>
+                                    <td className='pr-img-wrapper'>
+                                        <img
+                                            src={`http://80.90.188.12:8000/public/news/${x.image}`}  
+                                            alt={x.nameUz} 
+                                            className='img-fluid'
+                                        />
+                                    </td>
                                     <td>
                                         <Link to={`/news/${x.id}/edit`} className="btn btn-success">{t('edit')}</Link>
                                     </td>

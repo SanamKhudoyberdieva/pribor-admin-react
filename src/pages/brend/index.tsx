@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import useToast from '../../components/useToast';
 import { Brand } from '../../store/types/brandTypes';
-import { getName } from '../../utils/helperFunctions';
+import { getDescription, getName } from '../../utils/helperFunctions';
 import { useDispatch, useSelector } from 'react-redux';
 import { setBrands } from '../../store/slices/brandsSlice';
 
@@ -52,6 +52,7 @@ const Brends = () => {
                                 <th scope="col">#</th>
                                 <th scope="col">{t('brend-name')}</th>
                                 <th scope="col">{t('image')}</th>
+                                <th scope="col">{t('created-at')}</th>
                                 <th scope="col">{t('visibility')}</th>
                                 <th scope="col">{t('actions')}</th>
                             </tr>
@@ -61,7 +62,16 @@ const Brends = () => {
                                 <tr key={"brand-index-" + idx}>
                                     <th scope="row">{idx + 1}</th>
                                     <td><Link to={`/brend/${x.id}/edit`}>{getName(x, lang)}</Link></td>
-                                    <td>{x.image}</td>
+                                    <td className='pr-img-wrapper'>
+                                        <img
+                                            src={`http://80.90.188.12:8000/public/brands/${x.image}`}  
+                                            alt={x.nameUz} 
+                                            className='img-fluid'
+                                        />
+                                    </td>
+                                    <td>
+                                    {x?.createdAt ? new Date(x.createdAt).toLocaleDateString('en-GB') : ""}
+                                    </td>
                                     <td>
                                         {x.isActive === true ? (
                                             <div className="badge badge-center rounded-pill bg-label-success"><i className='bx bx-check-circle'></i></div>
