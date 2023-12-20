@@ -22,7 +22,8 @@ const ApplicantPage = () => {
     description: "",
     resume: "",
     createdAt: "",
-    phone: ""
+    phone: "",
+    status: ""
   }
 
   const handleGetApplicant = async (applicantId: string | undefined) => {
@@ -72,7 +73,7 @@ const ApplicantPage = () => {
     <>
       <nav aria-label="breadcrumb">
         <ol className="breadcrumb">
-          <li className="breadcrumb-item"><Link to={'/applicant'}>{t('applicants')}</Link></li>
+          <li className="breadcrumb-item"><Link to={'/applicant/new'}>{t('applicants')}</Link></li>
             <li className="breadcrumb-item"><span>{currApplicant?.name}</span></li>
         </ol>
       </nav>
@@ -121,9 +122,10 @@ const ApplicantPage = () => {
             <ul className="list-unstyled mt-3">
               <li className="d-flex align-items-center">
               <select id="form-repeater-1-4" className="form-select">
-                <option value="Designer">Not Checked</option>
-                <option value="Developer">Checked</option>
-                <option value="Tester">Saved</option>
+              <option>{t("new")}</option>
+                <option value="1">{t("checked")}</option>
+                <option value="2">{t("rejected")}</option>
+                <option value="3">{t("saved")}</option>
               </select>
               </li>
             </ul>

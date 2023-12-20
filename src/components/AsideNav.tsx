@@ -95,8 +95,8 @@ const AsideNav = () => {
           </Link>
         </li>
         <li className="menu-header small text-uppercase"><span className="menu-header-text">{t('requests')}</span></li>
-        <li className={`menu-item ${pathname.includes("/applicant") && "active"}`}>
-          <Link to={'/applicant'} className="menu-link">
+        <li className={`menu-item ${pathname.includes("/applicant/new") && "active"}`}>
+          <Link to={'/applicant/new'} className="menu-link">
             <i className="menu-icon tf-icons bx bx-briefcase-alt-2"></i>
             <div data-i18n="Boxicons">{t('applicants')}</div>
             <span className="badge badge-center rounded-pill bg-success ms-auto">4</span>

@@ -197,6 +197,8 @@
     "saved": "Saved",
     "vacancy-title": "Vacancy title",
     "full-name": "Full name",
-    "view": "View details"
+    "view": "View details",
+    "new": "New",
+    "rejected": "Rejected"
 
 }

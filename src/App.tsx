@@ -94,10 +94,10 @@ function App() {
             <Route path="/news/new" element={<NewPage mode="create" />} />
             <Route path="/news/:id/edit" element={<NewPage mode="edit" />} />
 
-            <Route path="/applicant" element={<Applicants />} />
+            <Route path="/applicant/new" element={<Applicants/>} />
             <Route path="/applicant/saved" element={<Applicants/>} />
             <Route path="/applicant/checked" element={<Applicants/>} />
-            <Route path="/applicant/not-checked" element={<Applicants/>} />
+            <Route path="/applicant/rejected" element={<Applicants/>} />
             <Route path="/applicant/:id/view" element={<ApplicantPage />} />
 
             <Route path="/admins" element={<Admins />} />

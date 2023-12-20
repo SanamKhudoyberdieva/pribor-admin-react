@@ -68,45 +68,52 @@ const Applicants = () => {
             </div>
 
             <Tabs className="nav-align-top">
-                <div className="card mb-4">
-                    <div className="card-body">
-                        <TabList className="nav nav-pills nav-fill">
-                            <Tab className="nav-item pr-tab-nav-item">
-                                <TabComponent
-                                    label={t('not-checked')}
-                                    path="not-checked"
-                                    active={activeTab === 0}
-                                    onClick={() => {
-                                        setActiveTab(0);
-                                        handleTabClick("not-checked");
-                                    }}
-                                />
-                            </Tab>
-                            <Tab className="nav-item pr-tab-nav-item me-2 ms-2">
-                                <TabComponent
-                                    label={t('checked')}
-                                    path="checked"
-                                    active={activeTab === 1}
-                                    onClick={() => {
-                                        setActiveTab(1);
-                                        handleTabClick("checked");
-                                    }}
-                                />
-                            </Tab>
-                            <Tab className="nav-item pr-tab-nav-item">
-                                <TabComponent
-                                    label={t('saved')}
-                                    path="saved"
-                                    active={activeTab === 2}
-                                    onClick={() => {
-                                        setActiveTab(2);
-                                        handleTabClick("saved");
-                                    }}
-                                />
-                            </Tab>
-                        </TabList>
-                    </div>
-                </div>
+                <TabList className="nav nav-pills nav-fill mb-4">
+                    <Tab className="nav-item pr-tab-nav-item">
+                        <TabComponent
+                            label={t('new')}
+                            path="new"
+                            active={activeTab === 0}
+                            onClick={() => {
+                                setActiveTab(0);
+                                handleTabClick("new");
+                            }}
+                        />
+                    </Tab>
+                    <Tab className="nav-item pr-tab-nav-item me-2 ms-2">
+                        <TabComponent
+                            label={t('checked')}
+                            path="checked"
+                            active={activeTab === 1}
+                            onClick={() => {
+                                setActiveTab(1);
+                                handleTabClick("checked");
+                            }}
+                        />
+                    </Tab>
+                    <Tab className="nav-item pr-tab-nav-item me-2 ms-2">
+                        <TabComponent
+                            label={t('rejected')}
+                            path="rejected"
+                            active={activeTab === 2}
+                            onClick={() => {
+                                setActiveTab(2);
+                                handleTabClick("rejected");
+                            }}
+                        />
+                    </Tab>
+                    <Tab className="nav-item pr-tab-nav-item">
+                        <TabComponent
+                            label={t('saved')}
+                            path="saved"
+                            active={activeTab === 3}
+                            onClick={() => {
+                                setActiveTab(3);
+                                handleTabClick("saved");
+                            }}
+                        />
+                    </Tab>
+                </TabList>
                 <div className="tab-content">
                     <TabPanel>
                         <table className="table table-striped table-bordered mb-0">
@@ -116,6 +123,7 @@ const Applicants = () => {
                                     <th scope="col">{t('full-name')}</th>
                                     <th scope="col">{t('vacancy-title')}</th>
                                     <th scope="col">{t('created-at')}</th>
+                                    <th scope="col">{t('status')}</th>
                                     <th scope="col">{t('actions')}</th>
                                 </tr>
                             </thead>
@@ -126,6 +134,14 @@ const Applicants = () => {
                                         <td><Link to={`/applicant/${x.id}/view`}>{x.name}</Link></td>
                                         <td>{getVacancyName(vacancies.find((vacancy) => vacancy.id === x.vacancyId))}</td>
                                         <td>{x.createdAt ? new Date(x.createdAt).toLocaleDateString('en-GB') : ""}</td>
+                                        <td>
+                                            <select id="defaultSelect" className="form-select">
+                                                <option>{t("new")}</option>
+                                                <option value="1">{t("checked")}</option>
+                                                <option value="2">{t("rejected")}</option>
+                                                <option value="3">{t("saved")}</option>
+                                            </select>
+                                        </td>
                                         <td>
                                             <Link to={`/applicant/${x.id}/view`} className="btn btn-success">{t('view')}</Link>
                                         </td>
@@ -142,6 +158,7 @@ const Applicants = () => {
                                     <th scope="col">{t('full-name')}</th>
                                     <th scope="col">{t('vacancy-title')}</th>
                                     <th scope="col">{t('created-at')}</th>
+                                    <th scope="col">{t('status')}</th>
                                     <th scope="col">{t('actions')}</th>
                                 </tr>
                             </thead>
@@ -153,14 +170,15 @@ const Applicants = () => {
                                         <td>{getVacancyName(vacancies.find((vacancy) => vacancy.id === x.vacancyId))}</td>
                                         <td>{x.createdAt ? new Date(x.createdAt).toLocaleDateString('en-GB') : ""}</td>
                                         <td>
-                                            <Link to={`/applicant/${x.id}/view`} className="btn btn-success">{t('view')}</Link>
-                                            <select name="" id="">
-                                                <option value="new">New</option>
-                                                {/* <option value="checked">checked</option> */}
-                                                <option value="accept">accept</option>
-                                                <option value="saved">saved</option>
-                                                <option value="rejected">rejected</option>
+                                            <select id="defaultSelect" className="form-select">
+                                                <option>{t("new")}</option>
+                                                <option value="1">{t("checked")}</option>
+                                                <option value="2">{t("rejected")}</option>
+                                                <option value="3">{t("saved")}</option>
                                             </select>
+                                        </td>
+                                        <td>
+                                            <Link to={`/applicant/${x.id}/view`} className="btn btn-success">{t('view')}</Link>
                                         </td>
                                     </tr>
                                 ))}
@@ -175,6 +193,7 @@ const Applicants = () => {
                                     <th scope="col">{t('full-name')}</th>
                                     <th scope="col">{t('vacancy-title')}</th>
                                     <th scope="col">{t('created-at')}</th>
+                                    <th scope="col">{t('status')}</th>
                                     <th scope="col">{t('actions')}</th>
                                 </tr>
                             </thead>
@@ -186,14 +205,50 @@ const Applicants = () => {
                                         <td>{getVacancyName(vacancies.find((vacancy) => vacancy.id === x.vacancyId))}</td>
                                         <td>{x.createdAt ? new Date(x.createdAt).toLocaleDateString('en-GB') : ""}</td>
                                         <td>
-                                            <Link to={`/applicant/${x.id}/view`} className="btn btn-success">{t('view')}</Link>
-                                            <select name="" id="">
-                                                <option value="new">New</option>
-                                                <option value="checked">checked</option>
-                                                <option value="accept">accept</option>
-                                                <option value="saved">saved</option>
-                                                <option value="rejected">rejected</option>
+                                            <select id="defaultSelect" className="form-select">
+                                                <option>{t("new")}</option>
+                                                <option value="1">{t("checked")}</option>
+                                                <option value="2">{t("rejected")}</option>
+                                                <option value="3">{t("saved")}</option>
                                             </select>
+                                        </td>
+                                        <td>
+                                            <Link to={`/applicant/${x.id}/view`} className="btn btn-success">{t('view')}</Link>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </TabPanel>
+                    <TabPanel>
+                        <table className="table table-striped table-bordered mb-0">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">{t('full-name')}</th>
+                                    <th scope="col">{t('vacancy-title')}</th>
+                                    <th scope="col">{t('created-at')}</th>
+                                    <th scope="col">{t('status')}</th>
+                                    <th scope="col">{t('actions')}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {applicants.map((x: Applicant, idx) => (
+                                    <tr key={"applicant-index-" + idx}>
+                                        <th scope="row">{idx + 1}</th>
+                                        <td><Link to={`/applicant/${x.id}/view`}>{x.name}</Link></td>
+                                        <td>{getVacancyName(vacancies.find((vacancy) => vacancy.id === x.vacancyId))}</td>
+                                        <td>{x.createdAt ? new Date(x.createdAt).toLocaleDateString('en-GB') : ""}</td>
+                                        <td>
+                                            <select id="defaultSelect" className="form-select">
+                                                <option>{t("new")}</option>
+                                                <option value="1">{t("checked")}</option>
+                                                <option value="2">{t("rejected")}</option>
+                                                <option value="3">{t("saved")}</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <Link to={`/applicant/${x.id}/view`} className="btn btn-success">{t('view')}</Link>
                                         </td>
                                     </tr>
                                 ))}

@@ -65,3 +65,7 @@
     max-height: 50px;
     overflow: hidden;
 }
+
+.pr-border-active {
+    border: 1px solid #03c3ec;
+}
